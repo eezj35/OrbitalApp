@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "318320276233",
+    "project_id": "orbitalapp-jmtech",
+    "storage_bucket": "orbitalapp-jmtech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:318320276233:android:47f1d4422195de2f52d9d8",
+        "android_client_info": {
+          "package_name": "com.example.orbital_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "318320276233-brjvpfuqhogu6hqvgm7hmhndk33d0ca1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9b40rRnvb2kZiC208pC5BhP00bdXqhKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "318320276233-brjvpfuqhogu6hqvgm7hmhndk33d0ca1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
