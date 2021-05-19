@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Login"
-    android:padding="15dp"
-    >
+    android:padding="15dp">
 
     <ImageView
         android:layout_width="match_parent"
@@ -22,19 +21,11 @@
         android:layout_gravity="center"
         />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/mFullName"
-        android:layout_marginBottom="10dp"
-        android:hint="Full Name"
-        android:textStyle="bold"
-        />
 
     <EditText
+        android:id="@+id/mEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mEmail"
         android:layout_marginBottom="10dp"
         android:hint="Email"
         android:textStyle="bold"
@@ -45,42 +36,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mPassword"
+        android:inputType="textPassword"
         android:layout_marginBottom="10dp"
         android:hint="Password"
-        android:textStyle="bold"
-        android:inputType="textPassword"
-        />
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/mPhone"
-        android:layout_marginBottom="10dp"
-        android:hint="Phone"
         android:textStyle="bold"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mRegisterBtn"
-        android:text="Register"
+        android:id="@+id/mLoginBtn"
+        android:text="Login"
         android:textStyle="bold"
+        android:layout_marginBottom="10dp"
+
         />
 
-
     <TextView
-        android:id="@+id/mLoginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:text="Register here"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/mCreateBtn"
         android:layout_marginBottom="15dp"
-        android:text="Already registered? Login here"
-        android:textColor="#ff0505" />
+        />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
