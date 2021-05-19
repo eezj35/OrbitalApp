@@ -18,42 +18,34 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Registration extends AppCompatActivity implements View.OnClickListener {
+public class LoggingIn extends AppCompatActivity implements View.OnClickListener{
 
-    EditText mFullName,mEmail,mPassword,mPhone;
-    Button mRegisterBtn;
-    TextView mLoginBtn;
-    FirebaseAuth fAuth;
+    EditText mEmail, mPassword;
+    Button mLoginBtn;
+    TextView mCreateBtn;
     ProgressBar progressBar;
+    FirebaseAuth fAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_logging_in);
 
-        mFullName = findViewById(R.id.mFullName);
         mEmail = findViewById(R.id.mEmail);
         mPassword = findViewById(R.id.mPassword);
-        mPhone = findViewById(R.id.mPhone);
-        mRegisterBtn = findViewById(R.id.mRegisterBtn);
-        mLoginBtn = findViewById(R.id.mLoginBtn);
-
+        progressBar = findViewById(R.id.progressBar2);
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+        mLoginBtn = findViewById(R.id.mLoginBtn);
+        mCreateBtn = findViewById(R.id.mCreateBtn);
 
-        if (fAuth.getCurrentUser() != null) {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        }
-
-        mRegisterBtn.setOnClickListener(this);
         mLoginBtn.setOnClickListener(this);
+        mCreateBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.mRegisterBtn:
+            case R.id.mLoginBtn:
 
                 String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
@@ -75,21 +67,21 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Registration.this, "Registration completed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoggingIn.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         } else {
-                            Toast.makeText(Registration.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoggingIn.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
                 break;
 
-            case R.id.mLoginBtn:
-                startActivity(new Intent(getApplicationContext(), LoggingIn.class));
+            case R.id.mCreateBtn:
+                startActivity(new Intent(getApplicationContext(), Registration.class));
                 break;
         }
     }
