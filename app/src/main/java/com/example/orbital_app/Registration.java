@@ -2,12 +2,10 @@ package com.example.orbital_app;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -91,7 +89,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.mLoginBtn:
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(getApplicationContext(), LoggingIn.class));
                 break;
         }
     }
