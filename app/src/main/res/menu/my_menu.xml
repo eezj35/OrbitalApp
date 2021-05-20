@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Search"
+        android:id="@+id/search_icon"
+        android:icon="@drawable/ic_baseline_search_24"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:title="Main Menu"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_more_vert_24"
+        >
+
+        <menu>
+
+            <item
+                android:title="Settings"
+                android:icon="@drawable/ic_baseline_settings_24"
+                android:id="@+id/settings"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:title="Filter"
+                android:icon="@drawable/ic_baseline_filter_alt_24"
+                android:id="@+id/filter"
+                app:showAsAction="never"
+                />
+
+            <item
+                android:title="User"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:id="@+id/user"
+                app:showAsAction="never"
+                />
+        </menu>
+
+    </item>
+</menu>
