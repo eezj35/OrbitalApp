@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class Settings extends AppCompatActivity {
 
-    Button backButton;
+//    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,16 +18,7 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().setTitle("Settings");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> {startActivity(new Intent(this, MainActivity.class));});
+//        backButton = findViewById(R.id.backButton);
+//        backButton.setOnClickListener(v -> {startActivity(new Intent(this, MainActivity.class));});
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.backButton:
-//                startActivity(new Intent(this, MainActivity.class));
-//                break;
-//        }
-//    }
 }
