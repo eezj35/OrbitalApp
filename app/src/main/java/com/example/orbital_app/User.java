@@ -7,19 +7,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class User extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
-//    Button backButton;
+public class User extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_user);
         getSupportActionBar().setTitle("User");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-//        backButton = findViewById(R.id.backButton);
-//        backButton.setOnClickListener(v -> {startActivity(new Intent(this, MainActivity.class));});
     }
 
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(this, LoggingIn.class));
+        finish();
+    }
 }
