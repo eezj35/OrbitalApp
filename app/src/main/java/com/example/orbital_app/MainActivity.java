@@ -16,29 +16,41 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView locationsRecView;
+    private RecyclerView recommendedRecView;
+    private RecyclerView topRatedRecView;
+    private RecyclerView newRecView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        locationsRecView = findViewById(R.id.locationsRV);
+        recommendedRecView = findViewById(R.id.recommendedRV);
+        topRatedRecView = findViewById(R.id.topRatedRV);
+        newRecView = findViewById(R.id.newRV);
 
         ArrayList<Locations> locations = new ArrayList<>();
 
-        locations.add(new Locations("MBS", "https://micdn-13a1c.kxcdn.com/images/sg/content-images/mbs.jpg"));
-        locations.add(new Locations("GBTB", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
-        locations.add(new Locations("GBTB", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
-        locations.add(new Locations("GBTB", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
-        locations.add(new Locations("GBTB", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
+        locations.add(new Locations("Marina Bay Sands", "https://mfiles.alphacoders.com/593/593386.jpg"));
+        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
+        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
+        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
+        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
 
         LocationsRVAdapter adapter = new LocationsRVAdapter(this);
 
         adapter.setLocations(locations);
-        locationsRecView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        locationsRecView.setItemAnimator(new DefaultItemAnimator());
-        locationsRecView.setAdapter(adapter);
+        recommendedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        recommendedRecView.setItemAnimator(new DefaultItemAnimator());
+        recommendedRecView.setAdapter(adapter);
+
+        topRatedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        topRatedRecView.setItemAnimator(new DefaultItemAnimator());
+        topRatedRecView.setAdapter(adapter);
+
+        newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        newRecView.setItemAnimator(new DefaultItemAnimator());
+        newRecView.setAdapter(adapter);
 
     }
 
