@@ -41,18 +41,18 @@
                     android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/image"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
                     android:text="location name"
                     android:textStyle="bold"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
                     android:layout_centerInParent="true"
                     android:padding="10dp"
                     />
 
                 <LinearLayout
                     android:id="@+id/favLayout"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/nameCard"
                     android:orientation="horizontal"
@@ -63,13 +63,14 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
                         android:background="@drawable/ic_fave"
                         app:backgroundTint="#000000" />
 
                     <Button
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="50dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/ic_web"
                         app:backgroundTint="#000000" />
