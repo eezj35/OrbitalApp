@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:title="About"
+        android:key="about"
+        android:icon="@drawable/ic_baseline_priority_high_24"
+        android:summary="What is HangOuts?"/>
+
+    <SwitchPreference
+    android:title="Notifications"
+        android:key="notifications"/>
+
+
+</PreferenceScreen>
