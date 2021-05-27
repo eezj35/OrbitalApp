@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".About"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/abt1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:text="Tired of going to the same places to hang out with your friends? Unsure of what to eat with your family? Planning to tour around Singapore in the midst of a travel ban, but sick of the same tourist destinations around you and want to explore more of Singapore? Many Singaporeans experience similar frustrations. It is common to be tired of the same locations to visit in Singapore (e.g Universal Studios / Gardens by the Bay), and hanging out at the same old places with your friends may get repetitive.
+"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/abt2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="10dp"
+        android:text="An application that lays out all the information you need in an organised and fast manner would alleviate this challenge. An application that recommends new places to explore, to eat, or to hang out, based on your needs and wants would make going out more spontaneous, fun and less stressful. Deciding on where to hang out should not be so tiring. It should be made simpler.
+"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintTop_toBottomOf="@id/abt1"
+        tools:layout_editor_absoluteX="13dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@id/abt1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo"
+        android:scaleType="fitXY"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
