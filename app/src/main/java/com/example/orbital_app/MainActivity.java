@@ -42,9 +42,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recommendedRecView;
-//    private RecyclerView topRatedRecView;
-//    private RecyclerView newRecView;
-//    ArrayList<Locations> locations;
+    private RecyclerView topRatedRecView;
+    private RecyclerView newRecView;
+    ArrayList<Locations> locations;
+//    LocationsRVAdapter adapter;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirestoreRecyclerAdapter<Locations, LocationHolder> adapter;
@@ -59,22 +60,20 @@ public class MainActivity extends AppCompatActivity {
 
         setUpRecyclerView();
 
-        //Justin for reference
+//        Justin for reference
 //        recommendedRecView = findViewById(R.id.recommendedRV);
 //        topRatedRecView = findViewById(R.id.topRatedRV);
 //        newRecView = findViewById(R.id.newRV);
 //
 //        locations = new ArrayList<Locations>();
 //
-////        locations.add(new Locations("Marina Bay Sands", "https://mfiles.alphacoders.com/593/593386.jpg"));
-////        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
-////        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
-////        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
-////        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg"));
+//        locations.add(new Locations("Marina Bay Sands", "https://mfiles.alphacoders.com/593/593386.jpg",4));
+//        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg", 5));
+//        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg",5));
 //
-//        adapter = new LocationsRVAdapter(this, locations);
+//        adapter = new LocationsRVAdapter(this);
 //
-////        adapter.setLocations(locations);
+//        adapter.setLocations(locations);
 //        recommendedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 //        recommendedRecView.setItemAnimator(new DefaultItemAnimator());
 //
@@ -125,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(this, LoggingIn.class));
                 finish();
+                break;
 
             case R.id.search:
                 Intent i = new Intent(this, Search.class);
@@ -135,9 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     private void setUpRecyclerView() {
-
         Query query = db.collection("places").orderBy("name");
         FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
                 .setQuery(query, Locations.class)
@@ -155,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
                         Intent i = new Intent(holder.parent.getContext(), Activity2.class);
                         i.putExtra("location", model.getName());
                         i.putExtra("image", model.getImage());
+                        i.putExtra("rating", model.getRating());
                         holder.parent.getContext().startActivity(i);
 
                     }
@@ -169,13 +168,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
         };
+        adapter.notifyDataSetChanged();
         recommendedRecView = findViewById(R.id.recommendedRV);
         recommendedRecView.setHasFixedSize(true);
         recommendedRecView.setLayoutManager(new LinearLayoutManager(this));
         recommendedRecView.setAdapter(adapter);
     }
-
-
 
     @Override
     protected void onStart() {
@@ -191,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
         if(adapter != null) {
             adapter.stopListening();
         }
-
     }
 
     class LocationHolder extends RecyclerView.ViewHolder{

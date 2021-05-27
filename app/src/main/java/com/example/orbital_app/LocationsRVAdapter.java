@@ -44,6 +44,7 @@ public class LocationsRVAdapter extends RecyclerView.Adapter<LocationsRVAdapter.
                 Intent i = new Intent(holder.parent.getContext(), Activity2.class);
                 i.putExtra("location", locations.get(position).getName());
                 i.putExtra("image", locations.get(position).getImage());
+                i.putExtra("rating", locations.get(position).getRating());
                 holder.parent.getContext().startActivity(i);
 
             }

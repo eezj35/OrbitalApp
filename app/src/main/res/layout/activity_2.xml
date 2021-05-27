@@ -7,10 +7,9 @@
     tools:context=".Activity2"
     android:id="@+id/activity2SV">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/RelLayAct2">
 
 
@@ -33,23 +32,35 @@
             android:layout_below="@+id/image">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="left"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:text="location name"
-                    android:textStyle="bold"
-                    android:textSize="25dp"
                     android:layout_centerInParent="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="10dp"
                     android:padding="10dp"
-                    />
+                    android:text="location name"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:padding="10dp"
+                    android:rating="0"
+                    android:stepSize="1" />
+
 
                 <LinearLayout
                     android:id="@+id/favLayout"
@@ -63,8 +74,8 @@
                         android:id="@+id/likeBtn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
                         android:background="@drawable/ic_fave"
                         app:backgroundTint="#000000" />
 

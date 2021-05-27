@@ -2,11 +2,15 @@ package com.example.orbital_app;
 
 public class Locations {
     private String name;
-    private final String image;
+    private String image;
+    private int rating;
 
-    public Locations(String name, String image) {
+    public Locations(){}
+
+    public Locations(String name, String image, int rating) {
         this.name = name;
         this.image = image;
+        this.rating = rating;
     }
 
     public String getName() {
@@ -17,8 +21,8 @@ public class Locations {
         return image;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getRating() {
+        return rating;
     }
 
 }
