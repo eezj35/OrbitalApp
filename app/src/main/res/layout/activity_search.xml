@@ -7,7 +7,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Search"/>
+        android:hint="Search"
+        android:id="@+id/searchBar"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchBar"
+        android:layout_margin="10dp"
+        android:id="@+id/mRecyclerView"/>
 
 
 </RelativeLayout>
