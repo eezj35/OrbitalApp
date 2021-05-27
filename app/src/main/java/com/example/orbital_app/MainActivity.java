@@ -60,17 +60,6 @@ public class MainActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("HangOuts");
 
-        //gives file with all the pref in main_preferences.xml
-//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-//        boolean test = prefs.getBoolean("test", true);
-//        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.my_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-
         setUpRecyclerView();
 
 //        recommendedRecView = findViewById(R.id.recommendedRV);
@@ -104,13 +93,21 @@ public class MainActivity extends AppCompatActivity {
 //        topRatedRecView.setAdapter(adapter);
 //        newRecView.setAdapter(adapter);
 
+// gives file with all the pref in main_preferences.xml
+//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+//        boolean test = prefs.getBoolean("test", true);
+//        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
+    }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 
 
-    private void setUpRecyclerView(){
+    private void setUpRecyclerView() {
 
         Query query = db.collection("places").orderBy("name");
         FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
@@ -134,6 +131,20 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+
+            @NonNull
+            @Override
+            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
+                return new LocationHolder(v);
+            }
+
+        };
+        recommendedRecView = findViewById(R.id.recommendedRV);
+        recommendedRecView.setHasFixedSize(true);
+        recommendedRecView.setLayoutManager(new LinearLayoutManager(this));
+        recommendedRecView.setAdapter(adapter);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -160,20 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
         }
         return super.onOptionsItemSelected(item);
-            @NonNull
-
-            @Override
-            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
-                return new LocationHolder(v);
-            }
-        };
-
-        recommendedRecView = findViewById(R.id.recommendedRV);
-        recommendedRecView.setHasFixedSize(true);
-        recommendedRecView.setLayoutManager(new LinearLayoutManager(this));
-        recommendedRecView.setAdapter(adapter);
-
     }
 
     @Override
@@ -193,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class LocationHolder extends RecyclerView.ViewHolder{
+    class LocationHolder extends RecyclerView.ViewHolder{
         TextView name;
         TextView image;
         CardView parent;
@@ -204,11 +201,4 @@ public class MainActivity extends AppCompatActivity {
             image = itemView.findViewById(R.id.image);
         }
     }
-//
-//    public void logout(View view) {
-//        FirebaseAuth.getInstance().signOut();
-//        startActivity(new Intent(this, LoggingIn.class));
-//        finish();
-//        //hello
-//    }
 }
