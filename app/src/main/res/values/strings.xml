@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Orbital_App</string>
+
+    <array name="themes">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>Default</item>
+    </array>
+
+    <array name="themes_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </array>
 </resources>
