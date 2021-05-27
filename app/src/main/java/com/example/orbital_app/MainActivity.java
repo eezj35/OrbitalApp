@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -104,6 +105,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.settings:
+                startActivity(new Intent(this, Settings.class));
+                break;
+
+            case R.id.filter:
+                Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.user:
+                startActivity(new Intent(this, User.class));
+                break;
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(this, LoggingIn.class));
+                finish();
+
+            case R.id.search:
+                Intent i = new Intent(this, Search.class);
+                startActivity(i);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     private void setUpRecyclerView() {
 
@@ -144,28 +175,7 @@ public class MainActivity extends AppCompatActivity {
         recommendedRecView.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.settings:
-                startActivity(new Intent(this, Settings.class));
-                break;
 
-            case R.id.filter:
-                Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.user:
-                startActivity(new Intent(this, User.class));
-                break;
-
-            case R.id.logout:
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(this, LoggingIn.class));
-                finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onStart() {
