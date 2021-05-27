@@ -33,7 +33,7 @@ public class Activity2 extends AppCompatActivity {
 
         Glide.with(Activity2.this)
                 .asBitmap()
-                .load(location.getImageUrl())
+                .load(location.getImage())
                 .into(iv);
 
 

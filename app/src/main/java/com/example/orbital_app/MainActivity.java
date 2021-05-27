@@ -46,10 +46,6 @@ public class MainActivity extends AppCompatActivity {
 //    ArrayList<Locations> locations;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-//
-//    private FirebaseDatabase db = FirebaseDatabase.getInstance();
-//    private DatabaseReference root = db.getReference().child("Locations")
-
     private FirestoreRecyclerAdapter<Locations, LocationHolder> adapter;
 
     @Override
@@ -62,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         setUpRecyclerView();
 
+        //Justin for reference
 //        recommendedRecView = findViewById(R.id.recommendedRV);
 //        topRatedRecView = findViewById(R.id.topRatedRV);
 //        newRecView = findViewById(R.id.newRV);
@@ -93,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
 //        topRatedRecView.setAdapter(adapter);
 //        newRecView.setAdapter(adapter);
 
-// gives file with all the pref in main_preferences.xml
+        //Michael preferences API
+//        gives file with all the pref in main_preferences.xml
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 //        boolean test = prefs.getBoolean("test", true);
 //        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
@@ -118,14 +116,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull LocationHolder holder, int position, @NonNull Locations model) {
                 holder.name.setText(model.getName());
-                holder.image.setText(model.getImageUrl());
+                holder.image.setText(model.getImage());
 
                 holder.parent.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent i = new Intent(holder.parent.getContext(), Activity2.class);
                         i.putExtra("location", model.getName());
-                        i.putExtra("image", model.getImageUrl());
+                        i.putExtra("image", model.getImage());
                         holder.parent.getContext().startActivity(i);
 
                     }
@@ -149,10 +147,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.search_icon:
-                Toast.makeText(this, "Search", Toast.LENGTH_SHORT).show();
-                break;
-
             case R.id.settings:
                 startActivity(new Intent(this, Settings.class));
                 break;

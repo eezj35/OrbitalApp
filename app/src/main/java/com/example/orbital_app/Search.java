@@ -31,56 +31,56 @@ import java.util.ArrayList;
 
 
 public class Search extends AppCompatActivity {
-    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-    private FirestoreRecyclerAdapter<Locations, Search.LocationHolder> adapter;
+//    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+//
+//
+//    private FirestoreRecyclerAdapter<Locations, Search.LocationHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        RecyclerView mRecyclerView = findViewById(R.id.mRecyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        Query query = db.collection("places")
-                .orderBy("name");
-        FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
-                .setQuery(query, Locations.class)
-                .build();
-
-        adapter = new FirestoreRecyclerAdapter<Locations, Search.LocationHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull Search.LocationHolder holder, int position, @NonNull Locations model) {
-                holder.name.setText(model.getName());
-                holder.image.setText(model.getImage());
-
-            }
-
-            @NonNull
-
-            @Override
-            public Search.LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
-                return new Search.LocationHolder(v);
-            }
-        };
+//        RecyclerView mRecyclerView = findViewById(R.id.mRecyclerView);
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        Query query = db.collection("places")
+//                .orderBy("name");
+//        FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
+//                .setQuery(query, Locations.class)
+//                .build();
+//
+//        adapter = new FirestoreRecyclerAdapter<Locations, Search.LocationHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull Search.LocationHolder holder, int position, @NonNull Locations model) {
+//                holder.name.setText(model.getName());
+//                holder.image.setText(model.getImage());
+//
+//            }
+//
+//            @NonNull
+//
+//            @Override
+//            public Search.LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
+//                return new Search.LocationHolder(v);
+//            }
+//        };
 
 
     }
 
-    public class LocationHolder extends RecyclerView.ViewHolder{
-        TextView name;
-        TextView image;
-
-        public LocationHolder(View itemView) {
-            super(itemView);
-
-            name = itemView.findViewById(R.id.searchName);
-            image = itemView.findViewById(R.id.searchImage);
-        }
-    }
+//    public class LocationHolder extends RecyclerView.ViewHolder{
+//        TextView name;
+//        TextView image;
+//
+//        public LocationHolder(View itemView) {
+//            super(itemView);
+//
+//            name = itemView.findViewById(R.id.searchName);
+//            image = itemView.findViewById(R.id.searchImage);
+//        }
+//    }
 
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {

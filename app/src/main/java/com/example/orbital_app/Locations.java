@@ -2,19 +2,19 @@ package com.example.orbital_app;
 
 public class Locations {
     private String name;
-    private final String imageUrl;
+    private final String image;
 
-    public Locations(String name, String imageUrl) {
+    public Locations(String name, String image) {
         this.name = name;
-        this.imageUrl = imageUrl;
+        this.image = image;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
     public void setName(String name) {

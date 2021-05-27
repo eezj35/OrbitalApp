@@ -43,7 +43,7 @@ public class LocationsRVAdapter extends RecyclerView.Adapter<LocationsRVAdapter.
             public void onClick(View view) {
                 Intent i = new Intent(holder.parent.getContext(), Activity2.class);
                 i.putExtra("location", locations.get(position).getName());
-                i.putExtra("image", locations.get(position).getImageUrl());
+                i.putExtra("image", locations.get(position).getImage());
                 holder.parent.getContext().startActivity(i);
 
             }
@@ -51,7 +51,7 @@ public class LocationsRVAdapter extends RecyclerView.Adapter<LocationsRVAdapter.
 
         Glide.with(context)
                 .asBitmap()
-                .load(locations.get(position).getImageUrl())
+                .load(locations.get(position).getImage())
                 .into(holder.image);
 
     }
