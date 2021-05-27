@@ -82,24 +82,26 @@ public class Search extends AppCompatActivity {
 //        }
 //    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-//                searchData(s);
-                return false;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
-        return true;
-    }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuItem item = menu.findItem(R.id.search);
+//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+////                searchData(s);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
 
 //    private void searchData(String s) {
 //        db.collection("places").whereEqualTo("name",s.toLowerCase())
