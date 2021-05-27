@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -18,13 +19,15 @@ import com.bumptech.glide.Glide;
 
 public class Activity2 extends AppCompatActivity {
 
+    private RatingBar rating;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
         Bundle bundle = getIntent().getExtras();
-        Locations location = new Locations(bundle.getString("location"), bundle.getString("image"));
+        Locations location = new Locations(bundle.getString("location"), bundle.getString("image"), bundle.getInt("rating"));
 
         TextView tv = findViewById(R.id.txtName);
         tv.setText(location.getName());
@@ -37,5 +40,7 @@ public class Activity2 extends AppCompatActivity {
                 .into(iv);
 
 
+        rating = findViewById(R.id.ratingBar);
+        rating.setRating(location.getRating());
     }
 }
