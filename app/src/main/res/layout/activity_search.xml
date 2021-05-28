@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/searchBar"
         android:layout_margin="10dp"
-        android:id="@+id/mRecyclerView"/>
+        android:id="@+id/searchRV"/>
 
 
 </RelativeLayout>

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         locations.add(new Locations("Marina Bay Sands", "https://mfiles.alphacoders.com/593/593386.jpg",4));
         locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg", 5));
-        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg",5));
+        locations.add(new Locations("Sentosa", "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/06/Resorts-World-Sentosa.jpg",5));
 
         adapter = new LocationsRVAdapter(this);
 
@@ -160,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
 //                });
 //            }
 //
+//
 //            @NonNull
 //            @Override
 //            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -167,11 +168,13 @@ public class MainActivity extends AppCompatActivity {
 //                return new LocationHolder(v);
 //            }
 //
+//
 //        };
-//        adapter.notifyDataSetChanged();
+//
 //        recommendedRecView = findViewById(R.id.recommendedRV);
 //        recommendedRecView.setHasFixedSize(true);
 //        recommendedRecView.setLayoutManager(new LinearLayoutManager(this));
+//
 //        recommendedRecView.setAdapter(adapter);
 //    }
 

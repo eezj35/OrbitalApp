@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+
 public class Locations {
     private String name;
     private String image;

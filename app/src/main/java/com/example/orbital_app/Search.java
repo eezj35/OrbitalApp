@@ -2,11 +2,14 @@ package com.example.orbital_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.MenuItemCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,6 +32,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Search extends AppCompatActivity {
@@ -36,11 +41,41 @@ public class Search extends AppCompatActivity {
 //
 //    private FirestoreRecyclerAdapter<Locations, Search.LocationHolder> adapter;
 
+    private SearchAdapter adapter;
+    private RecyclerView searchRV;
+    private ArrayList<Locations> locations= new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        locations.add(new Locations("Marina Bay Sands", "https://mfiles.alphacoders.com/593/593386.jpg",4));
+        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg", 5));
+        locations.add(new Locations("Sentosa", "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/06/Resorts-World-Sentosa.jpg",5));
+
+        searchRV = findViewById(R.id.searchRV);
+        adapter = new SearchAdapter(locations);
+        searchRV.setLayoutManager(new LinearLayoutManager(this));
+        searchRV.setAdapter(adapter);
+
+        EditText editText = findViewById(R.id.searchBar);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 //        RecyclerView mRecyclerView = findViewById(R.id.mRecyclerView);
 //        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 //
@@ -70,6 +105,18 @@ public class Search extends AppCompatActivity {
 
     }
 
+    private void filter(String text){
+        ArrayList<Locations> filteredList = new ArrayList<>();
+
+        for (Locations loc: locations){
+            if(loc.getName().toLowerCase().contains(text.toLowerCase())){
+                filteredList.add(loc);
+            }
+        }
+
+        adapter.filterList(filteredList);
+    }
+
 //    public class LocationHolder extends RecyclerView.ViewHolder{
 //        TextView name;
 //        TextView image;
@@ -84,24 +131,6 @@ public class Search extends AppCompatActivity {
 
 
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuItem item = menu.findItem(R.id.search);
-//        SearchView searchView = (SearchView) MenuItemCompat.getActionView(item);
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-////                searchData(s);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                return false;
-//            }
-//        });
-//        return true;
-//    }
 
 //    private void searchData(String s) {
 //        db.collection("places").whereEqualTo("name",s.toLowerCase())

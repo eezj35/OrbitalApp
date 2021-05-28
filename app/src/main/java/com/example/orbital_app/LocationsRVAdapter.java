@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,10 +20,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class LocationsRVAdapter extends RecyclerView.Adapter<LocationsRVAdapter.ViewHolder> {
     private ArrayList<Locations> locations = new ArrayList<>();
     private Context context;
+
     public LocationsRVAdapter(Context context) {
         this.context = context;
     }
@@ -64,10 +69,14 @@ public class LocationsRVAdapter extends RecyclerView.Adapter<LocationsRVAdapter.
         return locations.size();
     }
 
+
+
     public void setLocations(ArrayList<Locations> locations) {
         this.locations = locations;
         notifyDataSetChanged(); // allows refreshing of recycler view with new data
     }
+
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
