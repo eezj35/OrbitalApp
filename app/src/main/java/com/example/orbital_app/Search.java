@@ -37,8 +37,6 @@ import java.util.List;
 
 public class Search extends AppCompatActivity {
 //    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-//
-//
 //    private FirestoreRecyclerAdapter<Locations, Search.LocationHolder> adapter;
 
     private SearchAdapter adapter;

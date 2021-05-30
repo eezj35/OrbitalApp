@@ -11,5 +11,10 @@
     android:title="Notifications"
         android:key="notifications"/>
 
+    <SwitchPreference
+        android:title="GPS"
+        android:summary="Allow HangOuts to track your current location"
+        android:key="gps"/>
+
 
 </PreferenceScreen>
