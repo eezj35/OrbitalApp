@@ -36,6 +36,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.remote.WatchChange;
 
 import java.util.ArrayList;
 
@@ -44,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recommendedRecView;
 //    private RecyclerView topRatedRecView;
 //    private RecyclerView newRecView;
-//    ArrayList<Locations> locations;
+    ArrayList<Locations> locations = new ArrayList<>();
+
 //    LocationsRVAdapter adapter;
+    FSDataAdapter adapter;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirestoreRecyclerAdapter<Locations, LocationHolder> adapter;
+//    private FirestoreRecyclerAdapter<Locations, LocationHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,73 +139,95 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setUpRecyclerView() {
-        Query query = db.collection("places").orderBy("name");
-        FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
-                .setQuery(query, Locations.class)
-                .build();
+        adapter = new FSDataAdapter(MainActivity.this, locations);
+        Query query = db.collection("places");
+//        FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
+//                .setQuery(query, Locations.class)
+//                .build();
 //        adapter = new LocationFSAdapter(options);
-        adapter = new FirestoreRecyclerAdapter<Locations, LocationHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull LocationHolder holder, int position, @NonNull Locations model) {
-                holder.name.setText(model.getName());
-                holder.image.setText(model.getImage());
+//        adapter = new FirestoreRecyclerAdapter<Locations, LocationHolder>(options) {
+//            @Override
+//            protected void onBindViewHolder(@NonNull LocationHolder holder, int position, @NonNull Locations model) {
+//                holder.name.setText(model.getName());
+//                holder.image.setText(model.getImage());
+//
+//                holder.parent.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent i = new Intent(holder.parent.getContext(), Activity2.class);
+//                        i.putExtra("location", model.getName());
+//                        i.putExtra("image", model.getImage());
+//                        i.putExtra("rating", model.getRating());
+//                        holder.parent.getContext().startActivity(i);
+//
+//                    }
+//                });
+//            }
+//
+//
+//            @NonNull
+//            @Override
+//            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+//                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
+//                return new LocationHolder(v);
+//            }
+//        };
 
-                holder.parent.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent i = new Intent(holder.parent.getContext(), Activity2.class);
-                        i.putExtra("location", model.getName());
-                        i.putExtra("image", model.getImage());
-                        i.putExtra("rating", model.getRating());
-                        holder.parent.getContext().startActivity(i);
-
-                    }
-                });
-            }
-
-
-            @NonNull
-            @Override
-            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
-                return new LocationHolder(v);
-            }
-
-
-        };
 
         recommendedRecView = findViewById(R.id.recommendedRV);
         recommendedRecView.setHasFixedSize(true);
-        recommendedRecView.setLayoutManager(new LinearLayoutManager(this));
+        recommendedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        query
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+
+                        for(DocumentChange dc : value.getDocumentChanges()){
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+                                locations.add(dc.getDocument().toObject(Locations.class));
+                            }
+                            if(dc.getType() == DocumentChange.Type.MODIFIED){
+                                
+                            }
+                        }
+
+                        adapter.notifyDataSetChanged();
+                    }
+                });
 
         recommendedRecView.setAdapter(adapter);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(adapter != null) {
-            adapter.startListening();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if(adapter != null) {
+//            adapter.startListening();
+//        }
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if(adapter != null) {
+//            adapter.stopListening();
+//        }
+//    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(adapter != null) {
-            adapter.stopListening();
-        }
-    }
-
-    class LocationHolder extends RecyclerView.ViewHolder{
-        TextView name;
-        TextView image;
-        CardView parent;
-        public LocationHolder(View itemView) {
-            super(itemView);
-            parent = itemView.findViewById(R.id.parent);
-            name = itemView.findViewById(R.id.txtName);
-            image = itemView.findViewById(R.id.image);
-        }
-    }
+//    class LocationHolder extends RecyclerView.ViewHolder{
+//        TextView name;
+//        TextView image;
+//        CardView parent;
+//        public LocationHolder(View itemView) {
+//            super(itemView);
+//            parent = itemView.findViewById(R.id.parent);
+//            name = itemView.findViewById(R.id.txtName);
+//            image = itemView.findViewById(R.id.image);
+//        }
+//    }
 }

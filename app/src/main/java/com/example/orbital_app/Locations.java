@@ -26,4 +26,15 @@ public class Locations {
         return rating;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 }
