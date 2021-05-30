@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
         querying(query, "name", recommendedList, recommendedRecView);
         querying(query, "rating", topRatedList, topRatedRecView);
-        querying(query, "name", newList, newRecView);
+//        querying(query, "id", newList, newRecView);
 
     }
 
@@ -214,22 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 });
         rv.setAdapter(adapter);
     }
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if(adapter != null) {
-//            adapter.startListening();
-//        }
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        if(adapter != null) {
-//            adapter.stopListening();
-//        }
-//    }
 
 //    class LocationHolder extends RecyclerView.ViewHolder{
 //        TextView name;

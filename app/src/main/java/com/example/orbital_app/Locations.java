@@ -5,13 +5,24 @@ public class Locations {
     private String name;
     private String image;
     private int rating;
+    private String cost;
+    private String state;
+    private int id;
+    private String generalLoc;
+    private String openingHours;
+
 
     public Locations(){}
 
-    public Locations(String name, String image, int rating) {
+    public Locations(String name, String image, int rating, String cost, String state, int id, String generalLoc, String openingHours) {
         this.name = name;
         this.image = image;
         this.rating = rating;
+        this.cost = cost;
+        this.state = state;
+        this.id = id;
+        this.generalLoc = generalLoc;
+        this.openingHours = openingHours;
     }
 
     public String getName() {
@@ -26,15 +37,23 @@ public class Locations {
         return rating;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCost() {
+        return cost;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public String getState() {
+        return state;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public int getId() {
+        return id;
+    }
+
+    public String getGeneralLoc() {
+        return generalLoc;
+    }
+
+    public String getOpeningHours() {
+        return openingHours;
     }
 }

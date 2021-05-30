@@ -44,6 +44,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="10dp"
+                    android:fontFamily="@font/aref_ruqaa"
                     android:padding="10dp"
                     android:text="location name"
                     android:textSize="20dp"
@@ -71,21 +72,22 @@
                     android:padding="15dp">
 
                     <Button
-                        android:id="@+id/likeBtn"
+                        android:id="@+id/favBtn"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/ic_fave"
-                        app:backgroundTint="#000000" />
+                        app:backgroundTint="#AFAFAF" />
 
                     <Button
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:id="@+id/linkBtn"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/ic_web"
-                        app:backgroundTint="#000000" />
+                        android:background="@drawable/web_icon_2"
+                        app:backgroundTint="#AFAFAF" />
 
 
                 </LinearLayout>
@@ -117,18 +119,52 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="left"
+                    >
 
                     <TextView
-                        android:id="@+id/txtinfo"
+                        android:id="@+id/costInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/image"
-                        android:layout_centerInParent="true"
-                        android:layout_marginBottom="100dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/aref_ruqaa"
+                        android:padding="15dp"
                         android:text="location info..."
-                        android:textStyle="bold"
-                        android:padding="15dp"/>
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/stateInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/aref_ruqaa"
+                        android:padding="15dp"
+                        android:text="location info..."
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/gLInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/aref_ruqaa"
+                        android:padding="15dp"
+                        android:text="location info..."
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/oHINfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/aref_ruqaa"
+                        android:padding="15dp"
+                        android:text="location info..."
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -141,9 +177,10 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="50dp"
+                android:fontFamily="@font/aref_ruqaa"
+                android:padding="20dp"
                 android:text="location description..."
-                android:textStyle="bold"
-                android:padding="20dp"/>
+                android:textStyle="bold" />
 
 
         </GridLayout>
@@ -172,9 +209,10 @@
                     android:layout_below="@id/image"
                     android:layout_centerInParent="true"
                     android:layout_marginBottom="100dp"
+                    android:fontFamily="@font/aref_ruqaa"
+                    android:padding="20dp"
                     android:text="Reviews"
-                    android:textStyle="bold"
-                    android:padding="20dp"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

@@ -24,11 +24,11 @@ import java.util.Collection;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
-    private ArrayList<Locations> locations = new ArrayList<>();
+    private ArrayList<Locations> list = new ArrayList<>();
 
 
     public SearchAdapter(ArrayList<Locations> locations) {
-        this.locations = locations;
+        this.list = locations;
     }
 
     @NonNull
@@ -41,15 +41,20 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, int position) {
-        holder.name.setText(locations.get(position).getName());
+        holder.name.setText(list.get(position).getName());
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(holder.parent.getContext(), Activity2.class);
-                i.putExtra("location", locations.get(position).getName());
-                i.putExtra("image", locations.get(position).getImage());
-                i.putExtra("rating", locations.get(position).getRating());
+                i.putExtra("location", list.get(position).getName());
+                i.putExtra("image", list.get(position).getImage());
+                i.putExtra("rating", list.get(position).getRating());
+                i.putExtra("cost", list.get(position).getCost());
+                i.putExtra("state", list.get(position).getState());
+                i.putExtra("id", list.get(position).getId());
+                i.putExtra("generalLoc", list.get(position).getGeneralLoc());
+                i.putExtra("openingHours", list.get(position).getOpeningHours());
                 holder.parent.getContext().startActivity(i);
 
             }
@@ -61,11 +66,11 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
 
     @Override
     public int getItemCount() {
-        return locations.size();
+        return list.size();
     }
 
     public void filterList(ArrayList<Locations> filteredList){
-        locations = filteredList;
+        list = filteredList;
         notifyDataSetChanged();
     }
 
