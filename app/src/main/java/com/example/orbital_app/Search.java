@@ -101,8 +101,8 @@ public class Search extends AppCompatActivity {
         ArrayList<Locations> filteredList = new ArrayList<>();
 
         for (Locations loc: locations){
-            if((loc.getName().toLowerCase().contains(text.toLowerCase()) && !text.equals(""))
-            || loc.getState().toLowerCase().contains(text.toLowerCase())){
+            if((loc.getName().toLowerCase().contains(text.toLowerCase())
+            || loc.getState().toLowerCase().contains(text.toLowerCase())) && !text.equals("")){
                 filteredList.add(loc);
             }
         }
