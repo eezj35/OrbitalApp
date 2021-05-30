@@ -43,12 +43,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recommendedRecView;
-//    private RecyclerView topRatedRecView;
-//    private RecyclerView newRecView;
-    ArrayList<Locations> locations = new ArrayList<>();
+    private RecyclerView topRatedRecView;
+    private RecyclerView newRecView;
+    ArrayList<Locations> recommendedList = new ArrayList<>();
+    ArrayList<Locations> topRatedList = new ArrayList<>();
+    ArrayList<Locations> newList = new ArrayList<>();
 
 //    LocationsRVAdapter adapter;
-    FSDataAdapter adapter;
+
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 //    private FirestoreRecyclerAdapter<Locations, LocationHolder> adapter;
@@ -139,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setUpRecyclerView() {
-        adapter = new FSDataAdapter(MainActivity.this, locations);
+
         Query query = db.collection("places");
 //        FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
 //                .setQuery(query, Locations.class)
@@ -164,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
 //                });
 //            }
 //
-//
 //            @NonNull
 //            @Override
 //            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -173,12 +174,29 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        };
 
-
         recommendedRecView = findViewById(R.id.recommendedRV);
         recommendedRecView.setHasFixedSize(true);
         recommendedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        query
+
+        topRatedRecView = findViewById(R.id.topRatedRV);
+        topRatedRecView.setHasFixedSize(true);
+        topRatedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
+        newRecView = findViewById(R.id.newRV);
+        newRecView.setHasFixedSize(true);
+        newRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        querying(query, "name", recommendedList, recommendedRecView);
+        querying(query, "rating", topRatedList, topRatedRecView);
+        querying(query, "name", newList, newRecView);
+
+    }
+
+    private void querying(Query query, String order, ArrayList<Locations> list, RecyclerView rv){
+        FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, list);
+        query.orderBy(order, Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -186,21 +204,15 @@ public class MainActivity extends AppCompatActivity {
                             Log.e("Firestore error", error.getMessage());
                             return;
                         }
-
                         for(DocumentChange dc : value.getDocumentChanges()){
                             if(dc.getType() == DocumentChange.Type.ADDED){
-                                locations.add(dc.getDocument().toObject(Locations.class));
-                            }
-                            if(dc.getType() == DocumentChange.Type.MODIFIED){
-                                
+                                list.add(dc.getDocument().toObject(Locations.class));
                             }
                         }
-
                         adapter.notifyDataSetChanged();
                     }
                 });
-
-        recommendedRecView.setAdapter(adapter);
+        rv.setAdapter(adapter);
     }
 
 //    @Override
