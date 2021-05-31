@@ -10,11 +10,12 @@ public class Locations {
     private int id;
     private String generalLoc;
     private String openingHours;
-
+    private String briefDsc;
 
     public Locations(){}
 
-    public Locations(String name, String image, int rating, String cost, String state, int id, String generalLoc, String openingHours) {
+    public Locations(String name, String image, int rating, String cost, String state, int id, String generalLoc, String openingHours,
+                     String briefDsc) {
         this.name = name;
         this.image = image;
         this.rating = rating;
@@ -23,6 +24,7 @@ public class Locations {
         this.id = id;
         this.generalLoc = generalLoc;
         this.openingHours = openingHours;
+        this.briefDsc = briefDsc;
     }
 
     public String getName() {
@@ -31,6 +33,10 @@ public class Locations {
 
     public String getImage() {
         return image;
+    }
+
+    public String getBriefDsc() {
+        return briefDsc;
     }
 
     public int getRating() {

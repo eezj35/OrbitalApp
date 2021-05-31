@@ -20,9 +20,10 @@
             android:layout_height="wrap_content"
             android:text="location name"
             android:id="@+id/txtName"
-            android:textStyle="bold"
             android:layout_marginTop="5dp"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:fontFamily="@font/aref_ruqaa"/>
 
 
         <ImageView

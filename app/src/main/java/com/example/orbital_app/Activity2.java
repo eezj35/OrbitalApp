@@ -39,7 +39,8 @@ public class Activity2 extends AppCompatActivity {
                 bundle.getString("state"),
                 bundle.getInt("id"),
                 bundle.getString("generalLoc"),
-                bundle.getString("openingHours"));
+                bundle.getString("openingHours"),
+                bundle.getString("briefDsc"));
 
         TextView tv1 = findViewById(R.id.txtName);
         tv1.setText(location.getName());
@@ -51,6 +52,8 @@ public class Activity2 extends AppCompatActivity {
         tv4.setText("General Location:  " + location.getGeneralLoc());
         TextView tv5 = findViewById(R.id.oHINfo);
         tv5.setText("Opening Hours:  " + location.getOpeningHours());
+        TextView tv6 = findViewById(R.id.txtdsc);
+        tv6.setText(location.getBriefDsc());
 
         ImageView iv = findViewById(R.id.image);
 

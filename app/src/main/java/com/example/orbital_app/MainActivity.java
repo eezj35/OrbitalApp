@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -45,9 +48,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recommendedRecView;
     private RecyclerView topRatedRecView;
     private RecyclerView newRecView;
+
     ArrayList<Locations> recommendedList = new ArrayList<>();
     ArrayList<Locations> topRatedList = new ArrayList<>();
     ArrayList<Locations> newList = new ArrayList<>();
+
+    SwipeRefreshLayout refreshLayout;
+    ProgressDialog pd;
+
 
 //    LocationsRVAdapter adapter;
 
@@ -62,6 +70,20 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("HangOuts");
+
+        pd = new ProgressDialog(this);
+        pd.setCancelable(false);
+        pd.setMessage("Loading...");
+        pd.show();
+
+        refreshLayout = findViewById(R.id.refreshLayout);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                refreshLayout.setRefreshing(false);
+            }
+        });
 
         setUpRecyclerView();
 
@@ -190,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
         querying(query, "name", recommendedList, recommendedRecView);
         querying(query, "rating", topRatedList, topRatedRecView);
-//        querying(query, "id", newList, newRecView);
+        querying(query, "id", newList, newRecView);
 
     }
 
@@ -205,8 +227,18 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
-                            if(dc.getType() == DocumentChange.Type.ADDED){
+                            if(order.equals("rating")){
+                                Locations loc = dc.getDocument().toObject(Locations.class);
+                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating()>=4)){
+                                    list.add(loc);
+                                }
+                            }
+                            else if(dc.getType() == DocumentChange.Type.ADDED){
                                 list.add(dc.getDocument().toObject(Locations.class));
+                            }
+
+                            if(pd.isShowing()){
+                                pd.dismiss();
                             }
                         }
                         adapter.notifyDataSetChanged();
