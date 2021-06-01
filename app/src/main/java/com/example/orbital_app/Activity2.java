@@ -89,7 +89,6 @@ public class Activity2 extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void gotoUrl(String s){

@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
         querying(query, "name", recommendedList, recommendedRecView);
         querying(query, "rating", topRatedList, topRatedRecView);
-        querying(query, "id", newList, newRecView);
+        querying(query, "generalLoc", newList, newRecView);
 
     }
 
@@ -227,9 +227,14 @@ public class MainActivity extends AppCompatActivity {
                             return;
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
+                            Locations loc = dc.getDocument().toObject(Locations.class);
                             if(order.equals("rating")){
-                                Locations loc = dc.getDocument().toObject(Locations.class);
                                 if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating() >= 4.0)){
+                                    list.add(loc);
+                                }
+                            }
+                            else if(order.equals("generalLoc")){
+                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getGeneralLoc().equals("South"))){
                                     list.add(loc);
                                 }
                             }
