@@ -80,8 +80,13 @@ public class Activity2 extends AppCompatActivity {
         linkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Activity2.this, "Opening link...", Toast.LENGTH_SHORT).show();
-                gotoUrl(location.getLink());
+                if(location.getLink().equals("")){
+                    Toast.makeText(Activity2.this, "No website available", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(Activity2.this, "Opening link...", Toast.LENGTH_SHORT).show();
+                    gotoUrl(location.getLink());
+                }
+
             }
         });
 

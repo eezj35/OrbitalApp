@@ -11,7 +11,7 @@ public class Locations {
     private String generalLoc;
     private String openingHours;
     private String briefDsc;
-    private String link;
+    private String link = "";
 
     public Locations(){}
 
