@@ -56,6 +56,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 i.putExtra("generalLoc", list.get(position).getGeneralLoc());
                 i.putExtra("openingHours", list.get(position).getOpeningHours());
                 i.putExtra("briefDsc", list.get(position).getBriefDsc());
+                i.putExtra("link", list.get(position).getLink());
                 holder.parent.getContext().startActivity(i);
 
             }

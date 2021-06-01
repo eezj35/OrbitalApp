@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                         for(DocumentChange dc : value.getDocumentChanges()){
                             if(order.equals("rating")){
                                 Locations loc = dc.getDocument().toObject(Locations.class);
-                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating()>=4)){
+                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating() >= 4.0)){
                                     list.add(loc);
                                 }
                             }

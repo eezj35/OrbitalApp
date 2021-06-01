@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -40,7 +42,8 @@ public class Activity2 extends AppCompatActivity {
                 bundle.getInt("id"),
                 bundle.getString("generalLoc"),
                 bundle.getString("openingHours"),
-                bundle.getString("briefDsc"));
+                bundle.getString("briefDsc"),
+                bundle.getString("link"));
 
         TextView tv1 = findViewById(R.id.txtName);
         tv1.setText(location.getName());
@@ -78,11 +81,14 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Activity2.this, "Opening link...", Toast.LENGTH_SHORT).show();
+                gotoUrl(location.getLink());
             }
         });
 
+    }
 
-
-
+    private void gotoUrl(String s){
+        Uri uri = Uri.parse(s);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
 }
