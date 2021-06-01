@@ -77,8 +77,10 @@
                         android:layout_height="40dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/ic_fave"
-                        app:backgroundTint="#AFAFAF" />
+                        android:background="@drawable/ripple_effect"
+                        android:foreground="@drawable/ic_fave"
+                        android:foregroundTint="#AFAFAF"
+                        app:backgroundTint="#FFFFFF"/>
 
                     <Button
                         android:id="@+id/linkBtn"
@@ -86,8 +88,10 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="50dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/web_icon_2"
-                        app:backgroundTint="#AFAFAF" />
+                        android:background="@drawable/ripple_effect"
+                        android:foreground="@drawable/web_icon_2"
+                        android:foregroundTint="#AFAFAF"
+                        app:backgroundTint="#FFFFFF" />
 
 
                 </LinearLayout>
