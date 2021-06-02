@@ -6,32 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ReviewActivity">
 
-    <androidx.cardview.widget.CardView
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:layout_margin="20dp"
         android:id="@+id/leaveReview"
-        app:cardElevation="5dp"
-        app:cardCornerRadius="20dp"
-        android:layout_margin="10dp"
-
-        >
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Leave a review"
-                android:textSize="20dp"
-                android:padding="10dp"/>
-
-        </RelativeLayout>
-
-    </androidx.cardview.widget.CardView>
+        android:text="Leave a Review"/>
 
     <TextView
         android:layout_width="wrap_content"
