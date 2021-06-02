@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,10 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
 
     @Override
     public void onBindViewHolder(@NonNull ReviewsAdapter.ReviewHolder holder, int position) {
+        holder.user.setText(list.get(position).getUser());
+        holder.rating.setRating(list.get(position).getRating());
+        holder.review.setText(list.get(position).getReview());
+        holder.upvotes.setText(list.get(position).getUpVote() + "");
 
 
     }
@@ -45,11 +50,16 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     }
 
     class ReviewHolder extends RecyclerView.ViewHolder{
-        TextView name;
-        CardView parent;
-        ImageView image;
+        TextView user;
+        RatingBar rating;
+        TextView review;
+        TextView upvotes;
         public ReviewHolder(View itemView) {
             super(itemView);
+            user = itemView.findViewById(R.id.user);
+            rating = itemView.findViewById(R.id.ratingReview);
+            review = itemView.findViewById(R.id.review);
+            upvotes = itemView.findViewById(R.id.upvotes);
 
         }
     }

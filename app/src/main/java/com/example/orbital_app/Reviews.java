@@ -28,4 +28,6 @@ public class Reviews {
     public int getUpVote() {
         return upVote;
     }
+
+
 }

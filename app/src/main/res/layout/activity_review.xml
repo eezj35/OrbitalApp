@@ -6,10 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".ReviewActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:id="@+id/leaveReview"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="10dp"
+
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leave a review"
+                android:textSize="20dp"
+                android:padding="10dp"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reviews"
+        android:textSize="20dp"
+        android:layout_below="@id/leaveReview"
+        android:id="@+id/header"
+        android:padding="10dp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/reviewRV"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/header"/>
 
 </RelativeLayout>
