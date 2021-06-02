@@ -1,6 +1,7 @@
 package com.example.orbital_app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -87,6 +88,14 @@ public class Activity2 extends AppCompatActivity {
                     gotoUrl(location.getLink());
                 }
 
+            }
+        });
+
+        CardView reviewTab = findViewById(R.id.reviewTab);
+        reviewTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Activity2.this, ReviewActivity.class));
             }
         });
     }
