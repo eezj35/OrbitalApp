@@ -95,7 +95,9 @@ public class Activity2 extends AppCompatActivity {
         reviewTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Activity2.this, ReviewActivity.class));
+                Intent i = new Intent(Activity2.this, ReviewActivity.class);
+                i.putExtra("locName", location.getName());
+                startActivity(i);
             }
         });
     }

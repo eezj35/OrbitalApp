@@ -41,7 +41,6 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         holder.review.setText(list.get(position).getReview());
         holder.upvotes.setText(list.get(position).getUpVote() + "");
 
-
     }
 
     @Override
