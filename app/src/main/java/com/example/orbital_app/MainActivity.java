@@ -56,12 +56,7 @@ public class MainActivity extends AppCompatActivity {
     SwipeRefreshLayout refreshLayout;
     ProgressDialog pd;
 
-
-//    LocationsRVAdapter adapter;
-
-
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-//    private FirestoreRecyclerAdapter<Locations, LocationHolder> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,36 +81,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         setUpRecyclerView();
-
-//        Justin for reference
-//        recommendedRecView = findViewById(R.id.recommendedRV);
-//        topRatedRecView = findViewById(R.id.topRatedRV);
-//        newRecView = findViewById(R.id.newRV);
-//
-//        locations = new ArrayList<Locations>();
-//
-//        locations.add(new Locations("Marina Bay Sands", "https://mfiles.alphacoders.com/593/593386.jpg",4));
-//        locations.add(new Locations("Gardens By The Bay", "https://media.tacdn.com/media/attractions-splice-spp-674x446/08/c7/8f/98.jpg", 5));
-//        locations.add(new Locations("Sentosa", "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/06/Resorts-World-Sentosa.jpg",5));
-//
-//        adapter = new LocationsRVAdapter(this);
-//
-//        adapter.setLocations(locations);
-//        recommendedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-//        recommendedRecView.setItemAnimator(new DefaultItemAnimator());
-//
-//
-//        topRatedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-//        topRatedRecView.setItemAnimator(new DefaultItemAnimator());
-//
-//
-//        newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-//        newRecView.setItemAnimator(new DefaultItemAnimator());
-//
-//
-//        recommendedRecView.setAdapter(adapter);
-//        topRatedRecView.setAdapter(adapter);
-//        newRecView.setAdapter(adapter);
 
         //Michael preferences API
 //        gives file with all the pref in main_preferences.xml
@@ -165,36 +130,6 @@ public class MainActivity extends AppCompatActivity {
     private void setUpRecyclerView() {
 
         Query query = db.collection("places");
-//        FirestoreRecyclerOptions<Locations> options = new FirestoreRecyclerOptions.Builder<Locations>()
-//                .setQuery(query, Locations.class)
-//                .build();
-//        adapter = new LocationFSAdapter(options);
-//        adapter = new FirestoreRecyclerAdapter<Locations, LocationHolder>(options) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull LocationHolder holder, int position, @NonNull Locations model) {
-//                holder.name.setText(model.getName());
-//                holder.image.setText(model.getImage());
-//
-//                holder.parent.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Intent i = new Intent(holder.parent.getContext(), Activity2.class);
-//                        i.putExtra("location", model.getName());
-//                        i.putExtra("image", model.getImage());
-//                        i.putExtra("rating", model.getRating());
-//                        holder.parent.getContext().startActivity(i);
-//
-//                    }
-//                });
-//            }
-//
-//            @NonNull
-//            @Override
-//            public LocationHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.locations_list_item, parent, false);
-//                return new LocationHolder(v);
-//            }
-//        };
 
         recommendedRecView = findViewById(R.id.recommendedRV);
         recommendedRecView.setHasFixedSize(true);
@@ -242,25 +177,17 @@ public class MainActivity extends AppCompatActivity {
                                 list.add(dc.getDocument().toObject(Locations.class));
                             }
 
-                            if(pd.isShowing()){
-                                pd.dismiss();
-                            }
+
                         }
                         adapter.notifyDataSetChanged();
+                        if(pd.isShowing()){
+                            pd.dismiss();
+                        }
                     }
                 });
         rv.setAdapter(adapter);
+
     }
 
-//    class LocationHolder extends RecyclerView.ViewHolder{
-//        TextView name;
-//        TextView image;
-//        CardView parent;
-//        public LocationHolder(View itemView) {
-//            super(itemView);
-//            parent = itemView.findViewById(R.id.parent);
-//            name = itemView.findViewById(R.id.txtName);
-//            image = itemView.findViewById(R.id.image);
-//        }
-//    }
+
 }
