@@ -24,11 +24,14 @@ import java.util.ArrayList;
 
 public class ReviewActivity extends AppCompatActivity {
 
-    RecyclerView rv;
-    ReviewsAdapter adapter;
-    ArrayList<Reviews> list = new ArrayList<>();
-    String locName;
+    private RecyclerView rv;
+    private ArrayList<Reviews> list = new ArrayList<>();;
+    private String locName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private int numPpl = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +43,28 @@ public class ReviewActivity extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         locName = bundle.getString("locName");
 
-        adapter = new ReviewsAdapter(ReviewActivity.this, list);
-
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
+
+        ReviewsAdapter adapter = new ReviewsAdapter(ReviewActivity.this, list);
+        db.collection("reviews").whereEqualTo("place", locName)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        for(DocumentChange dc : value.getDocumentChanges()){
+                            Reviews review = dc.getDocument().toObject(Reviews.class);
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+                                list.add(review);
+                            }
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+
         rv.setAdapter(adapter);
 
 
@@ -53,9 +74,11 @@ public class ReviewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ReviewActivity.this, LeaveReview.class);
                 i.putExtra("locName", locName);
+
                 startActivity(i);
             }
         });
+
 
     }
 

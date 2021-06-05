@@ -23,10 +23,8 @@ public class LeaveReview extends AppCompatActivity {
     Button btn;
     EditText edtTxt;
     String locName;
-    Reviews review;
     int userRating;
-    int totalRating = 0;
-    int numPpl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,14 +38,12 @@ public class LeaveReview extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         locName = bundle.getString("locName");
-//        numPpl = bundle.getInt("numPpl");
 
         ratingBar = findViewById(R.id.userRating);
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 userRating = (int) rating;
-
             }
         });
 
@@ -56,12 +52,6 @@ public class LeaveReview extends AppCompatActivity {
             public void onClick(View v) {
                 String reviewText = edtTxt.getText().toString();
                 Reviews review = new Reviews("Justin", userRating, reviewText, 0, locName);
-
-//                totalRating += userRating;
-//                int newRating = (int) totalRating/numPpl;
-//                Map<String, Integer> map = new HashMap<>();
-//                map.put("rating", userRating);
-//                db.collection("places").document(locName).set(map, SetOptions.merge());
 
                 db.collection("reviews").add(review);
                 Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();

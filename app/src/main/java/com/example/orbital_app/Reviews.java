@@ -5,12 +5,17 @@ public class Reviews {
     private int rating;
     private String review;
     private int upVote;
+    private String place;
 
-    public Reviews(String user, int rating, String review, int upVote) {
+
+    public Reviews(){}
+
+    public Reviews(String user, int rating, String review, int upVote, String place) {
         this.user = user;
         this.rating = rating;
         this.review = review;
         this.upVote = upVote;
+        this.place = place;
     }
 
     public String getUser() {
@@ -27,6 +32,10 @@ public class Reviews {
 
     public int getUpVote() {
         return upVote;
+    }
+
+    public String getPlace() {
+        return place;
     }
 
 

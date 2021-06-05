@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
     android:id="@+id/reviewCard"
-    app:cardElevation="10dp"
+    app:cardElevation="5dp"
     app:cardCornerRadius="20dp"
     android:layout_margin="10dp"
     android:layout_centerHorizontal="true">
@@ -33,7 +33,7 @@
             android:layout_width="98dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:isIndicator="false"
+            android:isIndicator="true"
             android:numStars="5"
             android:padding="10dp"
             android:rating="0"

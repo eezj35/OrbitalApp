@@ -1,14 +1,17 @@
 package com.example.orbital_app;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,17 +25,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
 
 public class Activity2 extends AppCompatActivity {
 
     private RatingBar rating;
     private Button favBtn;
     private Button linkBtn;
+    int totalRating = 0;
+    int numPpl = 0;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private SwipeRefreshLayout refreshLayout;
+
+    ArrayList<Reviews> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
+        
 
         Bundle bundle = getIntent().getExtras();
         Locations location = new Locations(bundle.getString("location"),
@@ -66,9 +84,28 @@ public class Activity2 extends AppCompatActivity {
                 .load(location.getImage())
                 .into(iv);
 
-
         rating = findViewById(R.id.ratingBar);
-        rating.setRating(location.getRating());
+        db.collection("reviews").whereEqualTo("place", location.getName())
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        for(DocumentChange dc : value.getDocumentChanges()){
+                            Reviews review = dc.getDocument().toObject(Reviews.class);
+                            totalRating += review.getRating();
+                            numPpl ++;
+                        }
+                        if(numPpl > 1){
+                            rating.setRating(Math.round(totalRating/numPpl));
+                        }else{
+                            rating.setRating(totalRating);
+                        }
+                    }
+                });
+
 
         favBtn = findViewById(R.id.favBtn);
         favBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +134,7 @@ public class Activity2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Activity2.this, ReviewActivity.class);
                 i.putExtra("locName", location.getName());
+//                i.putExtra("currRating", location.getRating());
                 startActivity(i);
             }
         });

@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Locations> topRatedList = new ArrayList<>();
     ArrayList<Locations> newList = new ArrayList<>();
 
-    SwipeRefreshLayout refreshLayout;
+    private SwipeRefreshLayout refreshLayout;
     ProgressDialog pd;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
