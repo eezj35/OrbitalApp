@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +56,9 @@ public class LeaveReview extends AppCompatActivity {
 
                 db.collection("reviews").add(review);
                 Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
+                
+                startActivity(new Intent(LeaveReview.this, ReviewActivity.class));
+
             }
         });
 
