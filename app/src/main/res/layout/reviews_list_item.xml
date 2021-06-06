@@ -63,11 +63,12 @@
                 android:layout_marginLeft="25dp"
                 android:fontFamily="@font/aref_ruqaa"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_upvote"
-                android:layout_marginTop="5dp"/>
+            <Button
+                android:id="@+id/upvoteBtn"
+                android:layout_width="35dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ic_upvote" />
 
 
         </LinearLayout>

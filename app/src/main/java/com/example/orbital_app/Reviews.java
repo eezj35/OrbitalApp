@@ -6,6 +6,7 @@ public class Reviews {
     private String review;
     private int upVote;
     private String place;
+    private String id;
 
 
     public Reviews(){}
@@ -37,6 +38,10 @@ public class Reviews {
     public String getPlace() {
         return place;
     }
+
+    public void setId(String s){this.id = s;}
+
+    public String getId(){return this.id;}
 
 
 }

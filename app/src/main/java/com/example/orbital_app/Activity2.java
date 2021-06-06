@@ -97,6 +97,7 @@ public class Activity2 extends AppCompatActivity {
                             Reviews review = dc.getDocument().toObject(Reviews.class);
                             totalRating += review.getRating();
                             numPpl ++;
+
                         }
                         if(numPpl > 1){
                             rating.setRating(Math.round(totalRating/numPpl));
@@ -134,7 +135,6 @@ public class Activity2 extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Activity2.this, ReviewActivity.class);
                 i.putExtra("locName", location.getName());
-//                i.putExtra("currRating", location.getRating());
                 startActivity(i);
             }
         });

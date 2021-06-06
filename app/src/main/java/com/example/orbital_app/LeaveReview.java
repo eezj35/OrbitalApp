@@ -52,6 +52,10 @@ public class LeaveReview extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String reviewText = edtTxt.getText().toString();
+                if(userRating==0){
+                    Toast.makeText(LeaveReview.this, "Please leave a rating", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Reviews review = new Reviews("Justin", userRating, reviewText, 0, locName);
 
                 db.collection("reviews").add(review);

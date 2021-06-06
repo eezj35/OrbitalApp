@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,9 +31,6 @@ public class ReviewActivity extends AppCompatActivity {
     private String locName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private int numPpl = 0;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,7 @@ public class ReviewActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
 
         ReviewsAdapter adapter = new ReviewsAdapter(ReviewActivity.this, list);
-        db.collection("reviews").whereEqualTo("place", locName)
+        db.collection("reviews").whereEqualTo("place", locName).orderBy("upVote", Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
@@ -58,12 +57,15 @@ public class ReviewActivity extends AppCompatActivity {
                         for(DocumentChange dc : value.getDocumentChanges()){
                             Reviews review = dc.getDocument().toObject(Reviews.class);
                             if(dc.getType() == DocumentChange.Type.ADDED){
+                                review.setId(dc.getDocument().getId());
                                 list.add(review);
                             }
                         }
                         adapter.notifyDataSetChanged();
+
                     }
                 });
+
 
         rv.setAdapter(adapter);
 
@@ -78,6 +80,10 @@ public class ReviewActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+
+
 
 
     }
