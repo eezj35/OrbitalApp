@@ -3,7 +3,7 @@
     <Preference
         android:title="Favourites"
         android:key="favourites"
-        android:icon="@drawable/ic_baseline_priority_high_24"
+        android:icon="@drawable/ic_black_fave"
         android:summary="Go to your favourites"/>
 
 </PreferenceScreen>
