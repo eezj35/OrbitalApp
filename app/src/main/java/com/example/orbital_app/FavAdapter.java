@@ -13,6 +13,11 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -35,6 +40,8 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull FavAdapter.MyViewHolder holder, int position) {
+
+
         holder.name.setText(list.get(position).getName());
 
         holder.favCard.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +78,15 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
         TextView name;
         CardView favCard;
         ImageView image;
+        DatabaseReference favRef;
+        FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
+
         public MyViewHolder(View itemView) {
             super(itemView);
             favCard = itemView.findViewById(R.id.favCard);
             name = itemView.findViewById(R.id.favName);
             image = itemView.findViewById(R.id.favPic);
         }
+
     }
 }

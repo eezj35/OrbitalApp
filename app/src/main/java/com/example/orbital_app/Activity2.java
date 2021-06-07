@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -25,6 +26,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,6 +51,13 @@ public class Activity2 extends AppCompatActivity {
     int numPpl = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
+    DatabaseReference dbRef, favRef, favListRef;
+    Boolean favChecker = false;
+
+    Locations location;
+
+
     ArrayList<Reviews> list = new ArrayList<>();
 
     @Override
@@ -49,9 +65,12 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String currentUserId = user.getUid();
+
 
         Bundle bundle = getIntent().getExtras();
-        Locations location = new Locations(bundle.getString("location"),
+        location = new Locations(bundle.getString("location"),
                 bundle.getString("image"),
                 bundle.getInt("rating"),
                 bundle.getString("cost"),
@@ -106,14 +125,53 @@ public class Activity2 extends AppCompatActivity {
                 });
 
 
+        dbRef = rtdb.getReference("allLoc");
+        favRef = rtdb.getReference("fav");
+        favListRef = rtdb.getReference("favList").child(currentUserId);
+
+
         favBtn = findViewById(R.id.favBtn);
+        final String postkey = location.getName();
+
         favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
+
+
+                favChecker = true;
+
+
+                favRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(favChecker.equals(true)){
+                            if(snapshot.child(postkey).hasChild(currentUserId)){
+                                favRef.child(postkey).child(currentUserId).removeValue();
+                                delete(location.getName());
+                                favChecker = false;
+                                Toast.makeText(Activity2.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
+                            }else{
+                                favRef.child(postkey).child(currentUserId).setValue(true);
+
+                                String id = favListRef.push().getKey();
+                                favListRef.child(id).setValue(location);
+                                favChecker = false;
+                                Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
             }
         });
+
+
         linkBtn = findViewById(R.id.linkBtn);
         linkBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,4 +201,26 @@ public class Activity2 extends AppCompatActivity {
         Uri uri = Uri.parse(s);
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
+
+    private void delete(String name){
+        Query query = favListRef.orderByChild("name").equalTo(name);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    ds.getRef().removeValue();
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+//    private void favChecker(String postkey){
+//
+//    }
 }
