@@ -42,8 +42,6 @@ public class Activity2 extends AppCompatActivity {
     int numPpl = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private SwipeRefreshLayout refreshLayout;
-
     ArrayList<Reviews> list = new ArrayList<>();
 
     @Override
@@ -113,6 +111,7 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
+
             }
         });
         linkBtn = findViewById(R.id.linkBtn);

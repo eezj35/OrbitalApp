@@ -18,8 +18,7 @@ public class UserFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.user_preference);
 
         findPreference("favourites").setOnPreferenceClickListener(preference -> {
-            //@Justin, do ur startActivity here
-//            startActivity(new Intent(getActivity(), About.class));
+            startActivity(new Intent(getActivity(), FavList.class));
             Toast.makeText(getContext(), "hi", Toast.LENGTH_SHORT).show();
             return true;
         });
