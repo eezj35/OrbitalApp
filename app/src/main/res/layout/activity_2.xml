@@ -80,7 +80,8 @@
                         android:background="@drawable/ripple_effect"
                         android:foreground="@drawable/ic_fave"
                         android:foregroundTint="#AFAFAF"
-                        app:backgroundTint="#FFFFFF"/>
+                        app:backgroundTint="#FFFFFF"
+                        />
 
                     <Button
                         android:id="@+id/linkBtn"

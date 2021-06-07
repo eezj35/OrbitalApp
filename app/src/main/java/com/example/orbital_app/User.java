@@ -17,5 +17,6 @@ public class User extends AppCompatActivity {
         setContentView(R.layout.activity_user);
         getSupportActionBar().setTitle("User");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getFragmentManager().beginTransaction().replace(android.R.id.content, new UserFragment()).commit();
     }
 }
