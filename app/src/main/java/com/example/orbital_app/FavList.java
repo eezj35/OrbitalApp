@@ -81,10 +81,5 @@ public class FavList extends AppCompatActivity {
 
         rv.setAdapter(adapter);
 
-
-
-
-
-
     }
 }

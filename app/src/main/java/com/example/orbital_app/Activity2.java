@@ -57,7 +57,6 @@ public class Activity2 extends AppCompatActivity {
 
     Locations location;
 
-
     ArrayList<Reviews> list = new ArrayList<>();
 
     @Override
@@ -220,7 +219,4 @@ public class Activity2 extends AppCompatActivity {
 
     }
 
-//    private void favChecker(String postkey){
-//
-//    }
 }

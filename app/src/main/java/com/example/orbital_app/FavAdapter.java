@@ -78,8 +78,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
         TextView name;
         CardView favCard;
         ImageView image;
-        DatabaseReference favRef;
-        FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
 
         public MyViewHolder(View itemView) {
             super(itemView);
