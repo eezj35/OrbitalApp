@@ -17,6 +17,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Locations> topRatedList = new ArrayList<>();
     ArrayList<Locations> newList = new ArrayList<>();
 
-    private SwipeRefreshLayout refreshLayout;
     ProgressDialog pd;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -71,14 +71,6 @@ public class MainActivity extends AppCompatActivity {
         pd.setMessage("Loading...");
         pd.show();
 
-        refreshLayout = findViewById(R.id.refreshLayout);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                startActivity(new Intent(MainActivity.this, MainActivity.class));
-                refreshLayout.setRefreshing(false);
-            }
-        });
 
         setUpRecyclerView();
 
