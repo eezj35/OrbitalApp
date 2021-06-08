@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,14 +45,7 @@ public class FavList extends AppCompatActivity {
         getSupportActionBar().setTitle("Favourites");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        refresh = findViewById(R.id.favRefresh);
-        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                startActivity(new Intent(FavList.this, FavList.class));
-                refresh.setRefreshing(false);
-            }
-        });
+
 
         rv = findViewById(R.id.favRV);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -82,6 +76,32 @@ public class FavList extends AppCompatActivity {
         });
 
         rv.setAdapter(adapter);
+
+        refresh = findViewById(R.id.favRefresh);
+        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list.clear();
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot ds: snapshot.getChildren()){
+                            Locations loc = ds.getValue(Locations.class);
+                            list.add(loc);
+
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                refresh.setRefreshing(false);
+            }
+        });
+
+
 
     }
 }

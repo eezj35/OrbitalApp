@@ -2,6 +2,7 @@ package com.example.orbital_app;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -9,16 +10,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -45,7 +51,7 @@ import java.util.ArrayList;
 public class Activity2 extends AppCompatActivity {
 
     private RatingBar rating;
-    private Button favBtn;
+    private ImageButton favBtn;
     private Button linkBtn;
     int totalRating = 0;
     int numPpl = 0;
@@ -56,6 +62,8 @@ public class Activity2 extends AppCompatActivity {
     Boolean favChecker = false;
 
     Locations location;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String currentUserId = user.getUid();
 
     ArrayList<Reviews> list = new ArrayList<>();
 
@@ -64,8 +72,7 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String currentUserId = user.getUid();
+
 
 
         Bundle bundle = getIntent().getExtras();
@@ -128,9 +135,9 @@ public class Activity2 extends AppCompatActivity {
         favRef = rtdb.getReference("fav");
         favListRef = rtdb.getReference("favList").child(currentUserId);
 
-
         favBtn = findViewById(R.id.favBtn);
         final String postkey = location.getName();
+        favouriteChecker(postkey, favBtn);
 
         favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +148,8 @@ public class Activity2 extends AppCompatActivity {
 
 
                 favRef.addValueEventListener(new ValueEventListener() {
+                    @SuppressLint("NewApi")
+                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(favChecker.equals(true)){
@@ -149,6 +158,7 @@ public class Activity2 extends AppCompatActivity {
                                 delete(location.getName());
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
+//                                favBtn.setImageResource(R.drawable.ic_fave);
                             }else{
                                 favRef.child(postkey).child(currentUserId).setValue(true);
 
@@ -156,6 +166,7 @@ public class Activity2 extends AppCompatActivity {
                                 favListRef.child(id).setValue(location);
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
+//                                favBtn.setImageResource(R.drawable.ic_red_fave);
 
                             }
                         }
@@ -196,6 +207,24 @@ public class Activity2 extends AppCompatActivity {
         });
     }
 
+    private void favouriteChecker(String postkey, ImageButton favBtn) {
+        favRef = rtdb.getReference("fav");
+        favRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(postkey).hasChild(currentUserId)){
+                    favBtn.setImageResource(R.drawable.ic_red_fave);
+                }else{
+                    favBtn.setImageResource(R.drawable.ic_fave);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+    }
+
     private void gotoUrl(String s){
         Uri uri = Uri.parse(s);
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
@@ -218,5 +247,6 @@ public class Activity2 extends AppCompatActivity {
         });
 
     }
+
 
 }
