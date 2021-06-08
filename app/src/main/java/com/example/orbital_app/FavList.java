@@ -41,6 +41,8 @@ public class FavList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav_list);
+        getSupportActionBar().setTitle("Favourites");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         refresh = findViewById(R.id.favRefresh);
         refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

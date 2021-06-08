@@ -22,10 +22,10 @@
             android:name=".Settings"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Registration" />
-        <activity android:name=".LoggingIn" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Activity2" />
         <activity android:name=".Search" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".LoggingIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
