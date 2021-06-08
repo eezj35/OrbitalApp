@@ -72,8 +72,7 @@ public class Activity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
-
-
+        getSupportActionBar().setTitle("HangOuts");
 
         Bundle bundle = getIntent().getExtras();
         location = new Locations(bundle.getString("location"),
@@ -143,9 +142,7 @@ public class Activity2 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 favChecker = true;
-
 
                 favRef.addValueEventListener(new ValueEventListener() {
                     @SuppressLint("NewApi")
@@ -158,7 +155,7 @@ public class Activity2 extends AppCompatActivity {
                                 delete(location.getName());
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
-//                                favBtn.setImageResource(R.drawable.ic_fave);
+
                             }else{
                                 favRef.child(postkey).child(currentUserId).setValue(true);
 
@@ -166,7 +163,7 @@ public class Activity2 extends AppCompatActivity {
                                 favListRef.child(id).setValue(location);
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
-//                                favBtn.setImageResource(R.drawable.ic_red_fave);
+
 
                             }
                         }

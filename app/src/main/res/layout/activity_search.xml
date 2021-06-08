@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Search"
+        android:hint="Search for place or activity..."
         android:id="@+id/searchBar"/>
 
     <androidx.recyclerview.widget.RecyclerView

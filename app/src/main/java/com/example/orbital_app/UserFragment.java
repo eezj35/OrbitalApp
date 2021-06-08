@@ -17,8 +17,14 @@ public class UserFragment extends PreferenceFragment {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.user_preference);
 
+
         findPreference("favourites").setOnPreferenceClickListener(preference -> {
             startActivity(new Intent(getActivity(), FavList.class));
+            return true;
+        });
+
+        findPreference("preferences").setOnPreferenceClickListener(p -> {
+            startActivity(new Intent(getActivity(), PrefForm.class));
             return true;
         });
     }
