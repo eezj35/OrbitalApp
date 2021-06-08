@@ -6,4 +6,10 @@
         android:icon="@drawable/ic_black_fave"
         android:summary="Go to your favourites"/>
 
+    <Preference
+        android:title="Edit Preferences"
+        android:key="preferences"
+        android:icon="@drawable/ic_pref"
+        android:summary="Change your preference settings"/>
+
 </PreferenceScreen>

@@ -41,8 +41,6 @@ import java.util.List;
 
 
 public class Search extends AppCompatActivity {
-//    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-//    private FirestoreRecyclerAdapter<Locations, Search.LocationHolder> adapter;
 
     private SearchAdapter adapter;
     private RecyclerView searchRV;
@@ -53,6 +51,8 @@ public class Search extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        getSupportActionBar().setTitle("Search");
 
         searchRV = findViewById(R.id.searchRV);
         adapter = new SearchAdapter(locations);
