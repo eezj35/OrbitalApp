@@ -3,7 +3,6 @@ package com.example.orbital_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -57,9 +56,8 @@ public class PrefForm extends AppCompatActivity {
                     }
                 });
 
-                Toast.makeText(PrefForm.this, "Restarting app...", Toast.LENGTH_LONG).show();
+                Toast.makeText(PrefForm.this, "Please close and reopen the app", Toast.LENGTH_LONG).show();
                 finish();
-//                startActivity(new Intent(PrefForm.this, LoggingIn.class));
 
             }
         });
