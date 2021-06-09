@@ -33,6 +33,13 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -57,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog pd;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserId = user.getUid();
+    UserInfo userInfo;
+    private DatabaseReference userPrefRef = userPrefRef = rtdb.getReference("pref").child(currentUserId);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
         pd.setMessage("Loading...");
         pd.show();
 
+        userPrefRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userInfo = snapshot.getValue(UserInfo.class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         setUpRecyclerView();
 
@@ -144,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void querying(Query query, String order, ArrayList<Locations> list, RecyclerView rv){
+
         FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, list);
         query.orderBy(order, Query.Direction.DESCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -161,9 +184,10 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                             else if(order.equals("generalLoc")){
-                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getGeneralLoc().equals("South"))){
+                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getGeneralLoc().equals(userInfo.getHouse()))) {
                                     list.add(loc);
                                 }
+
                             }
                             else if(dc.getType() == DocumentChange.Type.ADDED){
                                 list.add(dc.getDocument().toObject(Locations.class));

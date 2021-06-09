@@ -53,19 +53,19 @@ public class Activity2 extends AppCompatActivity {
     private RatingBar rating;
     private ImageButton favBtn;
     private Button linkBtn;
-    int totalRating = 0;
-    int numPpl = 0;
+    private int totalRating = 0;
+    private int numPpl = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
-    DatabaseReference dbRef, favRef, favListRef;
-    Boolean favChecker = false;
+    private DatabaseReference dbRef, favRef, favListRef;
+    private Boolean favChecker = false;
 
-    Locations location;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String currentUserId = user.getUid();
+    private Locations location;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserId = user.getUid();
 
-    ArrayList<Reviews> list = new ArrayList<>();
+    private ArrayList<Reviews> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +163,6 @@ public class Activity2 extends AppCompatActivity {
                                 favListRef.child(id).setValue(location);
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
-
 
                             }
                         }

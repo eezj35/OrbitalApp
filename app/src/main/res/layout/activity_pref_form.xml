@@ -19,36 +19,50 @@
             android:textSize="15dp"
             android:id="@+id/stayQn"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <RadioButton
+
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="North"
-                android:layout_margin="10dp"/>
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="South"
-                android:layout_margin="10dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/north"
+                    android:text="North"
+                    android:layout_margin="10dp"
+                    />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="East"
-                android:layout_margin="10dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/south"
+                    android:text="South"
+                    android:layout_margin="10dp"
+                    />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="West"
-                android:layout_margin="10dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/east"
+                    android:text="East"
+                    android:layout_margin="10dp"
+                    />
 
-        </LinearLayout>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/west"
+                    android:text="West"
+                    android:layout_margin="10dp"
+                    />
+
+
+            </RadioGroup>
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -144,7 +158,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Finish"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:id="@+id/btnFinish"/>
 
 
     </LinearLayout>

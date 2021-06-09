@@ -46,7 +46,6 @@ public class FavList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
         rv = findViewById(R.id.favRV);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setHasFixedSize(true);
