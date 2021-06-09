@@ -59,7 +59,7 @@ public class PrefForm extends AppCompatActivity {
 
                 Toast.makeText(PrefForm.this, "Restarting app...", Toast.LENGTH_LONG).show();
                 finish();
-                startActivity(new Intent(PrefForm.this, LoggingIn.class));
+//                startActivity(new Intent(PrefForm.this, LoggingIn.class));
 
             }
         });

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Orbital_App">
-        <activity android:name=".PrefForm"></activity>
+        <activity android:name=".PrefForm"/>
         <activity android:name=".FavList" />
         <activity android:name=".LeaveReview" />
         <activity android:name=".ReviewActivity" />

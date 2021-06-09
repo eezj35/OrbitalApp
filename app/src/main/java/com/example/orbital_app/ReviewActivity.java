@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,12 +31,15 @@ public class ReviewActivity extends AppCompatActivity {
     private ArrayList<Reviews> list = new ArrayList<>();;
     private String locName;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    SwipeRefreshLayout refreshLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+        refreshLayout = findViewById(R.id.reviewRefresh);
+
 
         rv = findViewById(R.id.reviewRV);
 
@@ -66,9 +70,7 @@ public class ReviewActivity extends AppCompatActivity {
                     }
                 });
 
-
         rv.setAdapter(adapter);
-
 
         Button leaveReview = findViewById(R.id.leaveReview);
         leaveReview.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +83,32 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                list.clear();
+                db.collection("reviews").whereEqualTo("place", locName).orderBy("upVote", Query.Direction.DESCENDING)
+                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                                if (error != null){
+                                    Log.e("Firestore error", error.getMessage());
+                                    return;
+                                }
+                                for(DocumentChange dc : value.getDocumentChanges()){
+                                    Reviews review = dc.getDocument().toObject(Reviews.class);
+                                    if(dc.getType() == DocumentChange.Type.ADDED){
+                                        review.setId(dc.getDocument().getId());
+                                        list.add(review);
+                                    }
+                                }
+                                adapter.notifyDataSetChanged();
 
+                            }
+                        });
+                refreshLayout.setRefreshing(false);
+            }
+        });
 
 
 

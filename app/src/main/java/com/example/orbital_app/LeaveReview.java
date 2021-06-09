@@ -61,7 +61,8 @@ public class LeaveReview extends AppCompatActivity {
                 db.collection("reviews").add(review);
 
                 Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(LeaveReview.this, ReviewActivity.class));
+                finish();
+//                startActivity(new Intent(LeaveReview.this, ReviewActivity.class));
             }
         });
 

@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserId = user.getUid();
     UserInfo userInfo;
-    private DatabaseReference userPrefRef = userPrefRef = rtdb.getReference("pref").child(currentUserId);
+    private DatabaseReference userPrefRef = rtdb.getReference("pref").child(currentUserId);
 
 
     @Override
