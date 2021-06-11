@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -56,7 +58,8 @@ public class LeaveReview extends AppCompatActivity {
                     Toast.makeText(LeaveReview.this, "Please leave a rating", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Reviews review = new Reviews("Justin", userRating, reviewText, 0, locName);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Reviews review = new Reviews(user.getDisplayName(), userRating, reviewText, 0, locName);
 
                 db.collection("reviews").add(review);
 

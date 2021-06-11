@@ -94,8 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
                 userInfo = snapshot.getValue(UserInfo.class);
-                location = userInfo.getHouse();
-                querying(db.collection("places"), "generalLoc", newList, newRecView);
+                if(userInfo != null){
+                    location = userInfo.getHouse();
+                    querying(db.collection("places"), "generalLoc", newList, newRecView);
+                }
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
