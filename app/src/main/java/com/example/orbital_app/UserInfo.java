@@ -13,7 +13,7 @@ public class UserInfo {
         return house;
     }
 
-    public void setHouse(String house) {
-        this.house = house;
-    }
+//    public void setHouse(String house) {
+//        this.house = house;
+//    }
 }

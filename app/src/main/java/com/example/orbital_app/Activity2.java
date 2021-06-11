@@ -145,8 +145,8 @@ public class Activity2 extends AppCompatActivity {
                 favChecker = true;
 
                 favRef.addValueEventListener(new ValueEventListener() {
-                    @SuppressLint("NewApi")
-                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+//                    @SuppressLint("NewApi")
+//                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(favChecker.equals(true)){

@@ -67,7 +67,9 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserId = user.getUid();
+
     UserInfo userInfo;
+    String location;
     private DatabaseReference userPrefRef = rtdb.getReference("pref").child(currentUserId);
 
 
@@ -87,7 +89,13 @@ public class MainActivity extends AppCompatActivity {
         userPrefRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                newRecView = findViewById(R.id.newRV);
+                newRecView.setHasFixedSize(true);
+                newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
                 userInfo = snapshot.getValue(UserInfo.class);
+                location = userInfo.getHouse();
+                querying(db.collection("places"), "generalLoc", newList, newRecView);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -155,13 +163,15 @@ public class MainActivity extends AppCompatActivity {
         topRatedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
 
-        newRecView = findViewById(R.id.newRV);
-        newRecView.setHasFixedSize(true);
-        newRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+//        newRecView = findViewById(R.id.newRV);
+//        newRecView.setHasFixedSize(true);
+//        newRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+
 
         querying(query, "name", recommendedList, recommendedRecView);
         querying(query, "rating", topRatedList, topRatedRecView);
-        querying(query, "generalLoc", newList, newRecView);
+
 
     }
 
@@ -184,16 +194,17 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                             else if(order.equals("generalLoc")){
-                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getGeneralLoc().equals(userInfo.getHouse()))) {
-                                    list.add(loc);
+
+                                if(dc.getType() == DocumentChange.Type.ADDED && location!=null){
+                                    if((loc.getGeneralLoc().equals(location))) {
+                                        list.add(loc);
+                                    }
                                 }
 
                             }
                             else if(dc.getType() == DocumentChange.Type.ADDED){
-                                list.add(dc.getDocument().toObject(Locations.class));
+                                list.add(loc);
                             }
-
-
                         }
                         adapter.notifyDataSetChanged();
                         if(pd.isShowing()){
