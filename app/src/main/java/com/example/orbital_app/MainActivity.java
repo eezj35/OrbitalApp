@@ -166,8 +166,7 @@ public class MainActivity extends AppCompatActivity {
 //        newRecView = findViewById(R.id.newRV);
 //        newRecView.setHasFixedSize(true);
 //        newRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-
+        
 
         querying(query, "name", recommendedList, recommendedRecView);
         querying(query, "rating", topRatedList, topRatedRecView);
