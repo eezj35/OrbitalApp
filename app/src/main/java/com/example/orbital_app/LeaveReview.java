@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -58,13 +64,39 @@ public class LeaveReview extends AppCompatActivity {
                     Toast.makeText(LeaveReview.this, "Please leave a rating", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                FirebaseDatabase userName = FirebaseDatabase.getInstance();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Reviews review = new Reviews(user.getDisplayName(), userRating, reviewText, 0, locName);
+                DatabaseReference refData = userName.getReference("user").child(user.getUid());
 
-                db.collection("reviews").add(review);
+                refData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
 
-                Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
-                finish();
+                        Reviews review = new Reviews(userInfoName.getUserName(), userRating, reviewText, 0, locName);
+
+                        db.collection("reviews").add(review);
+
+                        Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+
+//                Reviews review = new Reviews(user.getDisplayName(), userRating, reviewText, 0, locName);
+//
+//                db.collection("reviews").add(review);
+//
+//                Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
+//                finish();
 //                startActivity(new Intent(LeaveReview.this, ReviewActivity.class));
             }
         });
