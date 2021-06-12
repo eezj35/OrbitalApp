@@ -16,8 +16,6 @@ public class Locations {
 
     public Locations(){}
 
-
-
     public Locations(String name, String image, int rating, String cost, String state, int id, String generalLoc,
                      String openingHours, String briefDsc, String link, String postal) {
         this.name = name;

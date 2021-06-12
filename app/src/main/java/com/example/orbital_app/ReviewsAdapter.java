@@ -16,6 +16,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -28,6 +35,10 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     Context context;
     ArrayList<Reviews> list;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private String currentUserId = user.getUid();
+    private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
+    private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
 
     public ReviewsAdapter(Context context, ArrayList<Reviews> list) {
         this.context = context;
@@ -52,9 +63,24 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.upvotes.setText(Integer.parseInt(holder.upvotes.getText().toString())+1 + "");
-                db.collection("reviews").document(list.get(position).getId()).
-                        update("upVote", Integer.parseInt(holder.upvotes.getText().toString()));
+                upVoteCnt.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String id = list.get(position).getId();
+                        if(!snapshot.hasChild(id)){
+                            holder.upvotes.setText(Integer.parseInt(holder.upvotes.getText().toString())+1 + "");
+                            db.collection("reviews").document(id).
+                                    update("upVote", Integer.parseInt(holder.upvotes.getText().toString()));
+                            upVoteCnt.child(id).setValue(true);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+
             }
         });
 

@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -30,8 +34,9 @@ public class ReviewActivity extends AppCompatActivity {
     private RecyclerView rv;
     private ArrayList<Reviews> list = new ArrayList<>();;
     private String locName;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    SwipeRefreshLayout refreshLayout;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private SwipeRefreshLayout refreshLayout;
 
 
     @Override
@@ -95,6 +100,7 @@ public class ReviewActivity extends AppCompatActivity {
                                     Log.e("Firestore error", error.getMessage());
                                     return;
                                 }
+
                                 for(DocumentChange dc : value.getDocumentChanges()){
                                     Reviews review = dc.getDocument().toObject(Reviews.class);
                                     if(dc.getType() == DocumentChange.Type.ADDED){
@@ -106,6 +112,7 @@ public class ReviewActivity extends AppCompatActivity {
 
                             }
                         });
+
                 refreshLayout.setRefreshing(false);
             }
         });
