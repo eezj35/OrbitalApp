@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -14,11 +15,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -35,8 +40,11 @@ public class ReviewActivity extends AppCompatActivity {
     private ArrayList<Reviews> list = new ArrayList<>();;
     private String locName;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private SwipeRefreshLayout refreshLayout;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
     @Override
@@ -50,6 +58,8 @@ public class ReviewActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         locName = bundle.getString("locName");
+
+        DatabaseReference refData = rtdb.getReference("reviews").child(locName);
 
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -81,10 +91,26 @@ public class ReviewActivity extends AppCompatActivity {
         leaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ReviewActivity.this, LeaveReview.class);
-                i.putExtra("locName", locName);
 
-                startActivity(i);
+                refData.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if(!snapshot.hasChild(user.getUid())){
+                            Intent i = new Intent(ReviewActivity.this, LeaveReview.class);
+                            i.putExtra("locName", locName);
+                            startActivity(i);
+                        }else{
+                            Toast.makeText(ReviewActivity.this, "You have already left a review", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
         });
 

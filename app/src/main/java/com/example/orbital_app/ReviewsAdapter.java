@@ -40,6 +40,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
 
+
     public ReviewsAdapter(Context context, ArrayList<Reviews> list) {
         this.context = context;
         this.list = list;

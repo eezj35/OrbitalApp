@@ -65,9 +65,10 @@ public class LeaveReview extends AppCompatActivity {
                     return;
                 }
 
-                FirebaseDatabase userName = FirebaseDatabase.getInstance();
+                FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference refData = userName.getReference("user").child(user.getUid());
+                DatabaseReference refData = rtdb.getReference("user").child(user.getUid());
+                DatabaseReference dataToBeSet = rtdb.getReference("reviews").child(locName).child(user.getUid());
 
                 refData.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -76,13 +77,10 @@ public class LeaveReview extends AppCompatActivity {
 
                         Reviews review = new Reviews(userInfoName.getUserName(), userRating, reviewText, 0, locName);
 
-                        if(!userInfoName.isHasLeftReview()){
-                            db.collection("reviews").add(review);
-                            Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
-                            refData.child("hasLeftReview").setValue(true);
-                        }else{
-                            Toast.makeText(LeaveReview.this, "You have already left a review", Toast.LENGTH_SHORT).show();
-                        }
+
+                        db.collection("reviews").add(review);
+                        Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
+                        dataToBeSet.setValue(true);
 
                         finish();
 
