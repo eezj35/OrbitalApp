@@ -53,6 +53,7 @@ public class Activity2 extends AppCompatActivity {
     private RatingBar rating;
     private ImageButton favBtn;
     private Button linkBtn;
+    private Button gpsBtn;
     private int totalRating = 0;
     private int numPpl = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -190,6 +191,16 @@ public class Activity2 extends AppCompatActivity {
                     gotoUrl(location.getLink());
                 }
 
+            }
+        });
+
+        gpsBtn = findViewById(R.id.gpsBtn);
+        gpsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(Activity2.this, "Opening Google Maps", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Activity2.this, "https://www.google.com.sg/maps/dir/" + "%" + "/" + location.getPostal(), Toast.LENGTH_LONG).show();
+                gotoUrl("https://www.google.com.sg/maps/dir/" + "%" + "/" + location.getPostal());
             }
         });
 
