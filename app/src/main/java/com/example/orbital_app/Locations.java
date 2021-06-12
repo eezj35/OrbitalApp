@@ -12,13 +12,14 @@ public class Locations {
     private String openingHours;
     private String briefDsc;
     private String link = "";
+    private String postal;
 
     public Locations(){}
 
 
 
     public Locations(String name, String image, int rating, String cost, String state, int id, String generalLoc,
-                     String openingHours, String briefDsc, String link) {
+                     String openingHours, String briefDsc, String link, String postal) {
         this.name = name;
         this.image = image;
         this.rating = rating;
@@ -29,6 +30,7 @@ public class Locations {
         this.openingHours = openingHours;
         this.briefDsc = briefDsc;
         this.link = link;
+        this.postal = postal;
     }
 
     public String getLink() {
@@ -69,5 +71,9 @@ public class Locations {
 
     public String getOpeningHours() {
         return openingHours;
+    }
+
+    public String getPostal() {
+        return postal;
     }
 }

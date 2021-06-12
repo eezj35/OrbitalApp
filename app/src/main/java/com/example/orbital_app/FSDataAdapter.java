@@ -51,6 +51,7 @@ public class FSDataAdapter extends RecyclerView.Adapter<FSDataAdapter.MyViewHold
                 i.putExtra("openingHours", list.get(position).getOpeningHours());
                 i.putExtra("briefDsc", list.get(position).getBriefDsc());
                 i.putExtra("link", list.get(position).getLink());
+                i.putExtra("postal", list.get(position).getPostal());
                 holder.parent.getContext().startActivity(i);
 
             }
