@@ -76,9 +76,14 @@ public class LeaveReview extends AppCompatActivity {
 
                         Reviews review = new Reviews(userInfoName.getUserName(), userRating, reviewText, 0, locName);
 
-                        db.collection("reviews").add(review);
+                        if(!userInfoName.isHasLeftReview()){
+                            db.collection("reviews").add(review);
+                            Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
+                            refData.child("hasLeftReview").setValue(true);
+                        }else{
+                            Toast.makeText(LeaveReview.this, "You have already left a review", Toast.LENGTH_SHORT).show();
+                        }
 
-                        Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
                         finish();
 
                     }
