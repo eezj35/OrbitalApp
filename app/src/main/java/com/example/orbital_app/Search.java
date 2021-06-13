@@ -102,7 +102,8 @@ public class Search extends AppCompatActivity {
 
         for (Locations loc: locations){
             if((loc.getName().toLowerCase().contains(text.toLowerCase())
-            || loc.getState().toLowerCase().contains(text.toLowerCase())) && !text.equals("")){
+            || loc.getState().toLowerCase().equals(text.toLowerCase())
+            || loc.getGeneralLoc().toLowerCase().equals(text.toLowerCase())) && !text.equals("")){
                 filteredList.add(loc);
             }
         }
