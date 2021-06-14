@@ -3,6 +3,7 @@
     package="com.example.orbital_app">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Orbital_App">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".Profile" />
         <activity android:name=".PrefForm" />
         <activity android:name=".FavList" />
         <activity android:name=".LeaveReview" />
@@ -25,7 +27,7 @@
             android:name=".Settings"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Registration" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Activity2" />
         <activity android:name=".Search" />
         <activity android:name=".LoggingIn">

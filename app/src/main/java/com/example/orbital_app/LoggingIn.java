@@ -1,6 +1,7 @@
 package com.example.orbital_app;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,12 +18,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoggingIn extends AppCompatActivity implements View.OnClickListener{
 
     EditText mEmail, mPassword;
     Button mLoginBtn;
-    TextView mCreateBtn;
+    TextView mCreateBtn, mForgotBtn;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
 
@@ -31,15 +33,20 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logging_in);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Log in");
+
         mEmail = findViewById(R.id.mEmail);
         mPassword = findViewById(R.id.mPassword);
         progressBar = findViewById(R.id.progressBar2);
         fAuth = FirebaseAuth.getInstance();
         mLoginBtn = findViewById(R.id.mLoginBtn);
         mCreateBtn = findViewById(R.id.mCreateBtn);
+        mForgotBtn = findViewById(R.id.mForgotBtn);
 
         mLoginBtn.setOnClickListener(this);
         mCreateBtn.setOnClickListener(this);
+        mForgotBtn.setOnClickListener(this);
     }
 
     @Override
@@ -70,19 +77,35 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoggingIn.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                            if (user.isEmailVerified()) {
+                                Toast.makeText(LoggingIn.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            } else {
+                                user.sendEmailVerification();
+                                Toast.makeText(LoggingIn.this, "Check your email for authentication", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
                         } else {
                             Toast.makeText(LoggingIn.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
+
                 break;
 
             case R.id.mCreateBtn:
                 startActivity(new Intent(getApplicationContext(), Registration.class));
                 break;
+
+            case  R.id.mForgotBtn:
+                startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
+                break;
+
         }
     }
 }
