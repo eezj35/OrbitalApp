@@ -1,6 +1,7 @@
 package com.example.orbital_app;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -37,6 +38,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Registration");
 
         mFullName = findViewById(R.id.mFullName);
         mEmail = findViewById(R.id.mEmail);
