@@ -53,8 +53,8 @@ public class PrefForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pref_form);
         getSupportActionBar().setTitle("Preference Settings");
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+//        bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         radioGroup = findViewById(R.id.radioGroup);
 
@@ -116,28 +116,28 @@ public class PrefForm extends AppCompatActivity {
         });
 
     }
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-
-                        case R.id.nav_home:
-                            Toast.makeText(PrefForm.this, "Home Favourites", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            break;
-
-                        case R.id.nav_favourites:
-                            Toast.makeText(PrefForm.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), FavList.class));
-                            break;
-
-                        case R.id.nav_search:
-                            Toast.makeText(PrefForm.this, "Selected Search", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Search.class));
-                            break;
-                    }
-                    return true;
-                }
-            };
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                    switch (item.getItemId()) {
+//
+//                        case R.id.nav_home:
+//                            Toast.makeText(PrefForm.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                            break;
+//
+//                        case R.id.nav_favourites:
+//                            Toast.makeText(PrefForm.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), FavList.class));
+//                            break;
+//
+//                        case R.id.nav_search:
+//                            Toast.makeText(PrefForm.this, "Selected Search", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), Search.class));
+//                            break;
+//                    }
+//                    return true;
+//                }
+//            };
 }
