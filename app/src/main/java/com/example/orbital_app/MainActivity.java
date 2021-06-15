@@ -128,10 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
-                        case R.id.nav_home:
-                            Toast.makeText(MainActivity.this, "Selected Home", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            break;
 
                         case R.id.nav_favourites:
                             Toast.makeText(MainActivity.this, "Selected Favourites", Toast.LENGTH_SHORT).show();

@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -68,12 +71,18 @@ public class Activity2 extends AppCompatActivity {
 
     private ArrayList<Reviews> list = new ArrayList<>();
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+    private BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
 
         getSupportActionBar().setTitle("HangOuts");
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Bundle bundle = getIntent().getExtras();
         location = new Locations(bundle.getString("location"),
@@ -147,8 +156,6 @@ public class Activity2 extends AppCompatActivity {
                 favChecker = true;
 
                 favRef.addValueEventListener(new ValueEventListener() {
-//                    @SuppressLint("NewApi")
-//                    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(favChecker.equals(true)){
@@ -157,6 +164,9 @@ public class Activity2 extends AppCompatActivity {
                                 delete(location.getName());
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
+//                                Bundle bun = new Bundle();
+//                                bun.putString(FirebaseAnalytics.Param.ITEM_ID, location.getName());
+//                                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
                             }else{
                                 favRef.child(postkey).child(currentUserId).setValue(true);
@@ -165,6 +175,8 @@ public class Activity2 extends AppCompatActivity {
                                 favListRef.child(id).setValue(location);
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Added to favourites", Toast.LENGTH_SHORT).show();
+
+
 
                             }
                         }
@@ -213,6 +225,32 @@ public class Activity2 extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation_2);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+
+                        Toast.makeText(Activity2.this, "Selected Home", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        break;
+
+                    case R.id.nav_favourites:
+                        Toast.makeText(Activity2.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), FavList.class));
+                        break;
+
+                    case R.id.nav_search:
+                        Toast.makeText(Activity2.this, "Selected Search", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), Search.class));
+                        break;
+                }
+                return true;
+            }
+        });
+
     }
 
     private void favouriteChecker(String postkey, ImageButton favBtn) {

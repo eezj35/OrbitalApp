@@ -49,7 +49,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         mLoginBtn = findViewById(R.id.mLoginBtn);
 
         fAuth = FirebaseAuth.getInstance();
-        progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar); 
 
         mRegisterBtn.setOnClickListener(this);
         mLoginBtn.setOnClickListener(this);

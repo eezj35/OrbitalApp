@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +28,9 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
     TextView mCreateBtn, mForgotBtn;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
             case R.id.mLoginBtn:
 
@@ -104,7 +109,7 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.mCreateBtn:
-                startActivity(new Intent(getApplicationContext(), Registration.class));
+                startActivity(new Intent(this, Registration.class));
                 break;
 
             case  R.id.mForgotBtn:

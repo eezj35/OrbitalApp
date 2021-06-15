@@ -1,246 +1,272 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity2"
-    android:id="@+id/activity2SV">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/RelLayAct2">
+        android:layout_height="wrap_content"
+        tools:context=".Activity2"
+        android:id="@+id/activity2SV"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_2">
 
-
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:scaleType="centerCrop"
-             />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/nameCard"
-            app:cardElevation="5dp"
-            android:padding="20dp"
-            app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@+id/image">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="left"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/aref_ruqaa"
-                    android:padding="10dp"
-                    android:text="location name"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <RatingBar
-                    android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:padding="10dp"
-                    android:rating="0"
-                    android:stepSize="1" />
-
-
-                <LinearLayout
-                    android:id="@+id/favLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/nameCard"
-                    android:orientation="horizontal"
-                    android:padding="15dp">
-
-                    <ImageButton
-                        android:id="@+id/favBtn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/ripple_effect"
-                        android:src="@drawable/ic_fave"
-                        android:scaleType="fitEnd"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"/>
-
-
-                    <Button
-                        android:id="@+id/linkBtn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/ripple_effect"
-                        android:foreground="@drawable/web_icon_2"
-                        android:foregroundTint="#AFAFAF"
-                        app:backgroundTint="#FFFFFF"
-                        android:scaleX="0.75"
-                        android:scaleY="0.75"/>
-
-                    <Button
-                        android:id="@+id/gpsBtn"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginLeft="50dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/ripple_effect"
-                        android:foreground="@drawable/ic_gps"
-                        android:foregroundTint="#AFAFAF"
-                        app:backgroundTint="#FFFFFF"
-                        android:scaleX="0.9"
-                        android:scaleY="0.9"/>
-
-
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-
-        <GridLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/nameCard"
-            android:layout_marginTop="10dp"
-            android:rowCount="2"
-            android:columnCount="1"
-            android:id="@+id/grid">
+            android:id="@+id/RelLayAct2">
+
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:scaleType="centerCrop"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameCard"
+                app:cardElevation="5dp"
+                android:padding="20dp"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/image">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/aref_ruqaa"
+                        android:padding="10dp"
+                        android:text="location name"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="98dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:padding="10dp"
+                        android:rating="0"
+                        android:stepSize="1" />
+
+
+                    <LinearLayout
+                        android:id="@+id/favLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/nameCard"
+                        android:orientation="horizontal"
+                        android:padding="15dp">
+
+                        <ImageButton
+                            android:id="@+id/favBtn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/ripple_effect"
+                            android:src="@drawable/ic_fave"
+                            android:scaleType="fitEnd"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"/>
+
+
+                        <Button
+                            android:id="@+id/linkBtn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/ripple_effect"
+                            android:foreground="@drawable/web_icon_2"
+                            android:foregroundTint="#AFAFAF"
+                            app:backgroundTint="#FFFFFF"
+                            android:scaleX="0.75"
+                            android:scaleY="0.75"/>
+
+                        <Button
+                            android:id="@+id/gpsBtn"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginLeft="50dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/ripple_effect"
+                            android:foreground="@drawable/ic_gps"
+                            android:foregroundTint="#AFAFAF"
+                            app:backgroundTint="#FFFFFF"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"/>
+
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/nameCard"
+                android:layout_marginTop="10dp"
+                android:rowCount="2"
+                android:columnCount="1"
+                android:id="@+id/grid">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:id="@+id/infoCard"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_margin="10dp"
+                    android:layout_centerHorizontal="true">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="left"
+                        >
+
+                        <TextView
+                            android:id="@+id/costInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/aref_ruqaa"
+                            android:padding="15dp"
+                            android:text="location info..."
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/stateInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/aref_ruqaa"
+                            android:padding="15dp"
+                            android:text="location info..."
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/gLInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/aref_ruqaa"
+                            android:padding="15dp"
+                            android:text="location info..."
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/oHINfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/aref_ruqaa"
+                            android:padding="15dp"
+                            android:text="location info..."
+                            android:textStyle="bold" />
+
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/txtdsc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/infoCard"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/aref_ruqaa"
+                    android:padding="20dp"
+                    android:text="location description..."
+                    android:textStyle="bold" />
+
+
+            </GridLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:id="@+id/infoCard"
-                app:cardElevation="5dp"
+                android:id="@+id/reviewTab"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/grid"
+                app:cardBackgroundColor="@color/grey">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:gravity="left"
-                    >
+                    android:layout_gravity="center">
 
                     <TextView
-                        android:id="@+id/costInfo"
+                        android:id="@+id/reviewTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
+                        android:layout_below="@id/image"
+                        android:layout_centerInParent="true"
                         android:fontFamily="@font/aref_ruqaa"
-                        android:padding="15dp"
-                        android:text="location info..."
+                        android:padding="20dp"
+                        android:text="Reviews"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/stateInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/aref_ruqaa"
-                        android:padding="15dp"
-                        android:text="location info..."
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/gLInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/aref_ruqaa"
-                        android:padding="15dp"
-                        android:text="location info..."
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/oHINfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/aref_ruqaa"
-                        android:padding="15dp"
-                        android:text="location info..."
-                        android:textStyle="bold" />
-
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <TextView
-                android:id="@+id/txtdsc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/infoCard"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:fontFamily="@font/aref_ruqaa"
-                android:padding="20dp"
-                android:text="location description..."
-                android:textStyle="bold" />
+        </RelativeLayout>
 
 
-        </GridLayout>
+    </ScrollView>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:id="@+id/reviewTab"
-            app:cardCornerRadius="20dp"
-            android:layout_margin="10dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/grid"
-            app:cardBackgroundColor="@color/grey">
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_2"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        app:menu="@menu/nav_items"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_gravity="center">
-
-                <TextView
-                    android:id="@+id/reviewTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/image"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/aref_ruqaa"
-                    android:padding="20dp"
-                    android:text="Reviews"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
-</ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
