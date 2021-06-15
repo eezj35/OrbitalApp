@@ -11,7 +11,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,6 +36,7 @@ public class FavList extends AppCompatActivity {
     private RecyclerView rv;
     private FavAdapter adapter;
     private ArrayList<Locations> list = new ArrayList<>();
+    private BottomNavigationView bottomNavigationView;
 
     FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
 
@@ -100,7 +104,33 @@ public class FavList extends AppCompatActivity {
             }
         });
 
-
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+
+
+                        case R.id.nav_home:
+                            Toast.makeText(FavList.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            break;
+
+                        case R.id.nav_favourites:
+                            Toast.makeText(FavList.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+                            break;
+
+                        case R.id.nav_search:
+                            Toast.makeText(FavList.this, "Selected Search", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Search.class));
+                            break;
+                    }
+                    return true;
+                }
+            };
 }

@@ -171,11 +171,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LoggingIn.class));
                 finish();
                 break;
-
-//            case R.id.search:
-//                Intent i = new Intent(this, Search.class);
-//                startActivity(i);
-//                break;
         }
         return super.onOptionsItemSelected(item);
     }

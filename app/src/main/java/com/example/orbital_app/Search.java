@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -46,6 +48,7 @@ public class Search extends AppCompatActivity {
     private RecyclerView searchRV;
     private ArrayList<Locations> locations= new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,8 @@ public class Search extends AppCompatActivity {
             }
         });
 
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
     }
 
 
@@ -110,4 +115,29 @@ public class Search extends AppCompatActivity {
         adapter.filterList(filteredList);
     }
 
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+
+
+                        case R.id.nav_home:
+                            Toast.makeText(Search.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            break;
+
+                        case R.id.nav_favourites:
+                            Toast.makeText(Search.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), FavList.class));
+                            break;
+
+                        case R.id.nav_search:
+                            Toast.makeText(Search.this, "Selected Search", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                    return true;
+                }
+            };
 }
