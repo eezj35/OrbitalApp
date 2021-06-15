@@ -44,6 +44,11 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
         mCreateBtn = findViewById(R.id.mCreateBtn);
         mForgotBtn = findViewById(R.id.mForgotBtn);
 
+        if (fAuth.getCurrentUser() != null) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
+
         mLoginBtn.setOnClickListener(this);
         mCreateBtn.setOnClickListener(this);
         mForgotBtn.setOnClickListener(this);

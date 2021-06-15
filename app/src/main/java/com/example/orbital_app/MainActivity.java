@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.firebase.auth.FirebaseUser;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recommendedRecView;
     private RecyclerView topRatedRecView;
     private RecyclerView newRecView;
+    //overlay for bottom navigation
+    private BottomNavigationView bottomNavigationView;
 
     ArrayList<Locations> recommendedList = new ArrayList<>();
     ArrayList<Locations> topRatedList = new ArrayList<>();
@@ -107,12 +110,42 @@ public class MainActivity extends AppCompatActivity {
 
         setUpRecyclerView();
 
+
+        //overlay for bottom navigation
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
         //Michael preferences API
 //        gives file with all the pref in main_preferences.xml
 //        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 //        boolean test = prefs.getBoolean("test", true);
 //        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
     }
+
+    //overlay for bottom navigation
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.nav_home:
+                            Toast.makeText(MainActivity.this, "Selected Home", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            break;
+
+                        case R.id.nav_favourites:
+                            Toast.makeText(MainActivity.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), FavList.class));
+                            break;
+
+                        case R.id.nav_search:
+                            Toast.makeText(MainActivity.this, "Selected Search", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Search.class));
+                            break;
+                    }
+                    return true;
+                }
+            };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,10 +176,10 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 break;
 
-            case R.id.search:
-                Intent i = new Intent(this, Search.class);
-                startActivity(i);
-                break;
+//            case R.id.search:
+//                Intent i = new Intent(this, Search.class);
+//                startActivity(i);
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
