@@ -61,6 +61,14 @@
             android:id="@+id/newRV"
             android:layout_centerHorizontal="true" />
 
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/nav_items"
+            android:background="@color/white"
+            android:id="@+id/bottom_navigation"
+            />
     </LinearLayout>
 
 </ScrollView>
