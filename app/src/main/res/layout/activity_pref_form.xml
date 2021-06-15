@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="What activities do you like to do? :"
+            android:text="What activities do you like to do? (Please choose 3):"
             android:layout_margin="15dp"/>
 
         <LinearLayout
@@ -118,43 +118,48 @@
 
             </LinearLayout>
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical"-->
-<!--                android:layout_marginLeft="30dp">-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="30dp">
 
-<!--                <CheckBox-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Relax"-->
-<!--                    android:layout_margin="10dp"/>-->
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Relax"
+                    android:id="@+id/cb6"
+                    android:layout_margin="10dp"/>
 
-<!--                <CheckBox-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Museum"-->
-<!--                    android:layout_margin="10dp"/>-->
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Museum"
+                    android:id="@+id/cb7"
+                    android:layout_margin="10dp"/>
 
-<!--                <CheckBox-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Reading"-->
-<!--                    android:layout_margin="10dp"/>-->
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reading"
+                    android:id="@+id/cb8"
+                    android:layout_margin="10dp"/>
 
-<!--                <CheckBox-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Eating"-->
-<!--                    android:layout_margin="10dp"/>-->
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Eating"
+                    android:id="@+id/cb9"
+                    android:layout_margin="10dp"/>
 
-<!--                <CheckBox-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="Beach "-->
-<!--                    android:layout_margin="10dp"/>-->
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beach"
+                    android:id="@+id/cb10"
+                    android:layout_margin="10dp"/>
 
-<!--            </LinearLayout>-->
+            </LinearLayout>
 
         </LinearLayout>
 

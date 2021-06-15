@@ -95,7 +95,8 @@ public class Activity2 extends AppCompatActivity {
                 bundle.getString("openingHours"),
                 bundle.getString("briefDsc"),
                 bundle.getString("link"),
-                bundle.getString("postal"));
+                bundle.getString("postal"),
+                bundle.getStringArrayList("activities"));
 
         TextView tv1 = findViewById(R.id.txtName);
         tv1.setText(location.getName());

@@ -72,8 +72,13 @@ public class MainActivity extends AppCompatActivity {
     private String currentUserId = user.getUid();
 
     UserInfo userInfo;
+    PrefActivities prefActivities;
     String location;
+    String prefActivity1;
+    String prefActivity2;
+    String prefActivity3;
     private DatabaseReference userPrefRef = rtdb.getReference("pref").child(currentUserId);
+    private DatabaseReference userPrefRefActivities = rtdb.getReference("pref").child(currentUserId).child("activities");
 
 
     @Override
@@ -108,7 +113,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setUpRecyclerView();
+        userPrefRefActivities.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                recommendedRecView = findViewById(R.id.recommendedRV);
+                recommendedRecView.setHasFixedSize(true);
+                recommendedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+
+                prefActivities = snapshot.getValue(PrefActivities.class);
+                if(prefActivities!=null){
+                   prefActivity1 = prefActivities.getActivity1();
+                   prefActivity2 = prefActivities.getActivity2();
+                   prefActivity3 = prefActivities.getActivity3();
+                    querying(db.collection("places"), "name", recommendedList, recommendedRecView);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        topRatedRecView = findViewById(R.id.topRatedRV);
+        topRatedRecView.setHasFixedSize(true);
+        topRatedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        querying(db.collection("places"),"rating", topRatedList, topRatedRecView);
 
 
         //overlay for bottom navigation
@@ -176,31 +207,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setUpRecyclerView() {
-
-        Query query = db.collection("places");
-
-        recommendedRecView = findViewById(R.id.recommendedRV);
-        recommendedRecView.setHasFixedSize(true);
-        recommendedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-
-        topRatedRecView = findViewById(R.id.topRatedRV);
-        topRatedRecView.setHasFixedSize(true);
-        topRatedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-
-//        newRecView = findViewById(R.id.newRV);
-//        newRecView.setHasFixedSize(true);
-//        newRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        
-
-        querying(query, "name", recommendedList, recommendedRecView);
-        querying(query, "rating", topRatedList, topRatedRecView);
-
-
-    }
-
     private void querying(Query query, String order, ArrayList<Locations> list, RecyclerView rv){
 
         FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, list);
@@ -228,9 +234,18 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                             }
-                            else if(dc.getType() == DocumentChange.Type.ADDED){
-                                list.add(loc);
+                            else{
+                                if(dc.getType() == DocumentChange.Type.ADDED && prefActivities!=null){
+                                    for(String s : loc.getActivities()){
+                                        if(s.equals(prefActivity1) || s.equals(prefActivity2) || s.equals(prefActivity3)){
+                                                list.add(loc);
+                                                break;
+                                        }
+                                    }
+                                }
+
                             }
+
                         }
                         adapter.notifyDataSetChanged();
                         if(pd.isShowing()){

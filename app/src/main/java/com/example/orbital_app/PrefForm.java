@@ -35,6 +35,11 @@ public class PrefForm extends AppCompatActivity {
     CheckBox cb3;
     CheckBox cb4;
     CheckBox cb5;
+    CheckBox cb6;
+    CheckBox cb7;
+    CheckBox cb8;
+    CheckBox cb9;
+    CheckBox cb10;
 
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     DatabaseReference prefRef;
@@ -58,6 +63,11 @@ public class PrefForm extends AppCompatActivity {
         cb3 = findViewById(R.id.cb3);
         cb4 = findViewById(R.id.cb4);
         cb5 = findViewById(R.id.cb5);
+        cb6 = findViewById(R.id.cb6);
+        cb7 = findViewById(R.id.cb7);
+        cb8 = findViewById(R.id.cb8);
+        cb9 = findViewById(R.id.cb9);
+        cb10 = findViewById(R.id.cb10);
 
         ArrayList<CheckBox> cbList = new ArrayList<>();
 
@@ -66,6 +76,11 @@ public class PrefForm extends AppCompatActivity {
         cbList.add(cb3);
         cbList.add(cb4);
         cbList.add(cb5);
+        cbList.add(cb6);
+        cbList.add(cb7);
+        cbList.add(cb8);
+        cbList.add(cb9);
+        cbList.add(cb10);
 
 
 
