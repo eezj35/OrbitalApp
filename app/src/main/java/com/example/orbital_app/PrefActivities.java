@@ -6,7 +6,7 @@ public class PrefActivities {
     private String activity1;
     private String activity2;
     private String activity3;
-//    private ArrayList<String> activities;
+
 
     public PrefActivities(){}
 

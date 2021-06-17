@@ -83,7 +83,6 @@ public class PrefForm extends AppCompatActivity {
         cbList.add(cb10);
 
 
-
         Button btnFinish = findViewById(R.id.btnFinish);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,26 +90,44 @@ public class PrefForm extends AppCompatActivity {
                 int radioId = radioGroup.getCheckedRadioButtonId();
                 radioButton = findViewById(radioId);
                 prefRef = rtdb.getReference("pref").child(currentUserId);
-                prefRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        prefRef.child("house").setValue(radioButton.getText().toString());
-                        int i=1;
-                        for(CheckBox cb: cbList){
-                            if(cb.isChecked()){
-                                prefRef.child("activities").child("activity"+i).setValue(cb.getText());
-                                i++;
+
+                int i=0;
+                for(CheckBox cb: cbList){
+                    if(cb.isChecked()){
+                        i++;
+                    }
+                }
+
+                if(radioId==-1){
+                    Toast.makeText(PrefForm.this, "Please choose your general area of residence!", Toast.LENGTH_SHORT).show();
+                }
+
+                else if(i!=3){
+                    Toast.makeText(PrefForm.this, "Please choose 3 preferred activities!", Toast.LENGTH_SHORT).show();
+                }else{
+                    prefRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(radioId!=-1){
+                                prefRef.child("house").setValue(radioButton.getText().toString());
+                                int j=1;
+                                for(CheckBox cb : cbList){
+                                    if(cb.isChecked()) {
+                                        prefRef.child("activities").child("activity" + j).setValue(cb.getText());
+                                        j++;
+                                    }
+                                }
+
                             }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
-
-                Toast.makeText(PrefForm.this, "Please close and reopen the app", Toast.LENGTH_LONG).show();
-                finish();
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                    Toast.makeText(PrefForm.this, "Please close and reopen the app", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
 
             }
         });
