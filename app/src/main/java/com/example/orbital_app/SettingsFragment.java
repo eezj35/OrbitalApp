@@ -43,6 +43,9 @@ public class SettingsFragment extends PreferenceFragment {
             return true;
         });
 
+
+
+
 //        locationRequest = LocationRequest.create();
 //        locationRequest.setInterval(30000);
 //        locationRequest.setFastestInterval(5000);

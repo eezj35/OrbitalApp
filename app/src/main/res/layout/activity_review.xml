@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,40 +8,65 @@
 
 
     <Button
+        android:id="@+id/leaveReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:id="@+id/leaveReview"
-        android:text="Leave a Review"/>
-    
+        android:text="Leave a Review"
+        app:layout_constraintBottom_toTopOf="@+id/reviewRefresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156" />
 
     <TextView
+        android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/leaveReview"
+        android:padding="10dp"
         android:text="Reviews"
         android:textSize="20dp"
-        android:layout_below="@id/leaveReview"
-        android:id="@+id/header"
-        android:padding="10dp"
-        android:layout_marginTop="30dp"
         android:textStyle="bold"
-        android:layout_marginLeft="10dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/reviewRefresh"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leaveReview"
+        app:layout_constraintVertical_bias="0.716" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/reviewRefresh"
-        android:layout_below="@+id/header">
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="192dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_review"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reviewRV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/reviewRV"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/header"/>
+            android:layout_below="@id/header"
+            android:layout_centerHorizontal="true" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_review"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        app:menu="@menu/nav_items"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-</RelativeLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -115,14 +115,9 @@ public class FavList extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
 
-
                         case R.id.nav_home:
                             Toast.makeText(FavList.this, "Home Favourites", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            break;
-
-                        case R.id.nav_favourites:
-                            Toast.makeText(FavList.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
                             break;
 
                         case R.id.nav_search:
