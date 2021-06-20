@@ -84,21 +84,21 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cycling"
+                    android:text="Exercise"
                     android:id="@+id/cb1"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Swimming"
+                    android:text="Wet activities"
                     android:id="@+id/cb2"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Running"
+                    android:text="Cultural"
                     android:id="@+id/cb3"
                     android:layout_margin="10dp"/>
 
@@ -116,6 +116,13 @@
                     android:id="@+id/cb5"
                     android:layout_margin="10dp"/>
 
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nature"
+                    android:id="@+id/cb12"
+                    android:layout_margin="10dp"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -127,7 +134,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Relax"
+                    android:text="Leisure"
                     android:id="@+id/cb6"
                     android:layout_margin="10dp"/>
 
@@ -141,7 +148,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Reading"
+                    android:text="Sight Seeing"
                     android:id="@+id/cb8"
                     android:layout_margin="10dp"/>
 
@@ -157,6 +164,13 @@
                     android:layout_height="wrap_content"
                     android:text="Beach"
                     android:id="@+id/cb10"
+                    android:layout_margin="10dp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shopping"
+                    android:id="@+id/cb11"
                     android:layout_margin="10dp"/>
 
             </LinearLayout>
