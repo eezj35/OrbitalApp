@@ -108,11 +108,23 @@ public class Activity2 extends AppCompatActivity {
         tv4.setText("General Location:  " + location.getGeneralLoc());
         TextView tv5 = findViewById(R.id.oHINfo);
         tv5.setText("Opening Hours:  " + location.getOpeningHours());
-        TextView tv6 = findViewById(R.id.txtdsc);
-        tv6.setText(location.getBriefDsc());
+
+        TextView tv6 = findViewById(R.id.possibleActivities);
+        String toBeDisplayed = "";
+        for(int i=0; i<location.getActivities().size(); i++){
+            if(i<location.getActivities().size()-1){
+                toBeDisplayed +=  location.getActivities().get(i) + ", ";
+            }else{
+                toBeDisplayed +=  location.getActivities().get(i);
+            }
+
+        }
+        tv6.setText("Type of activities:  " + toBeDisplayed);
+
+        TextView tv7 = findViewById(R.id.txtdsc);
+        tv7.setText(location.getBriefDsc());
 
         ImageView iv = findViewById(R.id.image);
-
         Glide.with(Activity2.this)
                 .asBitmap()
                 .load(location.getImage())
@@ -234,17 +246,16 @@ public class Activity2 extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
 
-                        Toast.makeText(Activity2.this, "Selected Home", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         break;
 
                     case R.id.nav_favourites:
-                        Toast.makeText(Activity2.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+
                         startActivity(new Intent(getApplicationContext(), FavList.class));
                         break;
 
                     case R.id.nav_search:
-                        Toast.makeText(Activity2.this, "Selected Search", Toast.LENGTH_SHORT).show();
+
                         startActivity(new Intent(getApplicationContext(), Search.class));
                         break;
                 }

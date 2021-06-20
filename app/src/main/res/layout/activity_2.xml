@@ -186,6 +186,17 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/possibleActivities"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/aref_ruqaa"
+                            android:padding="15dp"
+                            android:text="location info..."
+                            android:textStyle="bold" />
+
+                        <TextView
                             android:id="@+id/oHINfo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -257,7 +268,8 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
-        android:background="@color/white"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
         app:menu="@menu/nav_items"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

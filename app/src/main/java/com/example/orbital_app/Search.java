@@ -124,17 +124,17 @@ public class Search extends AppCompatActivity {
 
 
                         case R.id.nav_home:
-                            Toast.makeText(Search.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             break;
 
                         case R.id.nav_favourites:
-                            Toast.makeText(Search.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), FavList.class));
                             break;
 
                         case R.id.nav_search:
-                            Toast.makeText(Search.this, "Selected Search", Toast.LENGTH_SHORT).show();
+
                             break;
                     }
                     return true;
