@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     String prefActivity3;
     private DatabaseReference userPrefRef = rtdb.getReference("pref").child(currentUserId);
     private DatabaseReference userPrefRefActivities = rtdb.getReference("pref").child(currentUserId).child("activities");
-
+    private Boolean isCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
         userPrefRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userInfo = snapshot.getValue(UserInfo.class);
+                if(userInfo != null){
+                    isCheck = true;
+                }
+
+                if (isCheck == null || !isCheck) {
+                    startActivity(new Intent(MainActivity.this, PrefForm.class));
+                }
+
                 newRecView = findViewById(R.id.newRV);
                 newRecView.setHasFixedSize(true);
                 newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
@@ -106,12 +115,30 @@ public class MainActivity extends AppCompatActivity {
                     location = userInfo.getHouse();
                     querying(db.collection("places"), "generalLoc", newList, newRecView);
                 }
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+//        userPrefRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                newRecView = findViewById(R.id.newRV);
+//                newRecView.setHasFixedSize(true);
+//                newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+//
+//                userInfo = snapshot.getValue(UserInfo.class);
+//                if(userInfo != null){
+//                    location = userInfo.getHouse();
+//                    querying(db.collection("places"), "generalLoc", newList, newRecView);
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//            }
+//        });
 
         userPrefRefActivities.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -127,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
                    prefActivity3 = prefActivities.getActivity3();
                     querying(db.collection("places"), "name", recommendedList, recommendedRecView);
                 }
-
             }
 
             @Override

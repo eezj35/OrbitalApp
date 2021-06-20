@@ -29,6 +29,7 @@ public class PrefForm extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     RadioGroup radioGroup;
     RadioButton radioButton;
+    public boolean isCheck = false;
 
     CheckBox cb1;
     CheckBox cb2;
@@ -110,6 +111,7 @@ public class PrefForm extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(radioId!=-1){
                                 prefRef.child("house").setValue(radioButton.getText().toString());
+                                prefRef.child("isCheck").setValue(true);
                                 int j=1;
                                 for(CheckBox cb : cbList){
                                     if(cb.isChecked()) {
@@ -117,7 +119,6 @@ public class PrefForm extends AppCompatActivity {
                                         j++;
                                     }
                                 }
-
                             }
                         }
 
@@ -127,34 +128,12 @@ public class PrefForm extends AppCompatActivity {
                     });
                     Toast.makeText(PrefForm.this, "Please close and reopen the app", Toast.LENGTH_SHORT).show();
                     finish();
+
+                    isCheck = true;
                 }
 
             }
         });
 
     }
-//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-//            new BottomNavigationView.OnNavigationItemSelectedListener() {
-//                @Override
-//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                    switch (item.getItemId()) {
-//
-//                        case R.id.nav_home:
-//                            Toast.makeText(PrefForm.this, "Home Favourites", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                            break;
-//
-//                        case R.id.nav_favourites:
-//                            Toast.makeText(PrefForm.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(getApplicationContext(), FavList.class));
-//                            break;
-//
-//                        case R.id.nav_search:
-//                            Toast.makeText(PrefForm.this, "Selected Search", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(getApplicationContext(), Search.class));
-//                            break;
-//                    }
-//                    return true;
-//                }
-//            };
 }
