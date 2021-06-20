@@ -110,16 +110,22 @@ public class Activity2 extends AppCompatActivity {
         tv5.setText("Opening Hours:  " + location.getOpeningHours());
 
         TextView tv6 = findViewById(R.id.possibleActivities);
-        String toBeDisplayed = "";
-        for(int i=0; i<location.getActivities().size(); i++){
-            if(i<location.getActivities().size()-1){
-                toBeDisplayed +=  location.getActivities().get(i) + ", ";
-            }else{
-                toBeDisplayed +=  location.getActivities().get(i);
-            }
 
+        if(location.getActivities().size() == 1){
+            tv6.setText("Type of activities:  " + location.getActivities().get(0));
+        }else{
+            String toBeDisplayed = "";
+            for(int i=0; i<location.getActivities().size(); i++){
+                if(i<location.getActivities().size()-1){
+                    toBeDisplayed +=  location.getActivities().get(i) + ", ";
+                }else{
+                    toBeDisplayed +=  location.getActivities().get(i);
+                }
+            }
+            tv6.setText("Type of activities:  " + toBeDisplayed);
         }
-        tv6.setText("Type of activities:  " + toBeDisplayed);
+
+
 
         TextView tv7 = findViewById(R.id.txtdsc);
         tv7.setText(location.getBriefDsc());

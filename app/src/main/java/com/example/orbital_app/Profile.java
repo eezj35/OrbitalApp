@@ -67,7 +67,7 @@ public class Profile extends AppCompatActivity {
 
 
                         case R.id.nav_home:
-                            
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             break;
 
