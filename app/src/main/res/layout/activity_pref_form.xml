@@ -148,7 +148,7 @@
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sight Seeing"
+                    android:text="Sightseeing"
                     android:id="@+id/cb8"
                     android:layout_margin="10dp"/>
 
