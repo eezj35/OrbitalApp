@@ -67,17 +67,17 @@ public class Profile extends AppCompatActivity {
 
 
                         case R.id.nav_home:
-                            Toast.makeText(Profile.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+                            
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             break;
 
                         case R.id.nav_favourites:
-                            Toast.makeText(Profile.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), FavList.class));
                             break;
 
                         case R.id.nav_search:
-                            Toast.makeText(Profile.this, "Selected Search", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), Search.class));
                             break;
                     }
