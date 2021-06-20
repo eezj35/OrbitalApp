@@ -154,17 +154,16 @@ public class ReviewActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.nav_home:
 
-                        Toast.makeText(ReviewActivity.this, "Selected Home", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         break;
 
                     case R.id.nav_favourites:
-                        Toast.makeText(ReviewActivity.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+
                         startActivity(new Intent(getApplicationContext(), FavList.class));
                         break;
 
                     case R.id.nav_search:
-                        Toast.makeText(ReviewActivity.this, "Selected Search", Toast.LENGTH_SHORT).show();
+
                         startActivity(new Intent(getApplicationContext(), Search.class));
                         break;
                 }

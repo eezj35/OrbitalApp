@@ -24,6 +24,8 @@
         app:menu="@menu/nav_items"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
         android:layout_alignParentBottom="true"
         android:visibility="visible"
         tools:visibility="visible">

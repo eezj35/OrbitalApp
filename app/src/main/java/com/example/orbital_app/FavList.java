@@ -116,12 +116,12 @@ public class FavList extends AppCompatActivity {
                     switch (item.getItemId()) {
 
                         case R.id.nav_home:
-                            Toast.makeText(FavList.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             break;
 
                         case R.id.nav_search:
-                            Toast.makeText(FavList.this, "Selected Search", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), Search.class));
                             break;
                     }

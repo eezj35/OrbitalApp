@@ -187,12 +187,12 @@ public class MainActivity extends AppCompatActivity {
                     switch (item.getItemId()) {
 
                         case R.id.nav_favourites:
-                            Toast.makeText(MainActivity.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), FavList.class));
                             break;
 
                         case R.id.nav_search:
-                            Toast.makeText(MainActivity.this, "Selected Search", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), Search.class));
                             break;
                     }
