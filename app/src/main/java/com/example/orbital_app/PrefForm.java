@@ -31,18 +31,8 @@ public class PrefForm extends AppCompatActivity {
     RadioButton radioButton;
     public boolean isCheck = false;
 
-    CheckBox cb1;
-    CheckBox cb2;
-    CheckBox cb3;
-    CheckBox cb4;
-    CheckBox cb5;
-    CheckBox cb6;
-    CheckBox cb7;
-    CheckBox cb8;
-    CheckBox cb9;
-    CheckBox cb10;
-    CheckBox cb11;
-    CheckBox cb12;
+    CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7,
+    cb8, cb9, cb10, cb11, cb12, cb13, cb14;
 
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     DatabaseReference prefRef;
@@ -73,6 +63,8 @@ public class PrefForm extends AppCompatActivity {
         cb10 = findViewById(R.id.cb10);
         cb11 = findViewById(R.id.cb11);
         cb12 = findViewById(R.id.cb12);
+        cb13 = findViewById(R.id.cb13);
+        cb14 = findViewById(R.id.cb14);
 
         ArrayList<CheckBox> cbList = new ArrayList<>();
 
@@ -88,6 +80,8 @@ public class PrefForm extends AppCompatActivity {
         cbList.add(cb10);
         cbList.add(cb11);
         cbList.add(cb12);
+        cbList.add(cb13);
+        cbList.add(cb14);
 
 
         Button btnFinish = findViewById(R.id.btnFinish);
