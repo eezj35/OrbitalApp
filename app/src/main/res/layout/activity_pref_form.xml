@@ -123,6 +123,13 @@
                     android:id="@+id/cb12"
                     android:layout_margin="10dp"/>
 
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Staycay"
+                    android:id="@+id/cb13"
+                    android:layout_margin="10dp"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -171,6 +178,13 @@
                     android:layout_height="wrap_content"
                     android:text="Shopping"
                     android:id="@+id/cb11"
+                    android:layout_margin="10dp"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kids fun"
+                    android:id="@+id/cb14"
                     android:layout_margin="10dp"/>
 
             </LinearLayout>
