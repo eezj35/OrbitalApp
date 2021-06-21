@@ -7,9 +7,25 @@
     tools:context=".ReviewActivity">
 
 
+    <!--    <TextView-->
+<!--        android:id="@+id/header"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/leaveReview"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Reviews"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/reviewRefresh"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.063"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/leaveReview"-->
+<!--        app:layout_constraintVertical_bias="0.716" />-->
+
     <Button
         android:id="@+id/leaveReview"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:text="Leave a Review"
@@ -17,29 +33,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.156" />
-
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/leaveReview"
-        android:padding="10dp"
-        android:text="Reviews"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/reviewRefresh"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/leaveReview"
-        app:layout_constraintVertical_bias="0.716" />
+        app:layout_constraintVertical_bias="0.491" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/reviewRefresh"
         android:layout_width="match_parent"
-        android:layout_height="470dp"
-        android:layout_below="@+id/header"
+        android:layout_height="550dp"
+        android:layout_below="@+id/leaveReview"
         android:layout_marginTop="192dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_review"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +49,7 @@
             android:id="@+id/reviewRV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/header"
+            android:layout_below="@id/leaveReview"
             android:layout_centerHorizontal="true" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

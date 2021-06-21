@@ -40,6 +40,8 @@ public class LeaveReview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leave_review);
 
+        getSupportActionBar().setTitle("Reviews");
+
 
         btn = findViewById(R.id.reviewSubmit);
         edtTxt = findViewById(R.id.reviewInput);

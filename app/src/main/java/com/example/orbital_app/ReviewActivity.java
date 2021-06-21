@@ -49,14 +49,14 @@ public class ReviewActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-        refreshLayout = findViewById(R.id.reviewRefresh);
 
+        getSupportActionBar().setTitle("Reviews");
+
+        refreshLayout = findViewById(R.id.reviewRefresh);
 
         rv = findViewById(R.id.reviewRV);
 
