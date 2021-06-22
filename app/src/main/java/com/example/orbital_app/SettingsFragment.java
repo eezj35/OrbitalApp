@@ -39,9 +39,13 @@ public class SettingsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.main_preference);
 
         findPreference("about").setOnPreferenceClickListener(preference -> {
-            startActivity(new Intent(getActivity(), About.class));
+            startActivity(new Intent(getActivity(), About.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             return true;
         });
+
+
+
+
 
 
 

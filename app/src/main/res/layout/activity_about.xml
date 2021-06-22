@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".About"
-    android:padding="15dp">
+    >
 
     <TextView
         android:id="@+id/abt1"
@@ -45,11 +45,13 @@
         android:scaleType="fitXY"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+        android:id="@+id/bottom_navigation_about"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
         app:menu="@menu/nav_items"
+        app:itemIconTint="#FA0404"
+        app:itemTextColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

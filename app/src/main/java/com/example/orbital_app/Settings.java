@@ -17,39 +17,41 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Settings extends AppCompatActivity {
 
-//    private BottomNavigationView bottomNavigationView;
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         getSupportActionBar().setTitle("Settings");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
 
-//        bottomNavigationView = findViewById(R.id.bottom_navigation_settings);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.nav_home:
-//
-//                        Toast.makeText(Settings.this, "Selected Home", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                        break;
-//
-//                    case R.id.nav_favourites:
-//                        Toast.makeText(Settings.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(getApplicationContext(), FavList.class));
-//                        break;
-//
-//                    case R.id.nav_search:
-//                        Toast.makeText(Settings.this, "Selected Search", Toast.LENGTH_SHORT).show();
-//                        startActivity(new Intent(getApplicationContext(), Search.class));
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
+        bottomNavigationView = findViewById(R.id.bottom_navigation_settings);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+
+                        startActivity(new Intent(Settings.this, MainActivity.class));
+                        overridePendingTransition(0,0);
+                        break;
+
+                    case R.id.nav_favourites:
+
+                        startActivity(new Intent(Settings.this, FavList.class));
+                        overridePendingTransition(0,0);
+                        break;
+
+                    case R.id.nav_search:
+                        startActivity(new Intent(Settings.this, Search.class));
+                        overridePendingTransition(0,0);
+                        break;
+                }
+                return true;
+            }
+        });
+
 
     }
 
