@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -105,6 +106,9 @@ public class FavList extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem mI = menu.getItem(1);
+        mI.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
     }
@@ -118,11 +122,13 @@ public class FavList extends AppCompatActivity {
                         case R.id.nav_home:
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            overridePendingTransition(0,0);
                             break;
 
                         case R.id.nav_search:
 
                             startActivity(new Intent(getApplicationContext(), Search.class));
+                            overridePendingTransition(0,0);
                             break;
                     }
                     return true;

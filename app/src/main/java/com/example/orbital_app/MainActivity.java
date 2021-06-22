@@ -170,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
 
         //overlay for bottom navigation
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem mI = menu.getItem(0);
+        mI.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         //Michael preferences API
@@ -189,11 +192,13 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_favourites:
 
                             startActivity(new Intent(getApplicationContext(), FavList.class));
+                            overridePendingTransition(0,0);
                             break;
 
                         case R.id.nav_search:
 
                             startActivity(new Intent(getApplicationContext(), Search.class));
+                            overridePendingTransition(0,0);
                             break;
                     }
                     return true;

@@ -62,6 +62,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
                 i.putExtra("activities", list.get(position).getActivities());
                 holder.favCard.getContext().startActivity(i);
 
+
             }
         });
 

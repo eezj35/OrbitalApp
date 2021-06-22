@@ -155,16 +155,18 @@ public class ReviewActivity extends AppCompatActivity {
                     case R.id.nav_home:
 
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.nav_favourites:
 
                         startActivity(new Intent(getApplicationContext(), FavList.class));
+                        overridePendingTransition(0,0);
                         break;
 
                     case R.id.nav_search:
-
                         startActivity(new Intent(getApplicationContext(), Search.class));
+                        overridePendingTransition(0,0);
                         break;
                 }
                 return true;

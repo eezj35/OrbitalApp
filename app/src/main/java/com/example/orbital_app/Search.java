@@ -98,6 +98,9 @@ public class Search extends AppCompatActivity {
         });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem mI = menu.getItem(2);
+        mI.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
     }
 
@@ -116,26 +119,24 @@ public class Search extends AppCompatActivity {
     }
 
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()) {
-
-
                         case R.id.nav_home:
 
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            overridePendingTransition(0,0);
                             break;
 
                         case R.id.nav_favourites:
 
                             startActivity(new Intent(getApplicationContext(), FavList.class));
+                            overridePendingTransition(0,0);
                             break;
 
-                        case R.id.nav_search:
-
-                            break;
                     }
                     return true;
                 }
