@@ -51,7 +51,7 @@
                         android:layout_centerInParent="true"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/aref_ruqaa"
+                        android:textColor="@color/black"
                         android:padding="10dp"
                         android:text="location name"
                         android:textSize="20dp"
@@ -158,10 +158,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/aref_ruqaa"
+                            android:fontFamily="@font/lobster"
+                            android:textColor="@color/black"
                             android:padding="15dp"
                             android:text="location info..."
-                            android:textStyle="bold" />
+                             />
 
                         <TextView
                             android:id="@+id/stateInfo"
@@ -169,10 +170,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/aref_ruqaa"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/lobster"
                             android:padding="15dp"
                             android:text="location info..."
-                            android:textStyle="bold" />
+                             />
 
                         <TextView
                             android:id="@+id/gLInfo"
@@ -180,10 +182,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/aref_ruqaa"
+                            android:fontFamily="@font/lobster"
+                            android:textColor="@color/black"
                             android:padding="15dp"
                             android:text="location info..."
-                            android:textStyle="bold" />
+                             />
 
                         <TextView
                             android:id="@+id/possibleActivities"
@@ -191,10 +194,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/aref_ruqaa"
+                            android:fontFamily="@font/lobster"
+                            android:textColor="@color/black"
                             android:padding="15dp"
                             android:text="location info..."
-                            android:textStyle="bold" />
+                             />
 
                         <TextView
                             android:id="@+id/oHINfo"
@@ -202,10 +206,11 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="5dp"
-                            android:fontFamily="@font/aref_ruqaa"
+                            android:fontFamily="@font/lobster"
+                            android:textColor="@color/black"
                             android:padding="15dp"
                             android:text="location info..."
-                            android:textStyle="bold" />
+                             />
 
 
                     </LinearLayout>
@@ -219,16 +224,17 @@
                     android:layout_centerInParent="true"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/aref_ruqaa"
+                    android:fontFamily="@font/lobster"
                     android:padding="20dp"
+                    android:textColor="@color/black"
                     android:text="location description..."
-                    android:textStyle="bold" />
+                     />
 
 
             </GridLayout>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
                 android:id="@+id/reviewTab"
@@ -236,7 +242,7 @@
                 android:layout_margin="10dp"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/grid"
-                app:cardBackgroundColor="@color/grey">
+                app:cardBackgroundColor="#FF0000">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -249,6 +255,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/image"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
                         android:layout_centerInParent="true"
                         android:fontFamily="@font/aref_ruqaa"
                         android:padding="20dp"
