@@ -126,7 +126,11 @@ public class PrefForm extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
-                    Toast.makeText(PrefForm.this, "Please close and reopen the app", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PrefForm.this, "Preferences registered!", Toast.LENGTH_SHORT).show();
+                    Intent intent = getBaseContext().getPackageManager()
+                            .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
                     finish();
 
                     isCheck = true;
