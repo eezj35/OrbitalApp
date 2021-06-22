@@ -12,7 +12,7 @@
         android:title="Main Menu"
         app:showAsAction="always"
         android:id="@+id/submenu"
-        android:icon="@drawable/ic_baseline_more_vert_24"
+        android:icon="@drawable/sub_menu_icon"
         >
 
         <menu>
