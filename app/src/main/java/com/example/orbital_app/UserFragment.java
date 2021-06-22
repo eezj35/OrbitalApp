@@ -18,17 +18,17 @@ public class UserFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.user_preference);
 
         findPreference("profile").setOnPreferenceClickListener(preference -> {
-            startActivity(new Intent(getActivity(), Profile.class));
+            startActivity(new Intent(getActivity(), Profile.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             return true;
         });
 
         findPreference("favourites").setOnPreferenceClickListener(preference -> {
-            startActivity(new Intent(getActivity(), FavList.class));
+            startActivity(new Intent(getActivity(), FavList.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             return true;
         });
 
         findPreference("preferences").setOnPreferenceClickListener(p -> {
-            startActivity(new Intent(getActivity(), PrefForm.class));
+            startActivity(new Intent(getActivity(), PrefForm.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             return true;
         });
     }

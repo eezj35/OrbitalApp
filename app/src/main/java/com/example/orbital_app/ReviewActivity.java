@@ -103,7 +103,7 @@ public class ReviewActivity extends AppCompatActivity {
                         if(!snapshot.hasChild(user.getUid())){
                             Intent i = new Intent(ReviewActivity.this, LeaveReview.class);
                             i.putExtra("locName", locName);
-                            startActivity(i);
+                            startActivity(i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                         }else{
                             Toast.makeText(ReviewActivity.this, "You have already left a review", Toast.LENGTH_SHORT).show();
                         }
@@ -173,9 +173,11 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
-
-
-
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
     }
 
 }

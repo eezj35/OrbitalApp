@@ -182,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
     }
 
+
+
+
     //overlay for bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -191,14 +194,13 @@ public class MainActivity extends AppCompatActivity {
 
                         case R.id.nav_favourites:
 
-                            startActivity(new Intent(getApplicationContext(), FavList.class));
-                            overridePendingTransition(0,0);
+                            startActivity(new Intent(getApplicationContext(), FavList.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                             break;
 
                         case R.id.nav_search:
 
-                            startActivity(new Intent(getApplicationContext(), Search.class));
-                            overridePendingTransition(0,0);
+                            startActivity(new Intent(getApplicationContext(), Search.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+
                             break;
                     }
                     return true;
@@ -210,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.my_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
 
 
     @Override

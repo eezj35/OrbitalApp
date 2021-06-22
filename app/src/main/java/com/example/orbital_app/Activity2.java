@@ -242,6 +242,7 @@ public class Activity2 extends AppCompatActivity {
                 Intent i = new Intent(Activity2.this, ReviewActivity.class);
                 i.putExtra("locName", location.getName());
                 startActivity(i);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -272,6 +273,12 @@ public class Activity2 extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0,0);
     }
 
     private void favouriteChecker(String postkey, ImageButton favBtn) {
