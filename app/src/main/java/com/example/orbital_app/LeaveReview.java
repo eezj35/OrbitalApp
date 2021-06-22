@@ -100,10 +100,10 @@ public class LeaveReview extends AppCompatActivity {
 
 
     }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(0,0);
-    }
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        overridePendingTransition(0,0);
+//    }
 
 }

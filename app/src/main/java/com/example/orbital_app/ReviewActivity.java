@@ -103,7 +103,7 @@ public class ReviewActivity extends AppCompatActivity {
                         if(!snapshot.hasChild(user.getUid())){
                             Intent i = new Intent(ReviewActivity.this, LeaveReview.class);
                             i.putExtra("locName", locName);
-                            startActivity(i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                            startActivity(i);
                         }else{
                             Toast.makeText(ReviewActivity.this, "You have already left a review", Toast.LENGTH_SHORT).show();
                         }
