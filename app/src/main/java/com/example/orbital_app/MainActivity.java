@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.settings:
-                startActivity(new Intent(this, Settings.class));
+                startActivity(new Intent(this, Settings.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 break;
 
             case R.id.filter:
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.user:
-                startActivity(new Intent(this, User.class));
+                startActivity(new Intent(this, User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 break;
 
             case R.id.logout:
