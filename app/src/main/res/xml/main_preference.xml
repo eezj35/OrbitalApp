@@ -4,7 +4,6 @@
     <Preference
         android:title="About"
         android:key="about"
-        android:icon="@drawable/ic_baseline_priority_high_24"
         android:summary="What is HangOuts?"/>
 
     <SwitchPreference

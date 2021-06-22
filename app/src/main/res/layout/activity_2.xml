@@ -276,7 +276,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_gravity="bottom"
-        app:itemIconTint="@color/black"
+        app:itemIconTint="#FA0404"
         app:itemTextColor="@color/black"
         app:menu="@menu/nav_items"
         app:layout_constraintBottom_toBottomOf="parent"

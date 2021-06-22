@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -97,7 +98,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         RatingBar rating;
         TextView review;
         TextView upvotes;
-        Button upvotesBtn;
+        ImageButton upvotesBtn;
         public ReviewHolder(View itemView) {
             super(itemView);
             user = itemView.findViewById(R.id.user);

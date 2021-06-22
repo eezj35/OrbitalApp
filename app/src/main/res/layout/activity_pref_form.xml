@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Where is your place of residence located? :"
+            android:textColor="@color/black"
             android:layout_margin="15dp"
             android:textSize="15dp"
             android:id="@+id/stayQn"/>
@@ -68,7 +69,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15dp"
-            android:text="What activities do you like to do? (Please choose 3):"
+            android:text="What type of activities do you like to do? (Please choose 3) :"
+            android:textColor="@color/black"
             android:layout_margin="15dp"/>
 
         <LinearLayout
@@ -196,6 +198,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Finish"
+            android:textStyle="bold"
+            android:backgroundTint="#FF0000"
             android:layout_marginTop="50dp"
             android:id="@+id/btnFinish"/>
 

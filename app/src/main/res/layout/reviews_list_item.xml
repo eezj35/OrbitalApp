@@ -63,12 +63,14 @@
                 android:layout_marginLeft="25dp"
                 android:fontFamily="@font/aref_ruqaa"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/upvoteBtn"
                 android:layout_width="35dp"
                 android:layout_height="27dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/ic_upvote" />
+                android:backgroundTint="@color/white"
+                android:background="@drawable/ripple_effect"
+                android:src="@drawable/ic_upvote" />
 
 
         </LinearLayout>
