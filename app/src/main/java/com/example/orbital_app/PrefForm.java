@@ -3,12 +3,15 @@ package com.example.orbital_app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -23,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PrefForm extends AppCompatActivity {
 
@@ -34,10 +39,26 @@ public class PrefForm extends AppCompatActivity {
     CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7,
     cb8, cb9, cb10, cb11, cb12, cb13, cb14;
 
+    private static final String cb1key = "cb1_key";
+    private static final String cb2key = "cb2_key";
+    private static final String cb3key = "cb3_key";
+    private static final String cb4key = "cb4_key";
+    private static final String cb5key = "cb5_key";
+    private static final String cb6key = "cb6_key";
+    private static final String cb7key = "cb7_key";
+    private static final String cb8key = "cb8_key";
+    private static final String cb9key = "cb9_key";
+    private static final String cb10key = "cb10_key";
+    private static final String cb11key = "cb11_key";
+    private static final String cb12key = "cb12_key";
+    private static final String cb13key = "cb13_key";
+    private static final String cb14key = "cb14_key";
+
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     DatabaseReference prefRef;
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserId = user.getUid();
+    SharedPreferences sharedPreferences = null;
 
 
 
@@ -46,8 +67,6 @@ public class PrefForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pref_form);
         getSupportActionBar().setTitle("Preference Settings");
-//        bottomNavigationView = findViewById(R.id.bottom_navigation);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
         radioGroup = findViewById(R.id.radioGroup);
 
@@ -66,8 +85,23 @@ public class PrefForm extends AppCompatActivity {
         cb13 = findViewById(R.id.cb13);
         cb14 = findViewById(R.id.cb14);
 
-        ArrayList<CheckBox> cbList = new ArrayList<>();
+        Map<String, CheckBox> checkboxMap = new HashMap();
+        checkboxMap.put(cb1key, cb1);
+        checkboxMap.put(cb2key, cb2);
+        checkboxMap.put(cb3key, cb3);
+        checkboxMap.put(cb4key, cb4);
+        checkboxMap.put(cb5key, cb5);
+        checkboxMap.put(cb6key, cb6);
+        checkboxMap.put(cb7key, cb7);
+        checkboxMap.put(cb8key, cb8);
+        checkboxMap.put(cb9key, cb9);
+        checkboxMap.put(cb10key, cb10);
+        checkboxMap.put(cb11key, cb11);
+        checkboxMap.put(cb12key, cb12);
+        checkboxMap.put(cb13key, cb13);
+        checkboxMap.put(cb14key, cb14);
 
+        ArrayList<CheckBox> cbList = new ArrayList<>();
         cbList.add(cb1);
         cbList.add(cb2);
         cbList.add(cb3);
@@ -83,6 +117,23 @@ public class PrefForm extends AppCompatActivity {
         cbList.add(cb13);
         cbList.add(cb14);
 
+        sharedPreferences = getSharedPreferences("pref.form.checklist", Context.MODE_PRIVATE);
+
+        final SharedPreferences preferences = getSharedPreferences("saved", 0);
+        radioGroup.check(preferences.getInt("CheckedId", 0));
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("CheckedId", checkedId);
+                editor.apply();
+            }
+        });
+
+
+        loadInitialValues(checkboxMap);
+        setupCheckedChangeListener(checkboxMap);
 
         Button btnFinish = findViewById(R.id.btnFinish);
         btnFinish.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +157,8 @@ public class PrefForm extends AppCompatActivity {
                 else if(i!=3){
                     Toast.makeText(PrefForm.this, "Please choose 3 preferred activities!", Toast.LENGTH_SHORT).show();
                 }else{
+
+
                     prefRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -139,5 +192,25 @@ public class PrefForm extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void loadInitialValues(Map<String, CheckBox> checkboxMap) {
+        for (Map.Entry<String, CheckBox> checkboxEntry: checkboxMap.entrySet()) {
+            Boolean checked = sharedPreferences.getBoolean(checkboxEntry.getKey(), false);
+            checkboxEntry.getValue().setChecked(checked);
+        }
+    }
+
+    public void setupCheckedChangeListener(Map<String, CheckBox> checkboxMap) {
+        for (final Map.Entry<String, CheckBox> checkboxEntry: checkboxMap.entrySet()) {
+            checkboxEntry.getValue().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    final SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(checkboxEntry.getKey(), isChecked);
+                    editor.apply();
+                }
+            });
+        }
     }
 }
