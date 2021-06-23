@@ -151,7 +151,10 @@ public class Activity2 extends AppCompatActivity {
                             numPpl ++;
 
                         }
-                        if(numPpl > 1){
+                        if(numPpl == 0){
+                            rating.setRating(location.getRating());
+                        }
+                        else if(numPpl > 1){
                             rating.setRating(Math.round(totalRating/numPpl));
                         }else{
                             rating.setRating(totalRating);

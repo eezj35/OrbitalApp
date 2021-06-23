@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:text="Location"
             android:layout_gravity="center"
+            android:textColor="@color/black"
             android:padding="30dp"
             android:textSize="15dp"
             android:id="@+id/favName"/>

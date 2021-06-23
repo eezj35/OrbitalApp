@@ -16,15 +16,16 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="location name"
-            android:id="@+id/txtName"
-            android:layout_marginTop="5dp"
             android:layout_marginLeft="10dp"
-            android:textSize="15dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/abril_fatface"
             android:padding="5dp"
-            android:fontFamily="@font/aref_ruqaa"/>
+            android:text="location name"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
 
 
         <ImageView
