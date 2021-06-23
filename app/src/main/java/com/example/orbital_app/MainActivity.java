@@ -107,12 +107,15 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 newRecView = findViewById(R.id.newRV);
+
                 newRecView.setHasFixedSize(true);
                 newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-
                 userInfo = snapshot.getValue(UserInfo.class);
+
                 if(userInfo != null){
                     location = userInfo.getHouse();
+                    TextView header = findViewById(R.id.near_header);
+                    header.setText("In the "+location);
                     querying(db.collection("places"), "generalLoc", newList, newRecView);
                 }
             }

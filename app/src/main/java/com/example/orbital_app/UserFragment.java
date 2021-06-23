@@ -28,7 +28,7 @@ public class UserFragment extends PreferenceFragment {
         });
 
         findPreference("preferences").setOnPreferenceClickListener(p -> {
-            startActivity(new Intent(getActivity(), PrefForm.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            startActivity(new Intent(getActivity(), PrefForm.class));
             return true;
         });
     }

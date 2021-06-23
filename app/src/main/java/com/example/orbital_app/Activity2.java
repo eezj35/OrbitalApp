@@ -235,7 +235,7 @@ public class Activity2 extends AppCompatActivity {
             }
         });
 
-        CardView reviewTab = findViewById(R.id.reviewTab);
+        TextView reviewTab = findViewById(R.id.reviewTab);
         reviewTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

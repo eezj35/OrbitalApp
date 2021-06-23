@@ -23,7 +23,7 @@ public class Profile extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView fullName, email;
-    private BottomNavigationView bottomNavigationView;
+//    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -55,8 +55,8 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+//        bottomNavigationView = findViewById(R.id.bottom_navigation);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
     }
 
     @Override
@@ -65,29 +65,29 @@ public class Profile extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-
-
-                        case R.id.nav_home:
-
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                            break;
-
-                        case R.id.nav_favourites:
-
-                            startActivity(new Intent(getApplicationContext(), FavList.class));
-                            break;
-
-                        case R.id.nav_search:
-
-                            startActivity(new Intent(getApplicationContext(), Search.class));
-                            break;
-                    }
-                    return true;
-                }
-            };
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                    switch (item.getItemId()) {
+//
+//
+//                        case R.id.nav_home:
+//
+//                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                            break;
+//
+//                        case R.id.nav_favourites:
+//
+//                            startActivity(new Intent(getApplicationContext(), FavList.class));
+//                            break;
+//
+//                        case R.id.nav_search:
+//
+//                            startActivity(new Intent(getApplicationContext(), Search.class));
+//                            break;
+//                    }
+//                    return true;
+//                }
+//            };
 }

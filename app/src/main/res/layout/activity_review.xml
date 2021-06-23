@@ -48,12 +48,29 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/reviewRV"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/leaveReview"
-            android:layout_centerHorizontal="true" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Others' Experiences"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:padding="20dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviewRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/leaveReview"
+                android:layout_centerHorizontal="true" />
+
+        </LinearLayout>
+
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

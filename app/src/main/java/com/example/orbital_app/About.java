@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class About extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
+//    private BottomNavigationView bottomNavigationView;
 
 
     @Override
@@ -22,35 +22,35 @@ public class About extends AppCompatActivity {
         getSupportActionBar().setTitle("About");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation_about);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+//        bottomNavigationView = findViewById(R.id.bottom_navigation_about);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    switch (item.getItemId()) {
-
-
-                        case R.id.nav_home:
-                            Toast.makeText(About.this, "Home Favourites", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-                            break;
-
-                        case R.id.nav_favourites:
-                            Toast.makeText(About.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), FavList.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-                            break;
-
-                        case R.id.nav_search:
-                            Toast.makeText(About.this, "Selected Search", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Search.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-                            break;
-                    }
-                    return true;
-                }
-            };
+//    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+//            new BottomNavigationView.OnNavigationItemSelectedListener() {
+//                @Override
+//                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                    switch (item.getItemId()) {
+//
+//
+//                        case R.id.nav_home:
+//                            Toast.makeText(About.this, "Home Favourites", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+//                            break;
+//
+//                        case R.id.nav_favourites:
+//                            Toast.makeText(About.this, "Selected Favourites", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), FavList.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+//                            break;
+//
+//                        case R.id.nav_search:
+//                            Toast.makeText(About.this, "Selected Search", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), Search.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+//                            break;
+//                    }
+//                    return true;
+//                }
+//            };
     @Override
     public void onBackPressed() {
         super.onBackPressed();

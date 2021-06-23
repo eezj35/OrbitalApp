@@ -235,41 +235,47 @@
                         android:text="location description..."
                         />
 
+                    <TextView
+                        android:id="@+id/reviewTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txtdsc"
+                        android:layout_gravity="right"
+                        android:textColor="#FF0000"
+                        android:textSize="20dp"
+                        android:layout_centerInParent="true"
+
+                        android:fontFamily="@font/aref_ruqaa"
+                        android:padding="20dp"
+                        android:text="Reviews  >"
+                        android:textStyle="bold" />
+
 
                 </GridLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:id="@+id/reviewTab"
-                    app:cardCornerRadius="20dp"
-                    android:layout_margin="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@id/grid"
-                    app:cardBackgroundColor="#FF0000">
+<!--                <androidx.cardview.widget.CardView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="20dp"-->
+<!--                    android:id="@+id/reviewTab"-->
+<!--                    app:cardCornerRadius="20dp"-->
+<!--                    android:layout_margin="10dp"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_below="@id/grid"-->
+<!--                    app:cardBackgroundColor="#FF0000">-->
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center">
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_gravity="center">-->
 
-                        <TextView
-                            android:id="@+id/reviewTitle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/image"
-                            android:textColor="@color/white"
-                            android:textSize="20dp"
-                            android:layout_centerInParent="true"
-                            android:fontFamily="@font/aref_ruqaa"
-                            android:padding="20dp"
-                            android:text="Reviews"
-                            android:textStyle="bold" />
+<!--                        -->
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+<!--                    </LinearLayout>-->
+<!--                </androidx.cardview.widget.CardView>-->
+
+
 
             </RelativeLayout>
 

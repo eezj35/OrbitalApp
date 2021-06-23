@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Settings extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView;
+//    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,31 +26,31 @@ public class Settings extends AppCompatActivity {
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getFragmentManager().beginTransaction().replace(android.R.id.content, new SettingsFragment()).commit();
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation_settings);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-
-                        startActivity(new Intent(Settings.this, MainActivity.class));
-                        overridePendingTransition(0,0);
-                        break;
-
-                    case R.id.nav_favourites:
-
-                        startActivity(new Intent(Settings.this, FavList.class));
-                        overridePendingTransition(0,0);
-                        break;
-
-                    case R.id.nav_search:
-                        startActivity(new Intent(Settings.this, Search.class));
-                        overridePendingTransition(0,0);
-                        break;
-                }
-                return true;
-            }
-        });
+//        bottomNavigationView = findViewById(R.id.bottom_navigation_settings);
+//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                switch (item.getItemId()) {
+//                    case R.id.nav_home:
+//
+//                        startActivity(new Intent(Settings.this, MainActivity.class));
+//                        overridePendingTransition(0,0);
+//                        break;
+//
+//                    case R.id.nav_favourites:
+//
+//                        startActivity(new Intent(Settings.this, FavList.class));
+//                        overridePendingTransition(0,0);
+//                        break;
+//
+//                    case R.id.nav_search:
+//                        startActivity(new Intent(Settings.this, Search.class));
+//                        overridePendingTransition(0,0);
+//                        break;
+//                }
+//                return true;
+//            }
+//        });
 
 
     }
