@@ -18,7 +18,7 @@
             android:textColor="@color/black"
             android:layout_margin="15dp"
             android:fontFamily="@font/lobster"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:id="@+id/stayQn"/>
 
 
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/north"
                     android:text="North"
-                    android:textSize="20dp"
+
                     android:layout_margin="10dp"
                     />
 
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/south"
                     android:text="South"
-                    android:textSize="20dp"
+
                     android:layout_margin="10dp"
                     />
 
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/east"
                     android:text="East"
-                    android:textSize="20dp"
+
                     android:layout_margin="10dp"
                     />
 
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/west"
                     android:text="West"
-                    android:textSize="20dp"
+
                     android:layout_margin="10dp"
                     />
 
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:text="What type of activities do you like to do? (Please choose 3) :"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:fontFamily="@font/lobster"
             android:layout_margin="15dp" />
 
@@ -93,7 +93,7 @@
                     android:layout_height="wrap_content"
                     android:text="Exercise"
                     android:id="@+id/cb1"
-                    android:textSize="20dp"
+
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:text="Wet activities"
                     android:id="@+id/cb2"
-                    android:textSize="20dp"
+
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -109,7 +109,6 @@
                     android:layout_height="wrap_content"
                     android:text="Cultural"
                     android:id="@+id/cb3"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -117,7 +116,6 @@
                     android:layout_height="wrap_content"
                     android:text="Hiking"
                     android:id="@+id/cb4"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -125,7 +123,6 @@
                     android:layout_height="wrap_content"
                     android:text="Thrilling activities"
                     android:id="@+id/cb5"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -133,7 +130,6 @@
                     android:layout_height="wrap_content"
                     android:text="Nature"
                     android:id="@+id/cb12"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -141,7 +137,6 @@
                     android:layout_height="wrap_content"
                     android:text="Staycay"
                     android:id="@+id/cb13"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
             </LinearLayout>
@@ -150,14 +145,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="30dp">
+                android:layout_marginLeft="50dp">
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Leisure"
                     android:id="@+id/cb6"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -165,7 +159,6 @@
                     android:layout_height="wrap_content"
                     android:text="Museum"
                     android:id="@+id/cb7"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -173,7 +166,6 @@
                     android:layout_height="wrap_content"
                     android:text="Sightseeing"
                     android:id="@+id/cb8"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -181,7 +173,6 @@
                     android:layout_height="wrap_content"
                     android:text="Eating"
                     android:id="@+id/cb9"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -189,7 +180,6 @@
                     android:layout_height="wrap_content"
                     android:text="Beach"
                     android:id="@+id/cb10"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -197,7 +187,6 @@
                     android:layout_height="wrap_content"
                     android:text="Shopping"
                     android:id="@+id/cb11"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
                 <CheckBox
@@ -205,7 +194,6 @@
                     android:layout_height="wrap_content"
                     android:text="Kids fun"
                     android:id="@+id/cb14"
-                    android:textSize="20dp"
                     android:layout_margin="10dp"/>
 
             </LinearLayout>
@@ -220,7 +208,7 @@
             android:textStyle="bold"
             android:backgroundTint="#FF0000"
             android:layout_marginTop="50dp"
-            android:textSize="20dp"
+
             android:id="@+id/btnFinish"/>
 
 
