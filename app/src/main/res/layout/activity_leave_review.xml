@@ -72,7 +72,7 @@
         android:layout_marginTop="60dp"
         android:text="Submit"
         android:textStyle="bold"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView"
