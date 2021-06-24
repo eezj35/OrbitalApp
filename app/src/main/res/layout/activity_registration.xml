@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Login"
     android:padding="15dp"
     >
 
@@ -62,10 +61,12 @@
         />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mRegisterBtn"
+        android:layout_gravity="center"
         android:text="Register"
+        android:backgroundTint="#FF0000"
         android:textStyle="bold"
         />
 
