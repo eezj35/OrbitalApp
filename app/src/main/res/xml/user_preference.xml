@@ -10,10 +10,11 @@
     <Preference
         android:title="Favourites"
         android:key="favourites"
-        android:icon="@drawable/ic_black_fave"
+        android:icon="@drawable/ic_red_fave"
         android:summary="Go to your favourites"/>
 
     <Preference
+
         android:title="Edit Preferences"
         android:key="preferences"
         android:icon="@drawable/ic_pref"

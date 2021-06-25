@@ -41,20 +41,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="1.0" />
 
+
     <TextView
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/black"
         android:padding="10dp"
         android:text="HangOuts"
+        android:textColor="@color/black"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.341" />
-
+        app:layout_constraintVertical_bias="0.145" />
 
     <TextView
         android:id="@+id/textView"
@@ -89,22 +89,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fullName" />
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Change Password"
-        android:textStyle="bold"
-        android:backgroundTint="#FF0000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.539"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
-
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+    <!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
 <!--        android:id="@+id/bottom_navigation"-->
 <!--        android:layout_width="0dp"-->
 <!--        android:layout_height="50dp"-->

@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("HangOuts");
+//        actionBar.setTitle("HangOuts");
 
         pd = new ProgressDialog(this);
         pd.setCancelable(false);
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                         for(DocumentChange dc : value.getDocumentChanges()){
                             Locations loc = dc.getDocument().toObject(Locations.class);
                             if(order.equals("rating")){
-                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating() >= 4.0)){
+                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating() ==5)){
                                     list.add(loc);
                                 }
                             }

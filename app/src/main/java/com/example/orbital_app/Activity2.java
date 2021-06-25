@@ -151,13 +151,11 @@ public class Activity2 extends AppCompatActivity {
                             numPpl ++;
 
                         }
-                        if(numPpl == 0){
+                        if(numPpl <= 4){
                             rating.setRating(location.getRating());
                         }
-                        else if(numPpl > 1){
+                        else{
                             rating.setRating(Math.round(totalRating/numPpl));
-                        }else{
-                            rating.setRating(totalRating);
                         }
                     }
                 });
