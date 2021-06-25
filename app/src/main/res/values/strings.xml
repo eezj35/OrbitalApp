@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Orbital_App</string>
+    <string name="app_name">HangOuts</string>
 
     <array name="themes">
         <item>Dark</item>
