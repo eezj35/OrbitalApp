@@ -43,18 +43,31 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <android.widget.Button
+        android:id="@+id/filter_btn_med"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:background="@drawable/filter_button"
+        android:text="Medium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_low"
+        app:layout_constraintStart_toEndOf="@+id/filter_btn_low"
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_low"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.widget.Button
         android:id="@+id/filter_btn_high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
         android:background="@drawable/filter_button"
         android:text="High"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_low"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toEndOf="@+id/filter_btn_low"
-        app:layout_constraintTop_toTopOf="@+id/filter_btn_low"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_med"
+        app:layout_constraintStart_toEndOf="@+id/filter_btn_med"
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_med"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -105,6 +118,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_outdoor"
         app:layout_constraintEnd_toEndOf="@+id/filter_btn_high"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_outdoor"
         app:layout_constraintTop_toTopOf="@+id/filter_btn_outdoor"
         app:layout_constraintVertical_bias="0.0" />
@@ -136,7 +150,7 @@
         android:id="@+id/filter_btn_act2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="28dp"
         android:background="@drawable/filter_button"
         android:text="Act2"
         android:textColor="@color/white"
@@ -150,14 +164,15 @@
         android:id="@+id/filter_btn_act3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="28dp"
         android:background="@drawable/filter_button"
         android:text="Act3"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_act2"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_act2"
-        app:layout_constraintTop_toTopOf="@+id/filter_btn_act2" />
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_act2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/filterApplyBtn"

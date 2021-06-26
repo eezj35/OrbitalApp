@@ -241,14 +241,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/txtdsc"
-                        android:layout_gravity="right"
-                        android:textColor="#FF0000"
-                        android:textSize="20dp"
                         android:layout_centerInParent="true"
-
+                        android:layout_gravity="right"
                         android:fontFamily="@font/aref_ruqaa"
                         android:padding="20dp"
+
                         android:text="Reviews  >"
+                        android:textColor="#FF0000"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
 
