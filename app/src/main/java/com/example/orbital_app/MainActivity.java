@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,8 @@ import android.view.MenuItem;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.view.ViewGroup;
@@ -57,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recommendedRecView;
     private RecyclerView topRatedRecView;
     private RecyclerView newRecView;
-    //overlay for bottom navigation
     private BottomNavigationView bottomNavigationView;
 
     ArrayList<Locations> recommendedList = new ArrayList<>();
@@ -70,6 +72,11 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserId = user.getUid();
+
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+    private Button applyBtn;
+    private ImageButton cancelBtn;
 
     UserInfo userInfo;
     PrefActivities prefActivities;
@@ -125,23 +132,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        userPrefRef.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                newRecView = findViewById(R.id.newRV);
-//                newRecView.setHasFixedSize(true);
-//                newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-//
-//                userInfo = snapshot.getValue(UserInfo.class);
-//                if(userInfo != null){
-//                    location = userInfo.getHouse();
-//                    querying(db.collection("places"), "generalLoc", newList, newRecView);
-//                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
 
         userPrefRefActivities.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -210,12 +200,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.my_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
 
 
@@ -228,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.filter:
-                Toast.makeText(this, "Filter", Toast.LENGTH_SHORT).show();
+                filterDialog();
                 break;
 
             case R.id.user:
@@ -292,6 +282,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         rv.setAdapter(adapter);
+
+    }
+
+    public void filterDialog(){
+        dialogBuilder = new AlertDialog.Builder(this);
+        final View contactPopup = getLayoutInflater().inflate(R.layout.popup, null);
+
+        applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
+        cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
+
+        dialogBuilder.setView(contactPopup);
+        dialog = dialogBuilder.create();
+        dialog.show();
+
+        applyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Filter applied", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
 
     }
 
