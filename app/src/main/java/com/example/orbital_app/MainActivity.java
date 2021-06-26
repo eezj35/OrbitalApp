@@ -291,6 +291,13 @@ public class MainActivity extends AppCompatActivity {
 
         applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
         cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
+        Button btn1 = contactPopup.findViewById(R.id.filter_btn_low);
+        Button btn2 = contactPopup.findViewById(R.id.filter_btn_high);
+        Button btn3 = contactPopup.findViewById(R.id.filter_btn_outdoor);
+        Button btn4 = contactPopup.findViewById(R.id.filter_btn_indoor);
+        Button btn6 = contactPopup.findViewById(R.id.filter_btn_act1);
+        Button btn7 = contactPopup.findViewById(R.id.filter_btn_act2);
+        Button btn8 = contactPopup.findViewById(R.id.filter_btn_act3);
 
         dialogBuilder.setView(contactPopup);
         dialog = dialogBuilder.create();
@@ -308,6 +315,91 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn1.isSelected()){
+                    btn1.setSelected(false);
+                }else{
+                    btn1.setSelected(true);
+                }
+
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn2.isSelected()){
+                    btn2.setSelected(false);
+                }else{
+                    btn2.setSelected(true);
+                }
+
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn3.isSelected()){
+                    btn3.setSelected(false);
+                }else{
+                    btn3.setSelected(true);
+                }
+
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn4.isSelected()){
+                    btn4.setSelected(false);
+                }else{
+                    btn4.setSelected(true);
+                }
+
+            }
+        });
+
+
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn6.isSelected()){
+                    btn6.setSelected(false);
+                }else{
+                    btn6.setSelected(true);
+                }
+
+            }
+        });
+
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn7.isSelected()){
+                    btn7.setSelected(false);
+                }else{
+                    btn7.setSelected(true);
+                }
+
+            }
+        });
+
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(btn8.isSelected()){
+                    btn8.setSelected(false);
+                }else{
+                    btn8.setSelected(true);
+                }
+
             }
         });
 
