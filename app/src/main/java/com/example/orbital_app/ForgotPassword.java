@@ -75,7 +75,6 @@ public class ForgotPassword extends AppCompatActivity {
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
                 if (task.isSuccessful()) {
                     Toast.makeText(ForgotPassword.this, "Check your email to reset your password", Toast.LENGTH_LONG).show();
                     progressBar3.setVisibility(View.INVISIBLE);

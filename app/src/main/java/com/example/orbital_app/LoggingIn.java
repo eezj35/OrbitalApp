@@ -91,7 +91,6 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                         if (task.isSuccessful()) {
-
                             if (user.isEmailVerified()) {
                                 Toast.makeText(LoggingIn.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));

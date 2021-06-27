@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/radioGroup"
-                android:layout_marginBottom="50dp">
+                android:layout_marginBottom="45dp">
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
                     android:id="@+id/north"
                     android:text="North"
 
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     />
 
                 <RadioButton
@@ -45,7 +45,7 @@
                     android:id="@+id/south"
                     android:text="South"
 
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     />
 
                 <RadioButton
@@ -54,7 +54,7 @@
                     android:id="@+id/east"
                     android:text="East"
 
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     />
 
                 <RadioButton
@@ -63,7 +63,16 @@
                     android:id="@+id/west"
                     android:text="West"
 
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Central"
+                    android:text="Central"
+
+                    android:layout_margin="5dp"
                     />
 
 
