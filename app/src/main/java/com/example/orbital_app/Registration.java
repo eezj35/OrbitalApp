@@ -86,7 +86,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Registration.this, "Registration completed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Registration.this, "Registration completed, check email for authentication", Toast.LENGTH_SHORT).show();
 
                             FirebaseDatabase userName = FirebaseDatabase.getInstance();
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -103,7 +103,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                                 }
                             });
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), LoggingIn.class));
                         } else {
                             Toast.makeText(Registration.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }

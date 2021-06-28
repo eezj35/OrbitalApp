@@ -24,7 +24,7 @@
             android:fontFamily="@font/abril_fatface"
             android:padding="5dp"
             android:text="location name"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="15dp" />
 
 
