@@ -54,6 +54,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.remote.WatchChange;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,9 +85,14 @@ public class MainActivity extends AppCompatActivity {
     String prefActivity1;
     String prefActivity2;
     String prefActivity3;
+
     private DatabaseReference userPrefRef = rtdb.getReference("pref").child(currentUserId);
     private DatabaseReference userPrefRefActivities = rtdb.getReference("pref").child(currentUserId).child("activities");
     private Boolean isCheck;
+
+    HashMap<String, Boolean> costMap = new HashMap<>();
+    HashMap<String, Boolean> stateMap = new HashMap<>();
+    HashMap<String, Boolean> activityMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -292,12 +298,18 @@ public class MainActivity extends AppCompatActivity {
         applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
         cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
         Button btn1 = contactPopup.findViewById(R.id.filter_btn_low);
-        Button btn2 = contactPopup.findViewById(R.id.filter_btn_high);
-        Button btn3 = contactPopup.findViewById(R.id.filter_btn_outdoor);
-        Button btn4 = contactPopup.findViewById(R.id.filter_btn_indoor);
+        Button btn2 = contactPopup.findViewById(R.id.filter_btn_med);
+        Button btn3 = contactPopup.findViewById(R.id.filter_btn_high);
+
+        Button btn4 = contactPopup.findViewById(R.id.filter_btn_outdoor);
+        Button btn5 = contactPopup.findViewById(R.id.filter_btn_indoor);
+
         Button btn6 = contactPopup.findViewById(R.id.filter_btn_act1);
+        btn6.setText(prefActivity1);
         Button btn7 = contactPopup.findViewById(R.id.filter_btn_act2);
+        btn7.setText(prefActivity2);
         Button btn8 = contactPopup.findViewById(R.id.filter_btn_act3);
+        btn8.setText(prefActivity3);
 
         dialogBuilder.setView(contactPopup);
         dialog = dialogBuilder.create();
@@ -306,6 +318,19 @@ public class MainActivity extends AppCompatActivity {
         applyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ArrayList<Locations> validList = new ArrayList<>();
+                FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
+
+                for(Locations loc : recommendedList){
+                    if(costMap.containsKey(loc.getCost())){
+                        if(stateMap.containsKey(loc.getState())) {
+                            validList.add(loc);
+                        }
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                recommendedRecView.setAdapter(adapter);
+
                 Toast.makeText(MainActivity.this, "Filter applied", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
@@ -321,11 +346,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn1.isSelected()){
-                    btn1.setSelected(false);
-                }else{
-                    btn1.setSelected(true);
-                }
+                addToMap(costMap, btn1);
 
             }
         });
@@ -333,35 +354,29 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn2.isSelected()){
-                    btn2.setSelected(false);
-                }else{
-                    btn2.setSelected(true);
-                }
-
+                addToMap(costMap, btn2);
             }
         });
 
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn3.isSelected()){
-                    btn3.setSelected(false);
-                }else{
-                    btn3.setSelected(true);
-                }
-
+                addToMap(costMap, btn3);
             }
         });
 
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn4.isSelected()){
-                    btn4.setSelected(false);
-                }else{
-                    btn4.setSelected(true);
-                }
+                addToMap(stateMap, btn4);
+
+            }
+        });
+
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(stateMap, btn5);
 
             }
         });
@@ -370,11 +385,7 @@ public class MainActivity extends AppCompatActivity {
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn6.isSelected()){
-                    btn6.setSelected(false);
-                }else{
-                    btn6.setSelected(true);
-                }
+                addToMap(activityMap, btn6);
 
             }
         });
@@ -382,11 +393,7 @@ public class MainActivity extends AppCompatActivity {
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn7.isSelected()){
-                    btn7.setSelected(false);
-                }else{
-                    btn7.setSelected(true);
-                }
+                addToMap(activityMap, btn7);
 
             }
         });
@@ -394,16 +401,22 @@ public class MainActivity extends AppCompatActivity {
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(btn8.isSelected()){
-                    btn8.setSelected(false);
-                }else{
-                    btn8.setSelected(true);
-                }
+                addToMap(activityMap, btn8);
 
             }
         });
 
 
+    }
+
+    private void addToMap(HashMap<String, Boolean> map, Button button){
+        if(button.isSelected()){
+            button.setSelected(false);
+            map.remove((String) button.getText());
+        }else{
+            button.setSelected(true);
+            map.put((String) button.getText(), true);
+        }
     }
 
 
