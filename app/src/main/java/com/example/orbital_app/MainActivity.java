@@ -318,21 +318,30 @@ public class MainActivity extends AppCompatActivity {
         applyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Locations> validList = new ArrayList<>();
-                FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
 
-                for(Locations loc : recommendedList){
-                    if(costMap.containsKey(loc.getCost())){
-                        if(stateMap.containsKey(loc.getState())) {
-                            validList.add(loc);
+                if(stateMap.isEmpty() && costMap.isEmpty() && activityMap.isEmpty()){
+                    FSDataAdapter unchangedAdapter = new FSDataAdapter(MainActivity.this, recommendedList);
+                    unchangedAdapter.notifyDataSetChanged();
+                    recommendedRecView.setAdapter(unchangedAdapter);
+                    dialog.dismiss();
+                }else{
+                    ArrayList<Locations> validList = new ArrayList<>();
+                    FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
+                    for(Locations loc : recommendedList){
+                        if(costMap.containsKey(loc.getCost())){
+                            if(stateMap.containsKey(loc.getState())) {
+                                validList.add(loc);
+                            }
                         }
                     }
-                }
-                adapter.notifyDataSetChanged();
-                recommendedRecView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    recommendedRecView.setAdapter(adapter);
+                    clearAllMaps();
 
-                Toast.makeText(MainActivity.this, "Filter applied", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+                    Toast.makeText(MainActivity.this, "Filter applied", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+
             }
         });
 
@@ -417,6 +426,12 @@ public class MainActivity extends AppCompatActivity {
             button.setSelected(true);
             map.put((String) button.getText(), true);
         }
+    }
+
+    private void clearAllMaps(){
+        costMap.clear();
+        stateMap.clear();
+        activityMap.clear();
     }
 
 
