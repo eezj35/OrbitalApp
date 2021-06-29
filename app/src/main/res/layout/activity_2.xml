@@ -56,14 +56,54 @@
                             android:layout_centerInParent="true"
                             android:layout_marginLeft="15dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
                             android:padding="10dp"
                             android:text="location name"
                             android:textSize="20dp"
                             android:textStyle="bold" />
 
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="Average online rating:"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/lobster"/>
+
                         <RatingBar
-                            android:id="@+id/ratingBar"
+                            android:id="@+id/ratingBar1"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="98dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:padding="10dp"
+                            android:rating="0"
+                            android:stepSize="1" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:padding="10dp"
+                            android:text="Average user rating:"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/lobster"/>
+
+                        <RatingBar
+                            android:id="@+id/ratingBar2"
                             style="?android:attr/ratingBarStyleSmall"
                             android:layout_width="98dp"
                             android:layout_height="wrap_content"

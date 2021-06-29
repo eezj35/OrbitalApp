@@ -53,7 +53,8 @@ import java.util.ArrayList;
 
 public class Activity2 extends AppCompatActivity {
 
-    private RatingBar rating;
+    private RatingBar rating1;
+    private RatingBar rating2;
     private ImageButton favBtn;
     private Button linkBtn;
     private Button gpsBtn;
@@ -136,7 +137,11 @@ public class Activity2 extends AppCompatActivity {
                 .load(location.getImage())
                 .into(iv);
 
-        rating = findViewById(R.id.ratingBar);
+        rating1 = findViewById(R.id.ratingBar1);
+        rating1.setRating(location.getRating());
+
+
+        rating2 = findViewById(R.id.ratingBar2);
         db.collection("reviews").whereEqualTo("place", location.getName())
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
@@ -151,11 +156,11 @@ public class Activity2 extends AppCompatActivity {
                             numPpl ++;
 
                         }
-                        if(numPpl <= 4){
-                            rating.setRating(location.getRating());
+                        if(numPpl < 1){
+                            rating2.setRating(0);
                         }
                         else{
-                            rating.setRating(Math.round(totalRating/numPpl));
+                            rating2.setRating(Math.round(totalRating/numPpl));
                         }
                     }
                 });
