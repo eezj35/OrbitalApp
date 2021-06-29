@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Cost"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -34,48 +34,12 @@
         android:id="@+id/filter_btn_low"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/filter_button"
         android:text="Low"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <android.widget.Button
-        android:id="@+id/filter_btn_med"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:background="@drawable/filter_button"
-        android:text="Medium"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_low"
-        app:layout_constraintStart_toEndOf="@+id/filter_btn_low"
-        app:layout_constraintTop_toTopOf="@+id/filter_btn_low"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <android.widget.Button
-        android:id="@+id/filter_btn_high"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/filter_button"
-        android:text="High"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/filter_btn_low"
-        app:layout_constraintTop_toBottomOf="@+id/filter_btn_low" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:text="Outdoor/ Indoor"
-        android:textColor="@color/black"
-        android:textSize="15dp"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -94,10 +58,62 @@
 <!--        app:layout_constraintVertical_bias="0.0" />-->
 
     <android.widget.Button
+        android:id="@+id/filter_btn_med"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/filter_button"
+        android:text="Medium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_low"
+        app:layout_constraintStart_toEndOf="@+id/filter_btn_low"
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_low"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.widget.Button
+        android:id="@+id/filter_btn_free"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/filter_button"
+        android:text="High"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/filter_btn_low"
+        app:layout_constraintTop_toBottomOf="@+id/filter_btn_low" />
+
+    <android.widget.Button
+        android:id="@+id/filter_btn_high"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/filter_button"
+        android:text="free"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_free"
+        app:layout_constraintStart_toEndOf="@+id/filter_btn_free"
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_free"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:text="Outdoor/ Indoor"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <android.widget.Button
         android:id="@+id/filter_btn_outdoor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/filter_button"
         android:text="Outdoor"
         android:textColor="@color/white"
@@ -105,11 +121,12 @@
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
+
     <android.widget.Button
         android:id="@+id/filter_btn_indoor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="36dp"
         android:background="@drawable/filter_button"
         android:text="Indoor"
         android:textColor="@color/white"
@@ -123,7 +140,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="88dp"
         android:text="Preferred activity"
         android:textColor="@color/black"
         android:textSize="15dp"
@@ -134,12 +151,13 @@
         android:id="@+id/filter_btn_act1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/filter_button"
+        android:padding="10dp"
         android:text="Act1"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -147,7 +165,7 @@
         android:id="@+id/filter_btn_act2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="36dp"
         android:background="@drawable/filter_button"
         android:padding="10dp"
         android:text="Act2"
@@ -162,30 +180,30 @@
         android:id="@+id/filter_btn_act3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/filter_button"
+        android:padding="10dp"
         android:text="Act3"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:padding="10dp"
         app:layout_constraintStart_toStartOf="@+id/filter_btn_act1"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act1" />
 
     <Button
         android:id="@+id/filterApplyBtn"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         android:backgroundTint="#FF0000"
+        android:padding="15dp"
         android:text="Apply"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act3"
-        app:layout_constraintVertical_bias="0.505" />
+        app:layout_constraintVertical_bias="0.306" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

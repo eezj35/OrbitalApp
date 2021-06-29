@@ -300,6 +300,7 @@ public class MainActivity extends AppCompatActivity {
         Button btn1 = contactPopup.findViewById(R.id.filter_btn_low);
         Button btn2 = contactPopup.findViewById(R.id.filter_btn_med);
         Button btn3 = contactPopup.findViewById(R.id.filter_btn_high);
+        Button btn9 = contactPopup.findViewById(R.id.filter_btn_free);
 
         Button btn4 = contactPopup.findViewById(R.id.filter_btn_outdoor);
         Button btn5 = contactPopup.findViewById(R.id.filter_btn_indoor);
@@ -324,13 +325,35 @@ public class MainActivity extends AppCompatActivity {
                     unchangedAdapter.notifyDataSetChanged();
                     recommendedRecView.setAdapter(unchangedAdapter);
                     dialog.dismiss();
-                }else{
+
+                }else if(costMap.isEmpty() || stateMap.isEmpty() || activityMap.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Please tick a filter from each category", Toast.LENGTH_SHORT).show();
+                }
+                else{
                     ArrayList<Locations> validList = new ArrayList<>();
                     FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
                     for(Locations loc : recommendedList){
                         if(costMap.containsKey(loc.getCost())){
-                            if(stateMap.containsKey(loc.getState())) {
-                                validList.add(loc);
+                            String state = loc.getState();
+                            if(!state.equals("Outdoor & Indoor")) {
+                                if(stateMap.containsKey(loc.getState())){
+                                    for(String activity : loc.getActivities()){
+                                        if(activityMap.containsKey(activity)){
+                                            validList.add(loc);
+                                            break;
+                                        }
+                                    }
+                                }
+
+                            }else if(state.equals("Outdoor & Indoor")){
+                                if(stateMap.containsKey("Outdoor") && stateMap.containsKey("Indoor")){
+                                    for(String activity : loc.getActivities()){
+                                        if(activityMap.containsKey(activity)){
+                                            validList.add(loc);
+                                            break;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -412,6 +435,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 addToMap(activityMap, btn8);
 
+            }
+        });
+
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(costMap, btn9);
             }
         });
 
