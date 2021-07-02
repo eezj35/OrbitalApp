@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="android:fontFamily">@font/aref_ruqaa</item>
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/black</item>
+        <item name="colorPrimaryVariant">@color/red</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
