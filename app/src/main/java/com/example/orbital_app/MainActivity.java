@@ -166,6 +166,31 @@ public class MainActivity extends AppCompatActivity {
 
         querying(db.collection("places"),"rating", topRatedList, topRatedRecView);
 
+        ImageButton recommendedFilter = findViewById(R.id.recommendedFilter);
+        recommendedFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterDialog(recommendedRecView, recommendedList);
+            }
+        });
+
+        ImageButton topRatedFilter = findViewById(R.id.topRatedFilter);
+        topRatedFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterDialog(topRatedRecView, topRatedList);
+            }
+        });
+
+        ImageButton nearestFilter = findViewById(R.id.nearestFilter);
+        nearestFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                filterDialog(newRecView, newList);
+            }
+        });
+
+
 
         //overlay for bottom navigation
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -223,9 +248,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, Settings.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 break;
 
-            case R.id.filter:
-                filterDialog();
-                break;
 
             case R.id.user:
                 startActivity(new Intent(this, User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
@@ -291,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void filterDialog(){
+    public void filterDialog(RecyclerView rv, ArrayList<Locations> arrayList){
         dialogBuilder = new AlertDialog.Builder(this);
         final View contactPopup = getLayoutInflater().inflate(R.layout.popup, null);
 
@@ -321,9 +343,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(stateMap.isEmpty() && costMap.isEmpty() && activityMap.isEmpty()){
-                    FSDataAdapter unchangedAdapter = new FSDataAdapter(MainActivity.this, recommendedList);
+                    FSDataAdapter unchangedAdapter = new FSDataAdapter(MainActivity.this, arrayList);
                     unchangedAdapter.notifyDataSetChanged();
-                    recommendedRecView.setAdapter(unchangedAdapter);
+                    rv.setAdapter(unchangedAdapter);
                     dialog.dismiss();
 
                 }else if(costMap.isEmpty() || stateMap.isEmpty() || activityMap.isEmpty()){
@@ -332,7 +354,7 @@ public class MainActivity extends AppCompatActivity {
                 else{
                     ArrayList<Locations> validList = new ArrayList<>();
                     FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
-                    for(Locations loc : recommendedList){
+                    for(Locations loc : arrayList){
                         if(costMap.containsKey(loc.getCost())){
                             String state = loc.getState();
                             if(!state.equals("Outdoor & Indoor")) {
@@ -358,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     adapter.notifyDataSetChanged();
-                    recommendedRecView.setAdapter(adapter);
+                    rv.setAdapter(adapter);
                     clearAllMaps();
 
                     Toast.makeText(MainActivity.this, "Filter applied", Toast.LENGTH_SHORT).show();
