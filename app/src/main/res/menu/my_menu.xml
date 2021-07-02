@@ -18,25 +18,27 @@
         <menu>
 
             <item
+                android:title="User"
+                android:icon="@drawable/ic_baseline_person_24"
+                android:id="@+id/user"
+                app:showAsAction="never"
+                />
+
+            <item
                 android:title="Settings"
                 android:icon="@drawable/ic_baseline_settings_24"
                 android:id="@+id/settings"
                 app:showAsAction="never"
                 />
 
-            <item
-                android:title="Filter"
-                android:icon="@drawable/ic_baseline_filter_alt_24"
-                android:id="@+id/filter"
-                app:showAsAction="never"
-                />
+<!--            <item-->
+<!--                android:title="Filter"-->
+<!--                android:icon="@drawable/ic_baseline_filter_alt_24"-->
+<!--                android:id="@+id/filter"-->
+<!--                app:showAsAction="never"-->
+<!--                />-->
 
-            <item
-                android:title="User"
-                android:icon="@drawable/ic_baseline_person_24"
-                android:id="@+id/user"
-                app:showAsAction="never"
-                />
+
 
             <item
                 android:title="Logout"
