@@ -22,18 +22,36 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="70dp"
-                android:fontFamily="@font/aref_ruqaa"
-                android:padding="10dp"
-                android:text="Recommended"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:fontFamily="@font/aref_ruqaa"
+                    android:padding="10dp"
+                    android:text="Recommended"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+
+                <ImageButton
+                    android:id="@+id/recommendedFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:src="@drawable/filter_icon"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/ripple_effect"/>
+
+            </LinearLayout>
+
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommendedRV"
@@ -41,10 +59,15 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:fontFamily="@font/aref_ruqaa"
                 android:padding="10dp"
                 android:text="Top Rated Online"
@@ -53,24 +76,55 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:textColor="@color/black"
                 />
 
+            <ImageButton
+                android:id="@+id/topRatedFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:src="@drawable/filter_icon"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/ripple_effect"/>
+
+        </LinearLayout>
+
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/topRatedRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/aref_ruqaa"
-                android:padding="10dp"
-                android:text="In the..."
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:id="@+id/near_header"
-                />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70dp"
+                    android:fontFamily="@font/aref_ruqaa"
+                    android:padding="10dp"
+                    android:text="In the..."
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:id="@+id/near_header"
+                    />
+
+                <ImageButton
+                    android:id="@+id/nearestFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80dp"
+                    android:src="@drawable/filter_icon"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/ripple_effect"/>
+
+            </LinearLayout>
+
+
 
 
             <androidx.recyclerview.widget.RecyclerView

@@ -72,7 +72,7 @@
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"
                             android:padding="10dp"
-                            android:text="Average online rating:"
+                            android:text="Online rating:"
                             android:textSize="15dp"
                             android:fontFamily="@font/lobster"/>
 
@@ -98,7 +98,7 @@
                             android:layout_marginTop="10dp"
                             android:textColor="@color/black"
                             android:padding="10dp"
-                            android:text="Average user rating:"
+                            android:text="Users rating:"
                             android:textSize="15dp"
                             android:fontFamily="@font/lobster"/>
 
@@ -189,7 +189,8 @@
                         app:cardCornerRadius="30dp"
                         android:layout_margin="10dp"
                         android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true">
+                        android:layout_centerHorizontal="true"
+                        android:backgroundTint="#FDFD96">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -204,11 +205,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:fontFamily="@font/lobster"
-                                android:textColor="@color/black"
+                                android:fontFamily="casual"
                                 android:padding="15dp"
                                 android:text="location info..."
-                                />
+                                android:textStyle="bold"
+                                android:textColor="@color/black" />
 
                             <TextView
                                 android:id="@+id/stateInfo"
@@ -217,8 +218,9 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="5dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/lobster"
+                                android:fontFamily="casual"
                                 android:padding="15dp"
+                                android:textStyle="bold"
                                 android:text="location info..."
                                 />
 
@@ -228,9 +230,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:fontFamily="@font/lobster"
+                                android:fontFamily="casual"
                                 android:textColor="@color/black"
                                 android:padding="15dp"
+                                android:textStyle="bold"
                                 android:text="location info..."
                                 />
 
@@ -240,9 +243,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:fontFamily="@font/lobster"
+                                android:fontFamily="casual"
                                 android:textColor="@color/black"
                                 android:padding="15dp"
+                                android:textStyle="bold"
                                 android:text="location info..."
                                 />
 
@@ -252,9 +256,10 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="5dp"
-                                android:fontFamily="@font/lobster"
+                                android:fontFamily="casual"
                                 android:textColor="@color/black"
                                 android:padding="15dp"
+                                android:textStyle="bold"
                                 android:text="location info..."
                                 />
 
