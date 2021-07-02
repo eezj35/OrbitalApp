@@ -17,25 +17,48 @@
 
 
 
-    <EditText
-        android:id="@+id/mEmail"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:hint="Email"
-        android:textStyle="bold"
-        />
+        app:boxStrokeColor="@color/red"
+        app:hintTextColor="@color/red"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <EditText
+            android:id="@+id/mEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Email"
+            android:textStyle="bold"
+            android:backgroundTint="@color/white"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mPassword"
-        android:inputType="textPassword"
-        android:layout_marginBottom="10dp"
-        android:hint="Password"
-        android:textStyle="bold"
-        />
+        app:boxStrokeColor="@color/red"
+        app:hintTextColor="@color/red"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mPassword"
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"
+            android:hint="Password"
+            android:textStyle="bold"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:layout_width="wrap_content"
