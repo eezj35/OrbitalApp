@@ -29,8 +29,6 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
     ProgressBar progressBar;
     FirebaseAuth fAuth;
 
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
 
 
     @Override
@@ -49,7 +47,9 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
         mCreateBtn = findViewById(R.id.mCreateBtn);
         mForgotBtn = findViewById(R.id.mForgotBtn);
 
-        if (fAuth.getCurrentUser() != null && user.isEmailVerified()) {
+        FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (fAuth.getCurrentUser() != null && user1.isEmailVerified()) {
             startActivity(new Intent(this, MainActivity.class));
             finish();
         }
@@ -88,8 +88,7 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-
-
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                         if (task.isSuccessful()) {
                             if (user.isEmailVerified()) {
