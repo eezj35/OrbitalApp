@@ -325,14 +325,17 @@ public class MainActivity extends AppCompatActivity {
 
         applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
         cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
+        TextView selectAll1 = contactPopup.findViewById(R.id.costSelectAll);
         Button btn1 = contactPopup.findViewById(R.id.filter_btn_low);
         Button btn2 = contactPopup.findViewById(R.id.filter_btn_med);
         Button btn3 = contactPopup.findViewById(R.id.filter_btn_high);
         Button btn9 = contactPopup.findViewById(R.id.filter_btn_free);
 
+        TextView selectAll2 = contactPopup.findViewById(R.id.oiSelectAll);
         Button btn4 = contactPopup.findViewById(R.id.filter_btn_outdoor);
         Button btn5 = contactPopup.findViewById(R.id.filter_btn_indoor);
 
+        TextView selectAll3 = contactPopup.findViewById(R.id.paSelectAll);
         Button btn6 = contactPopup.findViewById(R.id.filter_btn_act1);
         btn6.setText(prefActivity1);
         Button btn7 = contactPopup.findViewById(R.id.filter_btn_act2);
@@ -400,6 +403,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+
+        selectAll1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(costMap, btn1);
+                addToMap(costMap, btn2);
+                addToMap(costMap, btn3);
+                addToMap(costMap, btn9);
+            }
+        });
+
+        selectAll2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(stateMap, btn4);
+                addToMap(stateMap, btn5);
+
+            }
+        });
+
+        selectAll3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(activityMap, btn6);
+                addToMap(activityMap, btn7);
+                addToMap(activityMap, btn8);
+
             }
         });
 
