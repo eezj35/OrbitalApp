@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -61,6 +62,7 @@ public class Activity2 extends AppCompatActivity {
     private int totalRating = 0;
     private int numPpl = 0;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private String prevPage;
 
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference dbRef, favRef, favListRef;
@@ -86,6 +88,7 @@ public class Activity2 extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Bundle bundle = getIntent().getExtras();
+        prevPage = bundle.getString("prevPage");
         location = new Locations(bundle.getString("location"),
                 bundle.getString("image"),
                 bundle.getInt("rating"),
@@ -247,11 +250,24 @@ public class Activity2 extends AppCompatActivity {
                 Intent i = new Intent(Activity2.this, ReviewActivity.class);
                 i.putExtra("locName", location.getName());
                 startActivity(i);
-                overridePendingTransition(0,0);
+                overridePendingTransition(0, 0);
             }
         });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_2);
+        Menu menu = bottomNavigationView.getMenu();
+        if (prevPage.equals("MA")) {
+            MenuItem mI = menu.getItem(0);
+            mI.setChecked(true);
+        } else if (prevPage.equals("Fav")) {
+            MenuItem mI = menu.getItem(1);
+            mI.setChecked(true);
+        } else {
+            MenuItem mI = menu.getItem(2);
+            mI.setChecked(true);
+        }
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -259,7 +275,7 @@ public class Activity2 extends AppCompatActivity {
                     case R.id.nav_home:
 
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
                         break;
 
                     case R.id.nav_favourites:

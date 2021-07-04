@@ -58,6 +58,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="10dp"
                             android:textColor="@color/black"
+                            android:fontFamily="@font/aref_ruqaa"
                             android:padding="10dp"
                             android:text="location name"
                             android:textSize="20dp"

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Orbital_App" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
-        <item name="android:fontFamily">@font/aref_ruqaa</item>
+<!--        <item name="android:fontFamily">@font/aref_ruqaa</item>-->
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/red</item>
         <item name="colorOnPrimary">@color/white</item>

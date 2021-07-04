@@ -59,6 +59,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 i.putExtra("link", list.get(position).getLink());
                 i.putExtra("postal", list.get(position).getPostal());
                 i.putExtra("activities", list.get(position).getActivities());
+                i.putExtra("prevPage", "Search");
                 holder.parent.getContext().startActivity(i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
 
             }

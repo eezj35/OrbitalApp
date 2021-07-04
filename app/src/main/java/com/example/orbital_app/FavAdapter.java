@@ -60,6 +60,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
                 i.putExtra("link", list.get(position).getLink());
                 i.putExtra("postal", list.get(position).getPostal());
                 i.putExtra("activities", list.get(position).getActivities());
+                i.putExtra("prevPage", "Fav");
                 holder.favCard.getContext().startActivity(i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
 
 
