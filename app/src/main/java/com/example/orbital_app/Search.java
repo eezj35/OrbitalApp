@@ -143,6 +143,11 @@ public class Search extends AppCompatActivity {
                             overridePendingTransition(0,0);
                             break;
 
+                        case R.id.nav_user:
+
+                            startActivity(new Intent(getApplicationContext(), User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+
+                            break;
                     }
                     return true;
                 }

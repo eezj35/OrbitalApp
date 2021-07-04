@@ -226,6 +226,12 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), Search.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
 
                             break;
+
+                        case R.id.nav_user:
+
+                            startActivity(new Intent(getApplicationContext(), User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+
+                            break;
                     }
                     return true;
                 }
@@ -248,10 +254,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, Settings.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 break;
 
-
-            case R.id.user:
-                startActivity(new Intent(this, User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-                break;
+//
+//            case R.id.user:
+//                startActivity(new Intent(this, User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+//                break;
 
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();

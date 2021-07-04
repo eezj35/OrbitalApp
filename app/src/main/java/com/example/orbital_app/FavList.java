@@ -51,6 +51,12 @@ public class FavList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        Menu menu = bottomNavigationView.getMenu();
+        MenuItem mI = menu.getItem(1);
+        mI.setChecked(true);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
         rv = findViewById(R.id.favRV);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setHasFixedSize(true);
@@ -105,18 +111,16 @@ public class FavList extends AppCompatActivity {
             }
         });
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
-        Menu menu = bottomNavigationView.getMenu();
-        MenuItem mI = menu.getItem(1);
-        mI.setChecked(true);
-        bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+
 
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onBackPressed() {
+
+        super.onBackPressed();
         overridePendingTransition(0, 0);
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -126,15 +130,20 @@ public class FavList extends AppCompatActivity {
                     switch (item.getItemId()) {
 
                         case R.id.nav_home:
-
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             overridePendingTransition(0,0);
+
                             break;
 
                         case R.id.nav_search:
 
                             startActivity(new Intent(getApplicationContext(), Search.class));
                             overridePendingTransition(0,0);
+                            break;
+                        case R.id.nav_user:
+
+                            startActivity(new Intent(getApplicationContext(), User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+
                             break;
                     }
                     return true;
