@@ -235,7 +235,6 @@ public class Activity2 extends AppCompatActivity {
         gpsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(Activity2.this, "Opening Google Maps", Toast.LENGTH_SHORT).show();
                 Toast.makeText(Activity2.this, "https://www.google.com.sg/maps/dir/" + "%" + "/" + location.getPostal(), Toast.LENGTH_LONG).show();
                 gotoUrl("https://www.google.com.sg/maps/dir/" + "%" + "/" + location.getPostal());
             }
