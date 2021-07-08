@@ -79,6 +79,7 @@ public class FavList extends AppCompatActivity {
                 }
                 adapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -87,30 +88,29 @@ public class FavList extends AppCompatActivity {
 
         rv.setAdapter(adapter);
 
-        refresh = findViewById(R.id.favRefresh);
-        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                list.clear();
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for(DataSnapshot ds: snapshot.getChildren()){
-                            Locations loc = ds.getValue(Locations.class);
-                            list.add(loc);
-
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                refresh.setRefreshing(false);
-            }
-        });
-
+//        refresh = findViewById(R.id.favRefresh);
+//        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                list.clear();
+//                query.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        for(DataSnapshot ds: snapshot.getChildren()){
+//                            Locations loc = ds.getValue(Locations.class);
+//                            list.add(loc);
+//
+//                        }
+//                        adapter.notifyDataSetChanged();
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//                refresh.setRefreshing(false);
+//            }
+//        });
 
 
     }

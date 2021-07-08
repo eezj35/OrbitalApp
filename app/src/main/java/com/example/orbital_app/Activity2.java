@@ -298,8 +298,13 @@ public class Activity2 extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(0,0);
+        if (prevPage.equals("MA")) {
+            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+        } else if (prevPage.equals("Fav")) {
+            startActivity(new Intent(getApplicationContext(), FavList.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+        } else {
+            startActivity(new Intent(getApplicationContext(), Search.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+        }
     }
 
     private void favouriteChecker(String postkey, ImageButton favBtn) {
