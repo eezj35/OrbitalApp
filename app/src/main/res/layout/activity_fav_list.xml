@@ -13,9 +13,11 @@
         android:layout_height="wrap_content"
 
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.006"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintVertical_bias="0.032" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -24,12 +26,12 @@
         android:layout_alignParentBottom="true"
         app:itemIconTint="#FA0404"
         app:itemTextColor="@color/black"
-        android:layout_marginTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
 
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/nav_items"
-        tools:layout_editor_absoluteX="3dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/nav_items">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
