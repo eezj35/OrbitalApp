@@ -367,29 +367,18 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<Locations> validList = new ArrayList<>();
                     FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
                     for(Locations loc : arrayList){
-                        if(costMap.containsKey(loc.getCost())){
-                            String state = loc.getState();
-                            if(!state.equals("Outdoor & Indoor")) {
-                                if(stateMap.containsKey(loc.getState())){
-                                    for(String activity : loc.getActivities()){
-                                        if(activityMap.containsKey(activity)){
-                                            validList.add(loc);
-                                            break;
-                                        }
-                                    }
-                                }
-
-                            }else if(state.equals("Outdoor & Indoor")){
-                                if(stateMap.containsKey("Outdoor") && stateMap.containsKey("Indoor")){
-                                    for(String activity : loc.getActivities()){
-                                        if(activityMap.containsKey(activity)){
-                                            validList.add(loc);
-                                            break;
-                                        }
+                        if (costMap.containsKey(loc.getCost())) {
+                            if (stateMap.containsKey(loc.getState())) {
+                                for (String activity : loc.getActivities()) {
+                                    if (activityMap.containsKey(activity)) {
+                                        validList.add(loc);
+                                        break;
                                     }
                                 }
                             }
                         }
+
+
                     }
                     adapter.notifyDataSetChanged();
                     rv.setAdapter(adapter);

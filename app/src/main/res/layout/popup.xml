@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <android.widget.Button
-        android:id="@+id/filter_btn_free"
+        android:id="@+id/filter_btn_high"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -96,18 +96,16 @@
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_low" />
 
     <android.widget.Button
-        android:id="@+id/filter_btn_high"
+        android:id="@+id/filter_btn_free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:background="@drawable/filter_button"
-        android:text="free"
+        android:text="Free"
         android:textColor="@color/white"
-
-        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_free"
-        app:layout_constraintStart_toEndOf="@+id/filter_btn_free"
-        app:layout_constraintTop_toTopOf="@+id/filter_btn_free"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_high"
+        app:layout_constraintStart_toEndOf="@+id/filter_btn_high"
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_high" />
 
     <TextView
         android:id="@+id/textView6"
