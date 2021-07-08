@@ -299,7 +299,9 @@ public class Activity2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (prevPage.equals("MA")) {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            super.onBackPressed();
+            overridePendingTransition(0, 0);
         } else if (prevPage.equals("Fav")) {
             startActivity(new Intent(getApplicationContext(), FavList.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
         } else {
