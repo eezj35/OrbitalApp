@@ -30,7 +30,6 @@
         android:layout_margin="20dp"
         android:text="Leave a Review"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:backgroundTint="#FF0000"
         app:layout_constraintBottom_toTopOf="@+id/reviewRefresh"
         app:layout_constraintEnd_toEndOf="parent"

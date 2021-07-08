@@ -48,7 +48,7 @@ public class FavList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fav_list);
         getSupportActionBar().setTitle("Favourites");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -117,10 +117,7 @@ public class FavList extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-
-        super.onBackPressed();
-        overridePendingTransition(0, 0);
-
+        finishAffinity();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

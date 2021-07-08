@@ -21,6 +21,7 @@ public class User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
         getSupportActionBar().setTitle("User");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         getFragmentManager().beginTransaction().replace(R.id.fragment_container2, new UserFragment()).commit();
         bottomNavigationView = findViewById(R.id.bottom_navigation_user);
@@ -57,7 +58,6 @@ public class User extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(0,0);
+        finishAffinity();
     }
 }

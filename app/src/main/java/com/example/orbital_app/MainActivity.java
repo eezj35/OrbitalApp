@@ -192,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         //overlay for bottom navigation
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         Menu menu = bottomNavigationView.getMenu();
@@ -206,8 +207,10 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
 
     //overlay for bottom navigation
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

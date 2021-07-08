@@ -119,9 +119,8 @@ public class Search extends AppCompatActivity {
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
+    public void onBackPressed() {
+        finishAffinity();
     }
 
 

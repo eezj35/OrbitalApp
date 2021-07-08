@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:id="@+id/costSelectAll"
-        android:text="(Select  all)"
+        android:text="(Select all)"
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -51,7 +51,7 @@
         android:background="@drawable/filter_button"
         android:text="Low"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -77,7 +77,7 @@
         android:background="@drawable/filter_button"
         android:text="Medium"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_low"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_low"
         app:layout_constraintTop_toTopOf="@+id/filter_btn_low"
@@ -91,7 +91,7 @@
         android:background="@drawable/filter_button"
         android:text="High"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="@+id/filter_btn_low"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_low" />
 
@@ -103,7 +103,7 @@
         android:background="@drawable/filter_button"
         android:text="free"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_free"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_free"
         app:layout_constraintTop_toTopOf="@+id/filter_btn_free"
@@ -125,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="(Select  all)"
+        android:text="(Select all)"
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintStart_toEndOf="@+id/textView6"
@@ -140,7 +140,7 @@
         android:background="@drawable/filter_button"
         android:text="Outdoor"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -153,7 +153,7 @@
         android:background="@drawable/filter_button"
         android:text="Indoor"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_outdoor"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_outdoor"
         app:layout_constraintTop_toTopOf="@+id/filter_btn_outdoor"
@@ -175,7 +175,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="(Select  all)"
+        android:text="(Select all)"
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toEndOf="@+id/textView5"
@@ -192,7 +192,7 @@
         android:padding="10dp"
         android:text="Act1"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -205,7 +205,7 @@
         android:padding="10dp"
         android:text="Act2"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_act1"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_act1"
         app:layout_constraintTop_toTopOf="@+id/filter_btn_act1"
@@ -220,7 +220,7 @@
         android:padding="10dp"
         android:text="Act3"
         android:textColor="@color/white"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="@+id/filter_btn_act1"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act1" />
 
@@ -234,7 +234,7 @@
         android:backgroundTint="#FF0000"
         android:padding="15dp"
         android:text="Apply"
-        android:textStyle="bold"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act3"
