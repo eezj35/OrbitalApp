@@ -366,15 +366,8 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<Locations> validList = new ArrayList<>();
                     FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
                     for(Locations loc : arrayList){
-                        if (costMap.containsKey(loc.getCost())) {
-                            if (loc.getState().equals("Outdoor & Indoor")) {
-                                for (String activity : loc.getActivities()) {
-                                    if (activityMap.containsKey(activity)) {
-                                        validList.add(loc);
-                                        break;
-                                    }
-                                }
-                            } else if (stateMap.containsKey(loc.getState())) {
+                        if (loc.getCost().equals("Varies") || costMap.containsKey(loc.getCost())) {
+                            if (loc.getState().equals("Outdoor & Indoor") || stateMap.containsKey(loc.getState())) {
                                 for (String activity : loc.getActivities()) {
                                     if (activityMap.containsKey(activity)) {
                                         validList.add(loc);
@@ -384,8 +377,6 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                         }
-
-
                     }
                     adapter.notifyDataSetChanged();
                     rv.setAdapter(adapter);
