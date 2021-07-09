@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-//        actionBar.setTitle("HangOuts");
 
         pd = new ProgressDialog(this);
         pd.setCancelable(false);
@@ -409,18 +408,18 @@ public class MainActivity extends AppCompatActivity {
         selectAll1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(costMap, btn1);
-                addToMap(costMap, btn2);
-                addToMap(costMap, btn3);
-                addToMap(costMap, btn9);
+                selectAllToMap(costMap, btn1);
+                selectAllToMap(costMap, btn2);
+                selectAllToMap(costMap, btn3);
+                selectAllToMap(costMap, btn9);
             }
         });
 
         selectAll2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(stateMap, btn4);
-                addToMap(stateMap, btn5);
+                selectAllToMap(stateMap, btn4);
+                selectAllToMap(stateMap, btn5);
 
             }
         });
@@ -428,9 +427,9 @@ public class MainActivity extends AppCompatActivity {
         selectAll3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn6);
-                addToMap(activityMap, btn7);
-                addToMap(activityMap, btn8);
+                selectAllToMap(activityMap, btn6);
+                selectAllToMap(activityMap, btn7);
+                selectAllToMap(activityMap, btn8);
 
             }
         });
@@ -508,17 +507,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addToMap(HashMap<String, Boolean> map, Button button){
-        if(button.isSelected()){
+    private void addToMap(HashMap<String, Boolean> map, Button button) {
+        if (button.isSelected()) {
             button.setSelected(false);
             map.remove((String) button.getText());
-        }else{
+        } else {
             button.setSelected(true);
             map.put((String) button.getText(), true);
         }
     }
 
-    private void clearAllMaps(){
+    private void selectAllToMap(HashMap<String, Boolean> map, Button button) {
+        button.setSelected(true);
+        map.put((String) button.getText(), true);
+    }
+
+    private void clearAllMaps() {
         costMap.clear();
         stateMap.clear();
         activityMap.clear();
