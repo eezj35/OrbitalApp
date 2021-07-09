@@ -51,7 +51,7 @@ public class FavList extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_fav);
         Menu menu = bottomNavigationView.getMenu();
         MenuItem mI = menu.getItem(1);
         mI.setChecked(true);
