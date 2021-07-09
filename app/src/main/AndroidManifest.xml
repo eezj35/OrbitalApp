@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Orbital_App">
-        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".ForgotPassword" />
         <activity android:name=".Profile" />
         <activity android:name=".PrefForm" />
-        <activity android:name=".FavList"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".FavList"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".LeaveReview" />
         <activity android:name=".ReviewActivity" />
         <activity

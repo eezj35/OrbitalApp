@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +25,7 @@ public class Profile extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView fullName, email;
-//    private BottomNavigationView bottomNavigationView;
+    Button moveToChangePW;
 
 
     @Override
@@ -36,6 +38,14 @@ public class Profile extends AppCompatActivity {
         FirebaseDatabase userName = FirebaseDatabase.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference refData = userName.getReference("user").child(user.getUid());
+        moveToChangePW = findViewById(R.id.moveToChangePW);
+
+        moveToChangePW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ChangePassword.class));
+            }
+        });
 
         //setting email
         email = findViewById(R.id.email);
