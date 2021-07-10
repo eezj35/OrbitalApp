@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class UserFragment extends PreferenceFragment {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -29,6 +31,12 @@ public class UserFragment extends PreferenceFragment {
 
         findPreference("preferences").setOnPreferenceClickListener(p -> {
             startActivity(new Intent(getActivity(), PrefForm.class));
+            return true;
+        });
+
+        findPreference("logout").setOnPreferenceClickListener(p -> {
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(getActivity(), LoggingIn.class));
             return true;
         });
     }

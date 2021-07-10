@@ -11,13 +11,20 @@
         android:title="Favourites"
         android:key="favourites"
         android:icon="@drawable/ic_red_fave"
-        android:summary="Go to your favourites"/>
+        android:summary="Go to your favourites" />
 
     <Preference
 
         android:title="Edit Preferences"
         android:key="preferences"
         android:icon="@drawable/ic_pref"
-        android:summary="Change your preference settings"/>
+        android:summary="Change your preference settings" />
+
+    <Preference
+
+        android:title="Logout"
+        android:key="logout"
+        android:icon="@drawable/exit_icon_red"
+        android:summary="Logout of this account" />
 
 </PreferenceScreen>
