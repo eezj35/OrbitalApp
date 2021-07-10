@@ -100,12 +100,13 @@ public class Activity2 extends AppCompatActivity {
                 bundle.getString("briefDsc"),
                 bundle.getString("link"),
                 bundle.getString("postal"),
-                bundle.getStringArrayList("activities"));
+                bundle.getStringArrayList("activities"),
+                bundle.getString("exactCost"));
 
         TextView tv1 = findViewById(R.id.txtName);
         tv1.setText(location.getName());
         TextView tv2 = findViewById(R.id.costInfo);
-        tv2.setText("Cost:  " + location.getCost());
+        tv2.setText("Cost:  " + location.getExactCost());
         TextView tv3 = findViewById(R.id.stateInfo);
         tv3.setText(location.getState());
         TextView tv4 = findViewById(R.id.gLInfo);

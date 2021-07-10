@@ -399,18 +399,18 @@ public class MainActivity extends AppCompatActivity {
         selectAll1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAllToMap(costMap, btn1);
-                selectAllToMap(costMap, btn2);
-                selectAllToMap(costMap, btn3);
-                selectAllToMap(costMap, btn9);
+                addToCostMap(btn1, 1);
+                addToCostMap(btn2, 2);
+                addToCostMap(btn3, 3);
+                addToCostMap(btn9, 9);
             }
         });
 
         selectAll2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAllToMap(stateMap, btn4);
-                selectAllToMap(stateMap, btn5);
+                addToMap(stateMap, btn4);
+                addToMap(stateMap, btn5);
 
             }
         });
@@ -418,9 +418,9 @@ public class MainActivity extends AppCompatActivity {
         selectAll3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectAllToMap(activityMap, btn6);
-                selectAllToMap(activityMap, btn7);
-                selectAllToMap(activityMap, btn8);
+                addToMap(activityMap, btn6);
+                addToMap(activityMap, btn7);
+                addToMap(activityMap, btn8);
 
             }
         });
@@ -428,7 +428,7 @@ public class MainActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(costMap, btn1);
+                addToCostMap(btn1, 1);
 
             }
         });
@@ -436,14 +436,14 @@ public class MainActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(costMap, btn2);
+                addToCostMap(btn2, 2);
             }
         });
 
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(costMap, btn3);
+                addToCostMap(btn3, 3);
             }
         });
 
@@ -491,7 +491,7 @@ public class MainActivity extends AppCompatActivity {
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(costMap, btn9);
+                addToCostMap(btn9, 9);
             }
         });
 
@@ -508,10 +508,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void selectAllToMap(HashMap<String, Boolean> map, Button button) {
-        button.setSelected(true);
-        map.put((String) button.getText(), true);
+    private void addToCostMap(Button button, int btnNum) {
+        if (button.isSelected()) {
+            button.setSelected(false);
+            if (btnNum == 1) {
+                costMap.remove("Low");
+            } else if (btnNum == 2) {
+                costMap.remove("Medium");
+            } else if (btnNum == 3) {
+                costMap.remove("High");
+            } else if (btnNum == 9) {
+                costMap.remove("Free");
+            }
+
+        } else {
+            button.setSelected(true);
+            if (btnNum == 1) {
+                costMap.put("Low", true);
+            } else if (btnNum == 2) {
+                costMap.put("Medium", true);
+            } else if (btnNum == 3) {
+                costMap.put("High", true);
+            } else if (btnNum == 9) {
+                costMap.put("Free", true);
+            }
+        }
     }
+
 
     private void clearAllMaps() {
         costMap.clear();

@@ -16,13 +16,13 @@ public class Locations {
     private String link = "";
     private String postal;
     private ArrayList<String> activities;
+    private String exactCost;
 
     public Locations(){}
 
 
-
     public Locations(String name, String image, int rating, String cost, String state, int id, String generalLoc,
-                     String openingHours, String briefDsc, String link, String postal, ArrayList<String> activities) {
+                     String openingHours, String briefDsc, String link, String postal, ArrayList<String> activities, String exactCost) {
         this.name = name;
         this.image = image;
         this.rating = rating;
@@ -35,6 +35,11 @@ public class Locations {
         this.link = link;
         this.postal = postal;
         this.activities = activities;
+        this.exactCost = exactCost;
+    }
+
+    public String getExactCost() {
+        return exactCost;
     }
 
     public String getLink() {

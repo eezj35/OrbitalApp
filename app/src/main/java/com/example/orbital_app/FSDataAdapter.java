@@ -54,6 +54,7 @@ public class FSDataAdapter extends RecyclerView.Adapter<FSDataAdapter.MyViewHold
                 i.putExtra("postal", list.get(position).getPostal());
                 i.putExtra("activities", list.get(position).getActivities());
                 i.putExtra("prevPage", "MA");
+                i.putExtra("exactCost", list.get(position).getExactCost());
                 holder.parent.getContext().startActivity(i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
 
             }
