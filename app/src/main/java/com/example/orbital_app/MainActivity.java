@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         recommendedFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterDialog(recommendedRecView, recommendedList);
+                filterDialog(recommendedRecView, recommendedList, 1);
             }
         });
 
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         topRatedFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterDialog(topRatedRecView, topRatedList);
+                filterDialog(topRatedRecView, topRatedList, 2);
             }
         });
 
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         nearestFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterDialog(newRecView, newList);
+                filterDialog(newRecView, newList, 1);
             }
         });
 
@@ -343,7 +343,7 @@ public class MainActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
     }
 
-    public void filterDialog(RecyclerView rv, ArrayList<Locations> arrayList) {
+    public void filterDialog(RecyclerView rv, ArrayList<Locations> arrayList, int num) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View contactPopup = getLayoutInflater().inflate(R.layout.popup, null);
 
@@ -371,22 +371,34 @@ public class MainActivity extends AppCompatActivity {
         dialog = dialogBuilder.create();
         dialog.show();
 
+        FSDataAdapter unchangedAdapter = new FSDataAdapter(MainActivity.this, arrayList);
+        DataAdapter2 unchangedAdapter2 = new DataAdapter2(MainActivity.this, arrayList);
+
         applyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(stateMap.isEmpty() && costMap.isEmpty() && activityMap.isEmpty()){
-                    FSDataAdapter unchangedAdapter = new FSDataAdapter(MainActivity.this, arrayList);
-                    unchangedAdapter.notifyDataSetChanged();
-                    rv.setAdapter(unchangedAdapter);
-                    dialog.dismiss();
+                if (stateMap.isEmpty() && costMap.isEmpty() && activityMap.isEmpty()) {
+                    if (num == 1) {
+
+                        unchangedAdapter.notifyDataSetChanged();
+                        rv.setAdapter(unchangedAdapter);
+                        dialog.dismiss();
+                    } else {
+
+                        unchangedAdapter2.notifyDataSetChanged();
+                        rv.setAdapter(unchangedAdapter2);
+                        dialog.dismiss();
+                    }
+
 
                 }else if(costMap.isEmpty() || stateMap.isEmpty() || activityMap.isEmpty()){
                     Toast.makeText(MainActivity.this, "Please tick a filter from each category", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     ArrayList<Locations> validList = new ArrayList<>();
-                    FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
+
+
                     for(Locations loc : arrayList){
                         if (loc.getCost().equals("Varies") || costMap.containsKey(loc.getCost())) {
                             if (loc.getState().equals("Outdoor & Indoor") || stateMap.containsKey(loc.getState())) {
@@ -400,10 +412,18 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     }
-                    adapter.notifyDataSetChanged();
-                    rv.setAdapter(adapter);
-                    clearAllMaps();
+                    if (num == 1) {
+                        FSDataAdapter adapter = new FSDataAdapter(MainActivity.this, validList);
+                        adapter.notifyDataSetChanged();
+                        rv.setAdapter(adapter);
 
+                    } else {
+                        DataAdapter2 adapter = new DataAdapter2(MainActivity.this, validList);
+                        adapter.notifyDataSetChanged();
+                        rv.setAdapter(adapter);
+                    }
+
+                    clearAllMaps();
                     Toast.makeText(MainActivity.this, "Filter applied", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
