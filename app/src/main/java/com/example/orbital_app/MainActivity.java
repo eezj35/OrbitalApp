@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         topRatedRecView.setHasFixedSize(true);
         topRatedRecView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
-        querying(db.collection("places"),"rating", topRatedList, topRatedRecView);
+        queryingRating(db.collection("places"), topRatedList, topRatedRecView);
 
         ImageButton recommendedFilter = findViewById(R.id.recommendedFilter);
         recommendedFilter.setOnClickListener(new View.OnClickListener() {
@@ -284,22 +284,16 @@ public class MainActivity extends AppCompatActivity {
                         }
                         for(DocumentChange dc : value.getDocumentChanges()){
                             Locations loc = dc.getDocument().toObject(Locations.class);
-                            if(order.equals("rating")){
-                                if(dc.getType() == DocumentChange.Type.ADDED && (loc.getRating() ==5)){
-                                    list.add(loc);
-                                }
-                            }
-                            else if(order.equals("generalLoc")){
+                            if (order.equals("generalLoc")) {
 
-                                if(dc.getType() == DocumentChange.Type.ADDED && location!=null){
-                                    if((loc.getGeneralLoc().equals(location))) {
+                                if (dc.getType() == DocumentChange.Type.ADDED && location != null) {
+                                    if ((loc.getGeneralLoc().equals(location))) {
                                         list.add(loc);
                                     }
                                 }
 
-                            }
-                            else{
-                                if(dc.getType() == DocumentChange.Type.ADDED && prefActivities!=null){
+                            } else {
+                                if (dc.getType() == DocumentChange.Type.ADDED && prefActivities != null) {
                                     for(String s : loc.getActivities()){
                                         if(s.equals(prefActivity1) || s.equals(prefActivity2) || s.equals(prefActivity3)){
                                                 list.add(loc);
@@ -312,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         adapter.notifyDataSetChanged();
-                        if(pd.isShowing()){
+                        if (pd.isShowing()) {
                             pd.dismiss();
                         }
                     }
@@ -321,7 +315,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void filterDialog(RecyclerView rv, ArrayList<Locations> arrayList){
+    private void queryingRating(Query query, ArrayList<Locations> list, RecyclerView rv) {
+
+        DataAdapter2 adapter = new DataAdapter2(MainActivity.this, list);
+        query.orderBy("name", Query.Direction.DESCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            Locations loc = dc.getDocument().toObject(Locations.class);
+
+                            if (dc.getType() == DocumentChange.Type.ADDED && (loc.getRating() == 5)) {
+                                list.add(loc);
+                            }
+
+                        }
+                        adapter.notifyDataSetChanged();
+                        if (pd.isShowing()) {
+                            pd.dismiss();
+                        }
+                    }
+                });
+        rv.setAdapter(adapter);
+    }
+
+    public void filterDialog(RecyclerView rv, ArrayList<Locations> arrayList) {
         dialogBuilder = new AlertDialog.Builder(this);
         final View contactPopup = getLayoutInflater().inflate(R.layout.popup, null);
 
