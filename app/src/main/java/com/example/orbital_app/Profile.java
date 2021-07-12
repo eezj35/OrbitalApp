@@ -48,9 +48,8 @@ public class Profile extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView fullName, email;
-    Button moveToChangePW, chooseProfilePic;
+    Button moveToChangePW;
     ImageView profilePic;
-    FirebaseStorage storage;
     Uri imageURI;
 
     @Override
@@ -65,7 +64,6 @@ public class Profile extends AppCompatActivity {
         DatabaseReference refData = userName.getReference("user").child(user.getUid());
         moveToChangePW = findViewById(R.id.moveToChangePW);
         profilePic = findViewById(R.id.profilePic);
-        chooseProfilePic = findViewById(R.id.chooseProfilePic);
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,12 +90,10 @@ public class Profile extends AppCompatActivity {
                 UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
                 fullName.setText(userInfoName.getUserName());
                 String imURI = userInfoName.getURI();
-//                Picasso.get().load(Uri.parse(imURI)).into(profilePic);
                 Glide.with(Profile.this)
                         .asBitmap()
                         .load(imURI)
                         .into(profilePic);
-//                Toast.makeText(Profile.this, imURI, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -105,42 +101,7 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-
     }
-
-//    private void uploadImage() {
-//        if (imageURI != null) {
-////            String uri = UUID.randomUUID().toString();
-////            String uriFinal = "images/" + uri;
-//            StorageReference reference = storage.getReference().child(imageURI.toString());
-//            FirebaseDatabase userName = FirebaseDatabase.getInstance();
-//            DatabaseReference refData = userName.getReference("user").child(user.getUid());
-//
-//            reference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull  Task<UploadTask.TaskSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//
-//                        refData.addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                refData.child("URI").setValue(imageURI);
-//                            }
-//
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError error) {
-//
-//                            }
-//                        });
-//
-//                        Toast.makeText(Profile.this, "Image successfully uploaded.", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(Profile.this, "Something went wrong! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
-//    }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -156,7 +117,6 @@ public class Profile extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 refData.child("URI").setValue(imageURI.toString());
-//                                Toast.makeText(Profile.this, result.toString(), Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -168,11 +128,5 @@ public class Profile extends AppCompatActivity {
                     }
                 }
             });
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
-    }
 
 }

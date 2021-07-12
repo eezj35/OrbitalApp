@@ -60,6 +60,24 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         holder.rating.setRating(list.get(position).getRating());
         holder.review.setText(list.get(position).getReview());
         holder.upvotes.setText(list.get(position).getUpVote() + "");
+        DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
+
+        refData.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
+                String imURI = userInfoName.getURI();
+                Glide.with(context)
+                        .asBitmap()
+                        .load(imURI)
+                        .into(holder.reviewProfilePic);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +117,8 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         TextView review;
         TextView upvotes;
         ImageButton upvotesBtn;
+        ImageView reviewProfilePic;
+
         public ReviewHolder(View itemView) {
             super(itemView);
             user = itemView.findViewById(R.id.user);
@@ -106,6 +126,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
             review = itemView.findViewById(R.id.review);
             upvotes = itemView.findViewById(R.id.upvotes);
             upvotesBtn = itemView.findViewById(R.id.upvoteBtn);
+            reviewProfilePic = itemView.findViewById(R.id.reviewProfilePic);
 
         }
     }
