@@ -73,14 +73,6 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mGetContent.launch("image/*");
-                //selected image to be uploaded
-            }
-        });
-
-        chooseProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImage();
             }
         });
 
@@ -103,12 +95,8 @@ public class Profile extends AppCompatActivity {
                 fullName.setText(userInfoName.getUserName());
                 UserProfilePic userProfilePic = snapshot.getValue(UserProfilePic.class);
                 String imURI = userProfilePic.getURI();
-
-//                Glide.with(Profile.this)
-//                        .asBitmap()
-//                        .load(imURI)
-//                        .into(profilePic);
                 Picasso.get().load(imURI).into(profilePic);
+//                Toast.makeText(Profile.this, imURI, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -117,50 +105,41 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-//        mStorageReference = FirebaseStorage.getInstance().getReference().child(imageURI.toString());
-//        mStorageReference.getFile(imageURI).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//            @Override
-//            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                profilePic.setImageURI();
-//            }
-//        });
-
-
     }
 
-    private void uploadImage() {
-        if (imageURI != null) {
-//            String uri = UUID.randomUUID().toString();
-//            String uriFinal = "images/" + uri;
-            StorageReference reference = storage.getReference().child(imageURI.toString());
-            FirebaseDatabase userName = FirebaseDatabase.getInstance();
-            DatabaseReference refData = userName.getReference("user").child(user.getUid());
-
-            reference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onComplete(@NonNull  Task<UploadTask.TaskSnapshot> task) {
-                    if (task.isSuccessful()) {
-
-                        refData.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                refData.child("URI").setValue(imageURI);
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
-
-                            }
-                        });
-
-                        Toast.makeText(Profile.this, "Image successfully uploaded.", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(Profile.this, "Something went wrong! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-    }
+//    private void uploadImage() {
+//        if (imageURI != null) {
+////            String uri = UUID.randomUUID().toString();
+////            String uriFinal = "images/" + uri;
+//            StorageReference reference = storage.getReference().child(imageURI.toString());
+//            FirebaseDatabase userName = FirebaseDatabase.getInstance();
+//            DatabaseReference refData = userName.getReference("user").child(user.getUid());
+//
+//            reference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull  Task<UploadTask.TaskSnapshot> task) {
+//                    if (task.isSuccessful()) {
+//
+//                        refData.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                refData.child("URI").setValue(imageURI);
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError error) {
+//
+//                            }
+//                        });
+//
+//                        Toast.makeText(Profile.this, "Image successfully uploaded.", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(Profile.this, "Something went wrong! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
+//        }
+//    }
 
     ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
             new ActivityResultCallback<Uri>() {
@@ -170,6 +149,21 @@ public class Profile extends AppCompatActivity {
                     if (result != null) {
                         profilePic.setImageURI(result);
                         imageURI = result;
+                        FirebaseDatabase userName = FirebaseDatabase.getInstance();
+                        DatabaseReference refData = userName.getReference("user").child(user.getUid());
+                        refData.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                refData.child("URI").setValue(imageURI.toString());
+//                                Toast.makeText(Profile.this, result.toString(), Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                     }
                 }
             });
