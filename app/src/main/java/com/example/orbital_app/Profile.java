@@ -21,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,10 +34,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.net.URI;
 import java.util.UUID;
 
@@ -46,6 +51,7 @@ public class Profile extends AppCompatActivity {
     Button moveToChangePW, chooseProfilePic;
     ImageView profilePic;
     FirebaseStorage storage;
+    StorageReference mStorageReference;
     Uri imageURI;
 
     @Override
@@ -95,6 +101,14 @@ public class Profile extends AppCompatActivity {
                 fullName = findViewById(R.id.fullName);
                 UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
                 fullName.setText(userInfoName.getUserName());
+                UserProfilePic userProfilePic = snapshot.getValue(UserProfilePic.class);
+                String imURI = userProfilePic.getURI();
+
+//                Glide.with(Profile.this)
+//                        .asBitmap()
+//                        .load(imURI)
+//                        .into(profilePic);
+                Picasso.get().load(imURI).into(profilePic);
             }
 
             @Override
@@ -103,16 +117,42 @@ public class Profile extends AppCompatActivity {
             }
         });
 
+//        mStorageReference = FirebaseStorage.getInstance().getReference().child(imageURI.toString());
+//        mStorageReference.getFile(imageURI).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//            @Override
+//            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                profilePic.setImageURI();
+//            }
+//        });
+
+
     }
 
     private void uploadImage() {
         if (imageURI != null) {
-            StorageReference reference = storage.getReference().child("images/" + UUID.randomUUID().toString());
+//            String uri = UUID.randomUUID().toString();
+//            String uriFinal = "images/" + uri;
+            StorageReference reference = storage.getReference().child(imageURI.toString());
+            FirebaseDatabase userName = FirebaseDatabase.getInstance();
+            DatabaseReference refData = userName.getReference("user").child(user.getUid());
 
             reference.putFile(imageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onComplete(@NonNull  Task<UploadTask.TaskSnapshot> task) {
                     if (task.isSuccessful()) {
+
+                        refData.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                refData.child("URI").setValue(imageURI);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         Toast.makeText(Profile.this, "Image successfully uploaded.", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(Profile.this, "Something went wrong! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
