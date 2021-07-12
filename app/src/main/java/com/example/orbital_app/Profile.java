@@ -51,7 +51,6 @@ public class Profile extends AppCompatActivity {
     Button moveToChangePW, chooseProfilePic;
     ImageView profilePic;
     FirebaseStorage storage;
-    StorageReference mStorageReference;
     Uri imageURI;
 
     @Override
@@ -67,7 +66,6 @@ public class Profile extends AppCompatActivity {
         moveToChangePW = findViewById(R.id.moveToChangePW);
         profilePic = findViewById(R.id.profilePic);
         chooseProfilePic = findViewById(R.id.chooseProfilePic);
-        storage = FirebaseStorage.getInstance();
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +91,12 @@ public class Profile extends AppCompatActivity {
                 fullName = findViewById(R.id.fullName);
                 UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
                 fullName.setText(userInfoName.getUserName());
-                UserProfilePic userProfilePic = snapshot.getValue(UserProfilePic.class);
-                String imURI = userProfilePic.getURI();
-                Picasso.get().load(imURI).into(profilePic);
+                String imURI = userInfoName.getURI();
+//                Picasso.get().load(Uri.parse(imURI)).into(profilePic);
+                Glide.with(Profile.this)
+                        .asBitmap()
+                        .load(imURI)
+                        .into(profilePic);
 //                Toast.makeText(Profile.this, imURI, Toast.LENGTH_SHORT).show();
             }
 
