@@ -23,9 +23,10 @@
 
             <ImageView
                 android:id="@+id/reviewProfilePic"
-                android:layout_width="116dp"
-                android:layout_height="68dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="10dp"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/full_logo" />
 
             <TextView

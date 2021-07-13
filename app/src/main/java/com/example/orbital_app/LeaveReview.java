@@ -58,6 +58,7 @@ public class LeaveReview extends AppCompatActivity {
             }
         });
 
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +78,7 @@ public class LeaveReview extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
 
-                        Reviews review = new Reviews(userInfoName.getUserName(), userRating, reviewText, 0, locName);
+                        Reviews review = new Reviews(userInfoName.getUserName(), userRating, reviewText, 0, locName, userInfoName.getURI());
 
 
                         db.collection("reviews").add(review);

@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -85,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
     String prefActivity1;
     String prefActivity2;
     String prefActivity3;
+
+    boolean doubleBackToExitPressedOnce = false;
 
     private DatabaseReference userPrefRef = rtdb.getReference("pref").child(currentUserId);
     private DatabaseReference userPrefRefActivities = rtdb.getReference("pref").child(currentUserId).child("activities");
@@ -208,7 +211,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finishAffinity();
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity();
+        } else {
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        }
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+
+            }
+        }, 2000);
+
     }
 
     //overlay for bottom navigation
@@ -397,7 +415,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     ArrayList<Locations> validList = new ArrayList<>();
-
 
                     for(Locations loc : arrayList){
                         if (loc.getCost().equals("Varies") || costMap.containsKey(loc.getCost())) {

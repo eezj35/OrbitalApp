@@ -140,7 +140,6 @@ public class ReviewActivity extends AppCompatActivity {
                                     }
                                 }
                                 adapter.notifyDataSetChanged();
-
                             }
                         });
 

@@ -86,8 +86,9 @@ public class Profile extends AppCompatActivity {
         refData.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                fullName = findViewById(R.id.fullName);
                 UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
+                fullName = findViewById(R.id.fullName);
+
                 fullName.setText(userInfoName.getUserName());
                 String imURI = userInfoName.getURI();
                 Glide.with(Profile.this)

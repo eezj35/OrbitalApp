@@ -10,6 +10,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,6 +43,8 @@ public class FavList extends AppCompatActivity {
     FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
 
     private SwipeRefreshLayout refresh;
+
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +120,22 @@ public class FavList extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finishAffinity();
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity();
+        } else {
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        }
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+
+            }
+        }, 2000);
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =

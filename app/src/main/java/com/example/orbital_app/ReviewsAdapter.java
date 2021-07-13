@@ -2,6 +2,7 @@ package com.example.orbital_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHolder> {
@@ -40,7 +43,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     private String currentUserId = user.getUid();
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
-
+    DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
 
     public ReviewsAdapter(Context context, ArrayList<Reviews> list) {
         this.context = context;
@@ -60,24 +63,11 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         holder.rating.setRating(list.get(position).getRating());
         holder.review.setText(list.get(position).getReview());
         holder.upvotes.setText(list.get(position).getUpVote() + "");
-        DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
 
-        refData.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
-                String imURI = userInfoName.getURI();
-                Glide.with(context)
-                        .asBitmap()
-                        .load(imURI)
-                        .into(holder.reviewProfilePic);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        Glide.with(context)
+                .asBitmap()
+                .load(list.get(position).getUri())
+                .into(holder.reviewProfilePic);
 
 
         holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {

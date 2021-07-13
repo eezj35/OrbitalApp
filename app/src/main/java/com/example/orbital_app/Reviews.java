@@ -7,16 +7,18 @@ public class Reviews {
     private int upVote;
     private String place;
     private String id;
+    private String uri;
 
 
     public Reviews(){}
 
-    public Reviews(String user, int rating, String review, int upVote, String place) {
+    public Reviews(String user, int rating, String review, int upVote, String place, String uri) {
         this.user = user;
         this.rating = rating;
         this.review = review;
         this.upVote = upVote;
         this.place = place;
+        this.uri = uri;
     }
 
     public String getUser() {
@@ -39,9 +41,15 @@ public class Reviews {
         return place;
     }
 
-    public void setId(String s){this.id = s;}
+    public void setId(String s) {
+        this.id = s;
+    }
 
-    public String getId(){return this.id;}
+    public String getId() {
+        return this.id;
+    }
 
-
+    public String getUri() {
+        return uri;
+    }
 }
