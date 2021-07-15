@@ -418,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
 
                     for(Locations loc : arrayList){
                         if (loc.getCost().equals("Varies") || costMap.containsKey(loc.getCost())) {
-                            if (loc.getState().equals("Outdoor & Indoor") || stateMap.containsKey(loc.getState())) {
+                            if (loc.getState().equals("Outdoors & Indoors") || stateMap.containsKey(loc.getState())) {
                                 for (String activity : loc.getActivities()) {
                                     if (activityMap.containsKey(activity)) {
                                         validList.add(loc);
