@@ -26,7 +26,7 @@ public class WelcomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), PrefForm.class));
-                Toast.makeText(WelcomePage.this, "Moving to preferences", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WelcomePage.this, "Going to preferences", Toast.LENGTH_SHORT).show();
             }
         });
     }

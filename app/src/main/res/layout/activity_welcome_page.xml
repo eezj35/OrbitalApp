@@ -8,30 +8,48 @@
     android:background="@drawable/mbs_background">
 
     <TextView
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="welcome msg..."
+        android:layout_marginTop="112dp"
+        android:text="Welcome to HangOuts! "
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:textSize="25dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="272dp"
+        android:gravity="center_horizontal"
+        android:text="Before you start using the app, please click the button below to indicate your preferences so the app can better recommend places for you to go!"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <android.widget.Button
         android:id="@+id/moveToPreferences"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Move to preferences"
-        android:textColor="@color/white"
         android:background="@drawable/btn_style"
+        android:padding="20dp"
+        android:text="Indicate preferences"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.838" />
+        app:layout_constraintVertical_bias="0.845" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
