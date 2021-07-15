@@ -101,6 +101,7 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
                             }
                         } else {
                             Toast.makeText(LoggingIn.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });

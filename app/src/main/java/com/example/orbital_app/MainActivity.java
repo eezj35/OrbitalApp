@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (isCheck == null || !isCheck) {
-                    startActivity(new Intent(MainActivity.this, PrefForm.class));
+                    startActivity(new Intent(MainActivity.this, WelcomePage.class));
                 }
 
                 newRecView = findViewById(R.id.newRV);

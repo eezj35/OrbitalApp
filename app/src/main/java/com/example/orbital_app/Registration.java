@@ -106,6 +106,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                             startActivity(new Intent(getApplicationContext(), LoggingIn.class));
                         } else {
                             Toast.makeText(Registration.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
