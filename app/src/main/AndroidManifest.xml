@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -12,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Orbital_App">
-        <activity android:name=".ChangePassword"></activity>
+        <activity android:name=".WelcomePage"></activity>
+        <activity android:name=".ChangePassword" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".Profile" />
         <activity android:name=".PrefForm" />
@@ -45,7 +45,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>
