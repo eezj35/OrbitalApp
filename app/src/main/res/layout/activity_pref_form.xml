@@ -95,15 +95,16 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginLeft="30dp">
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Exercise"
+                    android:text="Physical"
                     android:id="@+id/cb1"
 
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp" />
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -154,14 +155,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginLeft="50dp">
+                android:layout_marginLeft="40dp">
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Leisure"
                     android:id="@+id/cb6"
-                    android:layout_margin="10dp"/>
+                    android:layout_margin="10dp" />
 
                 <CheckBox
                     android:layout_width="wrap_content"
