@@ -30,9 +30,12 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHolder> {
 
@@ -44,6 +47,8 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
     DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public ReviewsAdapter(Context context, ArrayList<Reviews> list) {
         this.context = context;
@@ -94,6 +99,27 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
             }
         });
 
+        getUserInfo(holder);
+
+    }
+
+    void getUserInfo(ReviewsAdapter.ReviewHolder holder) {
+        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
+                    if (snapshot.hasChild("image")) {
+                        String image = snapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(holder.reviewProfilePic);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     @Override
@@ -107,7 +133,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         TextView review;
         TextView upvotes;
         ImageButton upvotesBtn;
-        ImageView reviewProfilePic;
+        CircleImageView reviewProfilePic;
 
         public ReviewHolder(View itemView) {
             super(itemView);
@@ -116,7 +142,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
             review = itemView.findViewById(R.id.review);
             upvotes = itemView.findViewById(R.id.upvotes);
             upvotesBtn = itemView.findViewById(R.id.upvoteBtn);
-            reviewProfilePic = itemView.findViewById(R.id.reviewProfilePic);
+            reviewProfilePic = itemView.findViewById(R.id.dp);
 
         }
     }
