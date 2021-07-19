@@ -9,6 +9,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -37,20 +39,36 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.UUID;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView fullName, email;
-    Button moveToChangePW;
-    ImageView profilePic;
-    Uri imageURI;
+    Button moveToChangePW, closeButton, saveButton;
+    CircleImageView profileImageView;
+    TextView profileChangeBtn;
+
+    DatabaseReference databaseReference;
+    FirebaseAuth mAuth;
+
+    Uri imageUri;
+    String myUri = "";
+    StorageTask uploadTask;
+    StorageReference storageProfilePicsRef;
+
+//    ImageView profilePic;
+//    Uri imageURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +81,47 @@ public class Profile extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         DatabaseReference refData = userName.getReference("user").child(user.getUid());
         moveToChangePW = findViewById(R.id.moveToChangePW);
-        profilePic = findViewById(R.id.profilePic);
+//        profilePic = findViewById(R.id.profilePic);
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
+//        profilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mGetContent.launch("image/*");
+//            }
+//        });
+
+        mAuth = FirebaseAuth.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+        storageProfilePicsRef = FirebaseStorage.getInstance().getReference().child("Profile Picture");
+
+        profileImageView = findViewById(R.id.profile_image);
+
+        closeButton = findViewById(R.id.btnClose);
+        saveButton = findViewById(R.id.btnSave);
+        profileChangeBtn = findViewById(R.id.change_profile_btn);
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mGetContent.launch("image/*");
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadProfile();
+            }
+        });
+
+        profileChangeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CropImage.activity().setAspectRatio(1, 1).start(Profile.this);
+            }
+        });
+
+        getUserinfo();
 
         moveToChangePW.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +141,11 @@ public class Profile extends AppCompatActivity {
                 fullName = findViewById(R.id.fullName);
 
                 fullName.setText(userInfoName.getUserName());
-                String imURI = userInfoName.getURI();
-                Glide.with(Profile.this)
-                        .asBitmap()
-                        .load(imURI)
-                        .into(profilePic);
+//                String imURI = userInfoName.getURI();
+//                Glide.with(Profile.this)
+//                        .asBitmap()
+//                        .load(imURI)
+//                        .into(profilePic);
             }
 
             @Override
@@ -104,30 +155,109 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
+    private void getUserinfo() {
+        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
+                    if (snapshot.hasChild("image")) {
+                        String image = snapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(profileImageView);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void uploadProfile() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Set your profile");
+        progressDialog.setMessage("Please wait while we are setting your data");
+        progressDialog.show();
+
+        if (imageUri != null) {
+            final StorageReference fileRef = storageProfilePicsRef
+                    .child(mAuth.getCurrentUser().getUid() + ".jpg");
+
+            uploadTask = fileRef.putFile(imageUri);
+
+            uploadTask.continueWithTask(new Continuation() {
                 @Override
-                public void onActivityResult(Uri result) {
-                    //result of uri
-                    if (result != null) {
-                        profilePic.setImageURI(result);
-                        imageURI = result;
-                        FirebaseDatabase userName = FirebaseDatabase.getInstance();
-                        DatabaseReference refData = userName.getReference("user").child(user.getUid());
-                        refData.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                refData.child("URI").setValue(imageURI.toString());
-                            }
+                public Object then(@NonNull Task task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw  task.getException();
+                    }
+                    return fileRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        myUri = downloadUri.toString();
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                        HashMap<String, Object> userMap = new HashMap<>();
+                        userMap.put("image", myUri);
 
-                            }
-                        });
+                        databaseReference.child(mAuth.getCurrentUser().getUid()).updateChildren(userMap);
 
+                        progressDialog.dismiss();
                     }
                 }
             });
+        } else {
+            progressDialog.dismiss();
+            Toast.makeText(this, "Image not selected", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            imageUri = result.getUri();
+
+            profileImageView.setImageURI(imageUri);
+        } else {
+            Toast.makeText(this, "Error, Try again", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+//            new ActivityResultCallback<Uri>() {
+//                @Override
+//                public void onActivityResult(Uri result) {
+//                    //result of uri
+//                    if (result != null) {
+//                        profilePic.setImageURI(result);
+//                        imageURI = result;
+//                        FirebaseDatabase userName = FirebaseDatabase.getInstance();
+//                        DatabaseReference refData = userName.getReference("user").child(user.getUid());
+//                        refData.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                refData.child("URI").setValue(imageURI.toString());
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError error) {
+//
+//                            }
+//                        });
+//
+//                    }
+//                }
+//            });
+
+
 
 }
