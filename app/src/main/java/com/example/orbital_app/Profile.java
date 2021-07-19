@@ -117,7 +117,8 @@ public class Profile extends AppCompatActivity {
         profileChangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.activity().setAspectRatio(1, 1).start(Profile.this);
+//                CropImage.activity().setAspectRatio(1, 1).start(Profile.this);
+                mGetContent.launch("image/*");
             }
         });
 
@@ -191,7 +192,7 @@ public class Profile extends AppCompatActivity {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
                     if (!task.isSuccessful()) {
-                        throw  task.getException();
+                        throw task.getException();
                     }
                     return fileRef.getDownloadUrl();
                 }
@@ -218,45 +219,33 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
-
-            profileImageView.setImageURI(imageUri);
-        } else {
-            Toast.makeText(this, "Error, Try again", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-//            new ActivityResultCallback<Uri>() {
-//                @Override
-//                public void onActivityResult(Uri result) {
-//                    //result of uri
-//                    if (result != null) {
-//                        profilePic.setImageURI(result);
-//                        imageURI = result;
-//                        FirebaseDatabase userName = FirebaseDatabase.getInstance();
-//                        DatabaseReference refData = userName.getReference("user").child(user.getUid());
-//                        refData.addValueEventListener(new ValueEventListener() {
-//                            @Override
-//                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                refData.child("URI").setValue(imageURI.toString());
-//                            }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
 //
-//                            @Override
-//                            public void onCancelled(@NonNull DatabaseError error) {
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            imageUri = result.getUri();
 //
-//                            }
-//                        });
-//
-//                    }
-//                }
-//            });
+//            profileImageView.setImageURI(imageUri);
+//        } else {
+//            Toast.makeText(this, "Error, Try again", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    //result of uri
+                    if (result != null) {
+                    imageUri = result;
+                    profileImageView.setImageURI(imageUri);
+                    } else {
+                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
 
 
