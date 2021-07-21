@@ -78,7 +78,7 @@ public class LeaveReview extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
 
-                        Reviews review = new Reviews(userInfoName.getUserName(), userRating, reviewText, 0, locName, userInfoName.getURI());
+                        Reviews review = new Reviews(user.getUid(), userRating, reviewText, 0, locName, userInfoName.getImage());
 
 
                         db.collection("reviews").add(review);

@@ -91,7 +91,7 @@ public class Profile extends AppCompatActivity {
 //        });
 
         mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("user");
         storageProfilePicsRef = FirebaseStorage.getInstance().getReference().child("Profile Picture");
 
         profileImageView = findViewById(R.id.profile_image);

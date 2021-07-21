@@ -2,15 +2,15 @@ package com.example.orbital_app;
 
 public class UserInfoName {
     private String username;
-    private String URI;
+    private String image;
 
     public UserInfoName() {
     }
 
-    public UserInfoName(String username, String URI) {
+    public UserInfoName(String username, String image) {
 
         this.username = username;
-        this.URI = URI;
+        this.image = image;
     }
 
 
@@ -18,8 +18,8 @@ public class UserInfoName {
         return username;
     }
 
-    public String getURI() {
-        return URI;
+    public String getImage() {
+        return image;
     }
 
 }

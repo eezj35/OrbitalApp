@@ -46,9 +46,9 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     private String currentUserId = user.getUid();
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
-    DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//    DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
+//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("user");
+//    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public ReviewsAdapter(Context context, ArrayList<Reviews> list) {
         this.context = context;
@@ -69,11 +69,12 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         holder.review.setText(list.get(position).getReview());
         holder.upvotes.setText(list.get(position).getUpVote() + "");
 
-        Glide.with(context)
-                .asBitmap()
-                .load(list.get(position).getUri())
-                .into(holder.reviewProfilePic);
+//        Glide.with(context)
+//                .asBitmap()
+//                .load(list.get(position).getUri())
+//                .into(holder.reviewProfilePic);
 
+        Picasso.get().load(list.get(position).getUri()).into(holder.reviewProfilePic);
 
         holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,28 +100,9 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
             }
         });
 
-        getUserInfo(holder);
 
     }
 
-    void getUserInfo(ReviewsAdapter.ReviewHolder holder) {
-        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
-                    if (snapshot.hasChild("image")) {
-                        String image = snapshot.child("image").getValue().toString();
-                        Picasso.get().load(image).into(holder.reviewProfilePic);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
 
     @Override
     public int getItemCount() {
