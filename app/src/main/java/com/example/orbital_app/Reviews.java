@@ -8,21 +8,21 @@ public class Reviews {
     private int upVote;
     private String place;
     private String id;
-    private String uri;
+
 
 
     public Reviews() {
     }
 
 
-    public Reviews(String user, String userID, int rating, String review, int upVote, String place, String uri) {
+    public Reviews(String user, String userID, int rating, String review, int upVote, String place) {
         this.user = user;
         this.userID = userID;
         this.rating = rating;
         this.review = review;
         this.upVote = upVote;
         this.place = place;
-        this.uri = uri;
+
     }
 
     public String getUserID() {
@@ -57,7 +57,5 @@ public class Reviews {
         return this.id;
     }
 
-    public String getUri() {
-        return uri;
-    }
+
 }

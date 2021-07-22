@@ -67,8 +67,6 @@ public class Profile extends AppCompatActivity {
     StorageTask uploadTask;
     StorageReference storageProfilePicsRef;
 
-//    ImageView profilePic;
-//    Uri imageURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

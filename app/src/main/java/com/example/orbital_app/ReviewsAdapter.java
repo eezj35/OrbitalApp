@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -63,43 +64,13 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         return new ReviewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ReviewsAdapter.ReviewHolder holder, int position) {
         holder.user.setText(list.get(position).getUser());
         holder.rating.setRating(list.get(position).getRating());
         holder.review.setText(list.get(position).getReview());
-        holder.upvotes.setText(list.get(position).getUpVote() + "");
 
-//        Glide.with(context)
-//                .asBitmap()
-//                .load(list.get(position).getUri())
-//                .into(holder.reviewProfilePic);
-
-//        Picasso.get().load(list.get(position).getUri()).into(holder.reviewProfilePic);
-
-        holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                upVoteCnt.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String id = list.get(position).getId();
-                        if(!snapshot.hasChild(id)){
-                            holder.upvotes.setText(Integer.parseInt(holder.upvotes.getText().toString())+1 + "");
-                            db.collection("reviews").document(id).
-                                    update("upVote", Integer.parseInt(holder.upvotes.getText().toString()));
-                            upVoteCnt.child(id).setValue(true);
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
-
-            }
-        });
 
         DatabaseReference specificUserInfo = userInfo.child(list.get(position).getUserID());
         specificUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,6 +88,33 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        holder.upvotes.setText(list.get(position).getUpVote() + "");
+        holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upVoteCnt.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String id = list.get(position).getId();
+                        if (!snapshot.hasChild(id)) {
+                            holder.upvotes.setText(Integer.parseInt(holder.upvotes.getText().toString()) + 1 + "");
+                            db.collection("reviews").document(id).
+                                    update("upVote", Integer.parseInt(holder.upvotes.getText().toString()));
+                            upVoteCnt.child(id).setValue(true);
+                        } else {
+                            Toast.makeText(context, "You have already upvoted", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
 
             }
         });

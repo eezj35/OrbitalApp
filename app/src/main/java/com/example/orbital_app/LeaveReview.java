@@ -78,7 +78,7 @@ public class LeaveReview extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
 
-                        Reviews review = new Reviews(userInfoName.getUserName(), user.getUid(), userRating, reviewText, 0, locName, userInfoName.getImage());
+                        Reviews review = new Reviews(userInfoName.getUserName(), user.getUid(), userRating, reviewText, 0, locName);
 
 
                         db.collection("reviews").add(review);
@@ -101,10 +101,5 @@ public class LeaveReview extends AppCompatActivity {
 
 
     }
-//    @Override
-//    public void onBackPressed() {
-//        super.onBackPressed();
-//        overridePendingTransition(0,0);
-//    }
 
 }
