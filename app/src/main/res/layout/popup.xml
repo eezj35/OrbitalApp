@@ -64,7 +64,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/filter_button"
         android:text="$1 - $20"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -76,7 +76,7 @@
         android:layout_marginStart="36dp"
         android:background="@drawable/filter_button"
         android:text="$21 - $50"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_low"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_low"
@@ -90,7 +90,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/filter_button"
         android:text="> $50"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintStart_toStartOf="@+id/filter_btn_low"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_low" />
@@ -102,7 +102,7 @@
         android:layout_marginStart="36dp"
         android:background="@drawable/filter_button"
         android:text="Free"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_high"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_high"
         app:layout_constraintTop_toTopOf="@+id/filter_btn_high" />
@@ -138,7 +138,7 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/filter_button"
         android:text="Outdoors"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -150,7 +150,7 @@
         android:layout_marginStart="36dp"
         android:background="@drawable/filter_button"
         android:text="Indoors"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_outdoor"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_outdoor"
@@ -189,7 +189,7 @@
         android:background="@drawable/filter_button"
         android:padding="10dp"
         android:text="Act1"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintStart_toStartOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -202,7 +202,7 @@
         android:background="@drawable/filter_button"
         android:padding="10dp"
         android:text="Act2"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="@+id/filter_btn_act1"
         app:layout_constraintStart_toEndOf="@+id/filter_btn_act1"
@@ -217,7 +217,7 @@
         android:background="@drawable/filter_button"
         android:padding="10dp"
         android:text="Act3"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
 
 
         app:layout_constraintStart_toStartOf="@+id/filter_btn_act1"
@@ -225,18 +225,16 @@
 
     <Button
         android:id="@+id/filterApplyBtn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#FF0000"
         android:padding="15dp"
         android:text="Apply / Reset"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_btn_act3"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_btn_act3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.example.orbital_app;
 
 public class Reviews {
     private String user;
+    private String userID;
     private int rating;
     private String review;
     private int upVote;
@@ -10,15 +11,22 @@ public class Reviews {
     private String uri;
 
 
-    public Reviews(){}
+    public Reviews() {
+    }
 
-    public Reviews(String user, int rating, String review, int upVote, String place, String uri) {
+
+    public Reviews(String user, String userID, int rating, String review, int upVote, String place, String uri) {
         this.user = user;
+        this.userID = userID;
         this.rating = rating;
         this.review = review;
         this.upVote = upVote;
         this.place = place;
         this.uri = uri;
+    }
+
+    public String getUserID() {
+        return userID;
     }
 
     public String getUser() {

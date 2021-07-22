@@ -46,6 +46,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     private String currentUserId = user.getUid();
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
+    private DatabaseReference userInfo = rtdb.getReference("user");
 //    DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
 //    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("user");
 //    FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -74,7 +75,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
 //                .load(list.get(position).getUri())
 //                .into(holder.reviewProfilePic);
 
-        Picasso.get().load(list.get(position).getUri()).into(holder.reviewProfilePic);
+//        Picasso.get().load(list.get(position).getUri()).into(holder.reviewProfilePic);
 
         holder.upvotesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +97,26 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
+
+            }
+        });
+
+        DatabaseReference specificUserInfo = userInfo.child(list.get(position).getUserID());
+        specificUserInfo.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
+                if (userInfoName.getImage() != null) {
+                    Glide.with(context)
+                            .asBitmap()
+                            .load(userInfoName.getImage())
+                            .into(holder.reviewProfilePic);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
