@@ -86,7 +86,6 @@ public class ReviewActivity extends AppCompatActivity {
                         }
                         adapter.notifyDataSetChanged();
 
-
                     }
                 });
 
@@ -147,31 +146,6 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
-//        bottomNavigationView = findViewById(R.id.bottom_navigation_review);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                switch (item.getItemId()) {
-//                    case R.id.nav_home:
-//
-//                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-//                        overridePendingTransition(0,0);
-//                        break;
-//
-//                    case R.id.nav_favourites:
-//
-//                        startActivity(new Intent(getApplicationContext(), FavList.class));
-//                        overridePendingTransition(0,0);
-//                        break;
-//
-//                    case R.id.nav_search:
-//                        startActivity(new Intent(getApplicationContext(), Search.class));
-//                        overridePendingTransition(0,0);
-//                        break;
-//                }
-//                return true;
-//            }
-//        });
 
     }
     @Override
