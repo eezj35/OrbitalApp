@@ -237,14 +237,17 @@ public class Profile extends AppCompatActivity {
                 public void onActivityResult(Uri result) {
                     //result of uri
                     if (result != null) {
-                    imageUri = result;
-                    profileImageView.setImageURI(imageUri);
+                        imageUri = result;
+                        profileImageView.setImageURI(imageUri);
                     } else {
                         Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+    }
 }
