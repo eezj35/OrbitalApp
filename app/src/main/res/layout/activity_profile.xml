@@ -48,23 +48,24 @@
 
 
     <Button
-        android:layout_marginTop="5dp"
         android:id="@+id/btnClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:backgroundTint="@color/red"
-        android:text="Close"
+        android:text="Remove"
         android:textColor="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/btnSave"
+        app:layout_constraintHorizontal_bias="0.672"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/change_profile_btn" />
 
     <Button
-        android:layout_marginTop="5dp"
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="76dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="92dp"
         android:backgroundTint="@color/red"
         android:text="Save"
         android:textColor="@color/white"
@@ -86,7 +87,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/fullName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePic"
         app:layout_constraintVertical_bias="1.0" />
 
 

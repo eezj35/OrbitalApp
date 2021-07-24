@@ -69,7 +69,7 @@ public class Profile extends AppCompatActivity {
 
     FirebaseDatabase userName = FirebaseDatabase.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    DatabaseReference refData = userName.getReference("user").child(user.getUid());
+    private DatabaseReference refData = userName.getReference("user").child(user.getUid());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -132,6 +132,8 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
                             .asBitmap()
                             .load(userInfoName.getImage())
                             .into(holder.reviewProfilePic);
+                } else {
+                    holder.reviewProfilePic.setImageResource(R.drawable.ic_profile);
                 }
 
             }

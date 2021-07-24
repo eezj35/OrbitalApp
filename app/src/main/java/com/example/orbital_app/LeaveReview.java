@@ -83,7 +83,6 @@ public class LeaveReview extends AppCompatActivity {
 
                         db.collection("reviews").add(review);
                         Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
-                        finish();
 
 
                     }
@@ -93,6 +92,7 @@ public class LeaveReview extends AppCompatActivity {
 
                     }
                 });
+                finish();
 
             }
         });
