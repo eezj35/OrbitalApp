@@ -55,7 +55,7 @@ public class Profile extends AppCompatActivity {
 
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView fullName, email;
-    Button moveToChangePW, deleteBtn, saveButton;
+    Button moveToChangePW, closeButton, saveButton;
     CircleImageView profileImageView;
     TextView profileChangeBtn;
 
@@ -80,6 +80,7 @@ public class Profile extends AppCompatActivity {
         DatabaseReference refData = userName.getReference("user").child(user.getUid());
         moveToChangePW = findViewById(R.id.moveToChangePW);
 //        profilePic = findViewById(R.id.profilePic);
+
 //        profilePic.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -92,14 +93,15 @@ public class Profile extends AppCompatActivity {
         storageProfilePicsRef = FirebaseStorage.getInstance().getReference().child("Profile Picture");
 
         profileImageView = findViewById(R.id.profile_image);
-        deleteBtn = findViewById(R.id.btnDelete);
+
+        closeButton = findViewById(R.id.btnClose);
         saveButton = findViewById(R.id.btnSave);
         profileChangeBtn = findViewById(R.id.change_profile_btn);
 
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
+        closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadNoProfile();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 
@@ -136,8 +138,13 @@ public class Profile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
                 fullName = findViewById(R.id.fullName);
-                fullName.setText(userInfoName.getUserName());
 
+                fullName.setText(userInfoName.getUserName());
+//                String imURI = userInfoName.getURI();
+//                Glide.with(Profile.this)
+//                        .asBitmap()
+//                        .load(imURI)
+//                        .into(profilePic);
             }
 
             @Override
@@ -147,42 +154,15 @@ public class Profile extends AppCompatActivity {
         });
     }
 
-    private void uploadNoProfile() {
-                FirebaseDatabase userName = FirebaseDatabase.getInstance();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference refData = userName.getReference("user").child(user.getUid());
-                refData.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        refData.child("profilePic").setValue("deleted");
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-    }
-
     private void getUserinfo() {
-        FirebaseDatabase userName = FirebaseDatabase.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference refData = userName.getReference("user").child(user.getUid());
-        refData.addValueEventListener(new ValueEventListener() {
+        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
-
-                if (userInfoName.getProfilePic() == "uploaded") {
-                    if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
-                        if (snapshot.hasChild("image")) {
-                            String image = snapshot.child("image").getValue().toString();
-                            Picasso.get().load(image).into(profileImageView);
-                        }
+                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
+                    if (snapshot.hasChild("image")) {
+                        String image = snapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(profileImageView);
                     }
-                } else {
-                    profileImageView.setImageResource(R.drawable.ic_profile);
-                    Toast.makeText(Profile.this, userInfoName.getProfilePic(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -191,23 +171,6 @@ public class Profile extends AppCompatActivity {
 
             }
         });
-
-//        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists() && snapshot.getChildrenCount() > 0) {
-//                    if (snapshot.hasChild("image")) {
-//                        String image = snapshot.child("image").getValue().toString();
-//                        Picasso.get().load(image).into(profileImageView);
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
     }
 
     private void uploadProfile() {
@@ -218,21 +181,6 @@ public class Profile extends AppCompatActivity {
         progressDialog.show();
 
         if (imageUri != null) {
-            FirebaseDatabase userName = FirebaseDatabase.getInstance();
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            DatabaseReference refData = userName.getReference("user").child(user.getUid());
-            refData.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    refData.child("profilePic").setValue("uploaded");
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
             final StorageReference fileRef = storageProfilePicsRef
                     .child(mAuth.getCurrentUser().getUid() + ".jpg");
 
@@ -283,17 +231,23 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-//        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-//            new ActivityResultCallback<Uri>() {
-//                @Override
-//                public void onActivityResult(Uri result) {
-//                    //result of uri
-//                    if (result != null) {
-//                    imageUri = result;
-//                    profileImageView.setImageURI(imageUri);
-//                    } else {
-//                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
+        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    //result of uri
+                    if (result != null) {
+                        imageUri = result;
+                        profileImageView.setImageURI(imageUri);
+                    } else {
+                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+    }
 }
