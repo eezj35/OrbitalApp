@@ -249,19 +249,19 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
-                @Override
-                public void onActivityResult(Uri result) {
-                    //result of uri
-                    if (result != null) {
-                        imageUri = result;
-                        profileImageView.setImageURI(imageUri);
-                    } else {
-                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+//    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+//            new ActivityResultCallback<Uri>() {
+//                @Override
+//                public void onActivityResult(Uri result) {
+//                    //result of uri
+//                    if (result != null) {
+//                        imageUri = result;
+//                        profileImageView.setImageURI(imageUri);
+//                    } else {
+//                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
 
     @Override
     public void onBackPressed() {

@@ -20,7 +20,7 @@
 
             <item
                 android:title="About"
-                android:icon="@drawable/ic_baseline_settings_24"
+                android:icon="@drawable/ic_baseline_text_snippet_24"
                 android:id="@+id/about"
                 app:showAsAction="never"
                 />

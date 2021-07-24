@@ -93,17 +93,16 @@ public class ReviewActivity extends AppCompatActivity {
         leaveReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 refData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        if(!snapshot.hasChild(user.getUid())){
+                        if(!snapshot.exists() || !snapshot.hasChild(user.getUid())){
                             Intent i = new Intent(ReviewActivity.this, LeaveReview.class);
                             i.putExtra("locName", locName);
                             startActivity(i);
-                        }else{
-                            Toast.makeText(ReviewActivity.this, "You have already left a review", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(ReviewActivity.this, "Your review has been left", Toast.LENGTH_SHORT).show();
                         }
                     }
 
