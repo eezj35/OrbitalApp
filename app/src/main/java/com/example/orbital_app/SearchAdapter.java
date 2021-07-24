@@ -80,43 +80,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         notifyDataSetChanged();
     }
 
-
-
-//    @Override
-//    public Filter getFilter() {
-//        return filter;
-//    }
-//
-//    Filter filter = new Filter() {
-//        private Object Collection;
-//
-//        @Override
-//        protected FilterResults performFiltering(CharSequence constraint) {
-//            List<Locations> filteredList = new ArrayList<>();
-//
-//            if(constraint.toString().isEmpty()){
-//                filteredList.addAll(locationsAll);
-//            }else{
-//                for (Locations loc: locationsAll){
-//                    if(loc.getName().toLowerCase().contains(constraint.toString().toLowerCase())){
-//                        filteredList.add(loc);
-//                    }
-//                }
-//            }
-//
-//            FilterResults filterRes = new FilterResults();
-//            filterRes.values = filteredList;
-//            return filterRes;
-//        }
-//
-//        @Override
-//        protected void publishResults(CharSequence constraint, FilterResults results) {
-//            locations.clear();
-//            locations.addAll((Collection<? extends Locations>)results.values);
-//            notifyDataSetChanged();
-//        }
-//    };
-
     public class SearchViewHolder extends RecyclerView.ViewHolder{
 
         private TextView name;
@@ -125,8 +88,6 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
             super(itemView);
             name = itemView.findViewById(R.id.searchName); // need to call using itemView because we are not inside an Activity
             parent = itemView.findViewById(R.id.searchParent);
-
-
 
         }
     }

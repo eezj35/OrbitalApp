@@ -53,7 +53,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
-
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     TextView fullName, email;
     Button moveToChangePW, closeButton, saveButton;
     CircleImageView profileImageView;
@@ -67,9 +67,6 @@ public class Profile extends AppCompatActivity {
     StorageTask uploadTask;
     StorageReference storageProfilePicsRef;
 
-    FirebaseDatabase userName = FirebaseDatabase.getInstance();
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private DatabaseReference refData = userName.getReference("user").child(user.getUid());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,16 +75,11 @@ public class Profile extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("User Profile");
 
-
+        FirebaseDatabase userName = FirebaseDatabase.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference refData = userName.getReference("user").child(user.getUid());
         moveToChangePW = findViewById(R.id.moveToChangePW);
-//        profilePic = findViewById(R.id.profilePic);
 
-//        profilePic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mGetContent.launch("image/*");
-//            }
-//        });
 
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("user");
@@ -102,7 +94,7 @@ public class Profile extends AppCompatActivity {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteProfilePic();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 
@@ -141,28 +133,6 @@ public class Profile extends AppCompatActivity {
                 fullName = findViewById(R.id.fullName);
 
                 fullName.setText(userInfoName.getUserName());
-//                String imURI = userInfoName.getURI();
-//                Glide.with(Profile.this)
-//                        .asBitmap()
-//                        .load(imURI)
-//                        .into(profilePic);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }
-
-    private void deleteProfilePic() {
-        refData.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild("image")) {
-                    refData.child("image").setValue(null);
-                    profileImageView.setImageResource(R.drawable.ic_profile);
-                }
             }
 
             @Override
@@ -249,23 +219,17 @@ public class Profile extends AppCompatActivity {
         }
     }
 
-        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-            new ActivityResultCallback<Uri>() {
-                @Override
-                public void onActivityResult(Uri result) {
-                    //result of uri
-                    if (result != null) {
-                        imageUri = result;
-                        profileImageView.setImageURI(imageUri);
-                    } else {
-                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(0, 0);
-    }
+//        ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+//            new ActivityResultCallback<Uri>() {
+//                @Override
+//                public void onActivityResult(Uri result) {
+//                    //result of uri
+//                    if (result != null) {
+//                    imageUri = result;
+//                    profileImageView.setImageURI(imageUri);
+//                    } else {
+//                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
 }
