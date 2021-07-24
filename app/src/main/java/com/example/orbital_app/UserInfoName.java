@@ -7,11 +7,11 @@ public class UserInfoName {
     public UserInfoName() {
     }
 
-    public UserInfoName(String username, String image, String profilePic) {
+
+    public UserInfoName(String username, String image) {
         this.username = username;
         this.image = image;
     }
-
 
     public String getUserName() {
         return username;

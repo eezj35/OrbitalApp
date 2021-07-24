@@ -1,7 +1,6 @@
 package com.example.orbital_app;
 
 public class Reviews {
-    private String user;
     private String userID;
     private int rating;
     private String review;
@@ -15,8 +14,7 @@ public class Reviews {
     }
 
 
-    public Reviews(String user, String userID, int rating, String review, int upVote, String place) {
-        this.user = user;
+    public Reviews(String userID, int rating, String review, int upVote, String place) {
         this.userID = userID;
         this.rating = rating;
         this.review = review;
@@ -27,10 +25,6 @@ public class Reviews {
 
     public String getUserID() {
         return userID;
-    }
-
-    public String getUser() {
-        return user;
     }
 
     public int getRating() {

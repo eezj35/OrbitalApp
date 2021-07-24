@@ -70,7 +70,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
 
     @Override
     public void onBindViewHolder(@NonNull ReviewsAdapter.ReviewHolder holder, int position) {
-        holder.user.setText(list.get(position).getUser());
+
         holder.rating.setRating(list.get(position).getRating());
         holder.review.setText(list.get(position).getReview());
         holder.upvotes.setText(list.get(position).getUpVote() + "");
@@ -127,6 +127,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
+                holder.user.setText(userInfoName.getUserName());
                 if (userInfoName.getImage() != null) {
                     Glide.with(context)
                             .asBitmap()
