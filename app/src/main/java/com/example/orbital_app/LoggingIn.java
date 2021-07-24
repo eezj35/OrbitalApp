@@ -95,7 +95,7 @@ public class LoggingIn extends AppCompatActivity implements View.OnClickListener
                                 Toast.makeText(LoggingIn.this, "Logged in successfully", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             } else {
-                                user.sendEmailVerification();
+//                                user.sendEmailVerification();
                                 Toast.makeText(LoggingIn.this, "Check your email for authentication", Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.INVISIBLE);
                             }

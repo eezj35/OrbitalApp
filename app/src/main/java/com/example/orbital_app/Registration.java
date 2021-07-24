@@ -91,6 +91,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                             FirebaseDatabase userName = FirebaseDatabase.getInstance();
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             DatabaseReference refData = userName.getReference("user").child(user.getUid());
+                            user.sendEmailVerification();
+                            Toast.makeText(Registration.this, "Check email for verification", Toast.LENGTH_SHORT).show();
                             refData.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
