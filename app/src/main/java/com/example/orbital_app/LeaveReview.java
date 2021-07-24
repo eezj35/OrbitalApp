@@ -34,6 +34,12 @@ public class LeaveReview extends AppCompatActivity {
     String locName;
     int userRating;
 
+    String username;
+
+
+    FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference refData = rtdb.getReference("user").child(user.getUid());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +74,7 @@ public class LeaveReview extends AppCompatActivity {
                     return;
                 }
 
-                FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                DatabaseReference refData = rtdb.getReference("user").child(user.getUid());
+
 
                 DatabaseReference dataToBeSet = rtdb.getReference("reviews").child(locName).child(user.getUid());
                 dataToBeSet.setValue(true);
@@ -78,13 +82,7 @@ public class LeaveReview extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         UserInfoName userInfoName = snapshot.getValue(UserInfoName.class);
-
-                        Reviews review = new Reviews(userInfoName.getUserName(), user.getUid(), userRating, reviewText, 0, locName);
-
-                        db.collection("reviews").add(review);
-                        Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
-
-
+                        username = userInfoName.getUserName();
                     }
 
                     @Override
@@ -92,6 +90,10 @@ public class LeaveReview extends AppCompatActivity {
 
                     }
                 });
+                Reviews review = new Reviews(username, user.getUid(), userRating, reviewText, 0, locName);
+
+                db.collection("reviews").add(review);
+                Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
                 finish();
 
             }
