@@ -17,17 +17,11 @@
 
         <menu>
 
-<!--            <item-->
-<!--                android:title="User"-->
-<!--                android:icon="@drawable/ic_baseline_person_24"-->
-<!--                android:id="@+id/user"-->
-<!--                app:showAsAction="never"-->
-<!--                />-->
 
             <item
-                android:title="Settings"
+                android:title="About"
                 android:icon="@drawable/ic_baseline_settings_24"
-                android:id="@+id/settings"
+                android:id="@+id/about"
                 app:showAsAction="never"
                 />
 

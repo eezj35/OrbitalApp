@@ -201,12 +201,6 @@ public class MainActivity extends AppCompatActivity {
         MenuItem mI = menu.getItem(0);
         mI.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-
-        //Michael preferences API
-//        gives file with all the pref in main_preferences.xml
-//        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-//        boolean test = prefs.getBoolean("test", true);
-//        Toast.makeText(this, test + "", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -270,14 +264,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.settings:
-                startActivity(new Intent(this, Settings.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+            case R.id.about:
+                startActivity(new Intent(this, About.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
                 break;
-
-//
-//            case R.id.user:
-//                startActivity(new Intent(this, User.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
-//                break;
 
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();

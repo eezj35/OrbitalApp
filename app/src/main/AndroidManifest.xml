@@ -28,12 +28,9 @@
         <activity android:name=".ReviewActivity" />
         <activity
             android:name=".About"
-            android:parentActivityName=".Settings" />
-        <activity
-            android:name=".User"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Settings"
+            android:name=".User"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Registration" />
         <activity android:name=".MainActivity" />
