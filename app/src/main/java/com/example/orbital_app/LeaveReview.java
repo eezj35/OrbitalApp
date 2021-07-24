@@ -71,8 +71,9 @@ public class LeaveReview extends AppCompatActivity {
                 FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 DatabaseReference refData = rtdb.getReference("user").child(user.getUid());
-                DatabaseReference dataToBeSet = rtdb.getReference("reviews").child(locName).child(user.getUid());
 
+                DatabaseReference dataToBeSet = rtdb.getReference("reviews").child(locName).child(user.getUid());
+                dataToBeSet.setValue(true);
                 refData.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -80,12 +81,10 @@ public class LeaveReview extends AppCompatActivity {
 
                         Reviews review = new Reviews(userInfoName.getUserName(), user.getUid(), userRating, reviewText, 0, locName);
 
-
                         db.collection("reviews").add(review);
                         Toast.makeText(LeaveReview.this, "Thanks for your review!", Toast.LENGTH_SHORT).show();
-                        dataToBeSet.setValue(true);
-
                         finish();
+
 
                     }
 

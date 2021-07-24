@@ -53,7 +53,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
-    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
     TextView fullName, email;
     Button moveToChangePW, closeButton, saveButton;
     CircleImageView profileImageView;
@@ -67,6 +67,9 @@ public class Profile extends AppCompatActivity {
     StorageTask uploadTask;
     StorageReference storageProfilePicsRef;
 
+    FirebaseDatabase userName = FirebaseDatabase.getInstance();
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference refData = userName.getReference("user").child(user.getUid());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +78,7 @@ public class Profile extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("User Profile");
 
-        FirebaseDatabase userName = FirebaseDatabase.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        DatabaseReference refData = userName.getReference("user").child(user.getUid());
+
         moveToChangePW = findViewById(R.id.moveToChangePW);
 //        profilePic = findViewById(R.id.profilePic);
 
@@ -101,7 +102,7 @@ public class Profile extends AppCompatActivity {
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                deleteProfilePic();
             }
         });
 
@@ -145,6 +146,23 @@ public class Profile extends AppCompatActivity {
 //                        .asBitmap()
 //                        .load(imURI)
 //                        .into(profilePic);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void deleteProfilePic() {
+        refData.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("image")) {
+                    refData.child("image").setValue(null);
+                    profileImageView.setImageResource(R.drawable.ic_profile);
+                }
             }
 
             @Override
