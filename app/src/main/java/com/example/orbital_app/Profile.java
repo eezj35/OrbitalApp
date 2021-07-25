@@ -42,7 +42,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
+//import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
 import java.net.URI;
@@ -116,8 +116,8 @@ public class Profile extends AppCompatActivity {
         profileChangeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CropImage.activity().setAspectRatio(1, 1).start(Profile.this);
-//                mGetContent.launch("image/*");
+//                CropImage.activity().setAspectRatio(1, 1).start(Profile.this);
+                mGetContent.launch("image/*");
             }
         });
 
@@ -235,33 +235,33 @@ public class Profile extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+//            imageUri = result.getUri();
+//
+//            profileImageView.setImageURI(imageUri);
+//        } else {
+//            Toast.makeText(this, "Error, Try again", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
-
-            profileImageView.setImageURI(imageUri);
-        } else {
-            Toast.makeText(this, "Error, Try again", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-//    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-//            new ActivityResultCallback<Uri>() {
-//                @Override
-//                public void onActivityResult(Uri result) {
-//                    //result of uri
-//                    if (result != null) {
-//                        imageUri = result;
-//                        profileImageView.setImageURI(imageUri);
-//                    } else {
-//                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
+    ActivityResultLauncher<String> mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
+            new ActivityResultCallback<Uri>() {
+                @Override
+                public void onActivityResult(Uri result) {
+                    //result of uri
+                    if (result != null) {
+                        imageUri = result;
+                        profileImageView.setImageURI(imageUri);
+                    } else {
+                        Toast.makeText(Profile.this, "Error, Try again", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
     @Override
     public void onBackPressed() {
