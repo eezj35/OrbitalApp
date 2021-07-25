@@ -59,7 +59,7 @@ public class PrefForm extends AppCompatActivity {
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserId = user.getUid();
     SharedPreferences sharedPreferences = null;
-
+    ArrayList<CheckBox> cbList = new ArrayList<>();
 
 
     @Override
@@ -101,7 +101,7 @@ public class PrefForm extends AppCompatActivity {
         checkboxMap.put(cb13key, cb13);
         checkboxMap.put(cb14key, cb14);
 
-        ArrayList<CheckBox> cbList = new ArrayList<>();
+
         cbList.add(cb1);
         cbList.add(cb2);
         cbList.add(cb3);
@@ -159,15 +159,15 @@ public class PrefForm extends AppCompatActivity {
                 }else{
 
 
-                    prefRef.addValueEventListener(new ValueEventListener() {
+                    prefRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(radioId!=-1){
+                            if (radioId != -1 && snapshot.exists()) {
                                 prefRef.child("house").setValue(radioButton.getText().toString());
                                 prefRef.child("isCheck").setValue(true);
-                                int j=1;
-                                for(CheckBox cb : cbList){
-                                    if(cb.isChecked()) {
+                                int j = 1;
+                                for (CheckBox cb : cbList) {
+                                    if (cb.isChecked()) {
                                         prefRef.child("activities").child("activity" + j).setValue(cb.getText());
                                         j++;
                                     }
