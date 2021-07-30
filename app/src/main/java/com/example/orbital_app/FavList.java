@@ -14,6 +14,8 @@ import android.os.Looper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,6 +38,7 @@ import java.util.ArrayList;
 public class FavList extends AppCompatActivity {
 
     private RecyclerView rv;
+    private TextView emptytv;
     private FavAdapter adapter;
     private ArrayList<Locations> list = new ArrayList<>();
     private BottomNavigationView bottomNavigationView;
@@ -60,6 +63,8 @@ public class FavList extends AppCompatActivity {
         mI.setChecked(true);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
 
+        emptytv = findViewById(R.id.emptyFav);
+
         rv = findViewById(R.id.favRV);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setHasFixedSize(true);
@@ -75,10 +80,13 @@ public class FavList extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds: snapshot.getChildren()){
+                for (DataSnapshot ds : snapshot.getChildren()) {
                     Locations loc = ds.getValue(Locations.class);
                     list.add(loc);
 
+                }
+                if (!list.isEmpty()) {
+                    emptytv.setVisibility(View.GONE);
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -88,6 +96,7 @@ public class FavList extends AppCompatActivity {
 
             }
         });
+
 
         rv.setAdapter(adapter);
     }

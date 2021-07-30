@@ -41,7 +41,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull FavAdapter.MyViewHolder holder, int position) {
 
-
         holder.name.setText(list.get(position).getName());
 
         holder.favCard.setOnClickListener(new View.OnClickListener() {

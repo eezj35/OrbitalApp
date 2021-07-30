@@ -41,6 +41,7 @@ public class ReviewActivity extends AppCompatActivity {
     private RecyclerView rv;
     private ArrayList<Reviews> list = new ArrayList<>();;
     private String locName;
+    private TextView emptytv;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private SwipeRefreshLayout refreshLayout;
@@ -63,6 +64,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         DatabaseReference refData = rtdb.getReference("reviews").child(locName);
 
+        emptytv = findViewById(R.id.emptyReview);
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
 
@@ -75,12 +77,15 @@ public class ReviewActivity extends AppCompatActivity {
                             Log.e("Firestore error", error.getMessage());
                             return;
                         }
-                        for(DocumentChange dc : value.getDocumentChanges()){
+                        for (DocumentChange dc : value.getDocumentChanges()) {
                             Reviews review = dc.getDocument().toObject(Reviews.class);
-                            if(dc.getType() == DocumentChange.Type.ADDED){
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
                                 review.setId(dc.getDocument().getId());
                                 list.add(review);
                             }
+                        }
+                        if (!list.isEmpty()) {
+                            emptytv.setVisibility(View.GONE);
                         }
                         adapter.notifyDataSetChanged();
 
