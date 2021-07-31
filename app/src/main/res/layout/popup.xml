@@ -19,6 +19,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/filterHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="..."
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/filterCancelBtn"
+        app:layout_constraintHorizontal_bias="0.576"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -195,6 +209,34 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <android.widget.Button
+        android:id="@+id/filter_btn_act4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/filter_button"
+        android:padding="10dp"
+
+        android:text="Act4"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/filter_btn_act1"
+        app:layout_constraintTop_toBottomOf="@+id/filter_btn_act3" />
+
+    <android.widget.Button
+        android:id="@+id/filter_btn_act5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/filter_button"
+        android:padding="10dp"
+        android:text="Act5"
+
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_btn_act4"
+        app:layout_constraintStart_toEndOf="@+id/filter_btn_act4"
+        app:layout_constraintTop_toTopOf="@+id/filter_btn_act4"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <android.widget.Button
         android:id="@+id/filter_btn_act2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -213,28 +255,28 @@
         android:id="@+id/filter_btn_act3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="84dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
         android:background="@drawable/filter_button"
         android:padding="10dp"
         android:text="Act3"
         android:textColor="@color/black"
-
-
-        app:layout_constraintStart_toStartOf="@+id/filter_btn_act1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act1" />
 
     <Button
         android:id="@+id/filterApplyBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="72dp"
         android:backgroundTint="#FF0000"
         android:padding="15dp"
         android:text="Apply / Reset"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filter_btn_act3" />
+        app:layout_constraintTop_toBottomOf="@+id/filter_btn_act5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

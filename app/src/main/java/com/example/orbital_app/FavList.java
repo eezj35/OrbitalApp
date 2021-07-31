@@ -89,6 +89,7 @@ public class FavList extends AppCompatActivity {
                     emptytv.setVisibility(View.GONE);
                 }
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override

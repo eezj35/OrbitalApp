@@ -83,9 +83,12 @@ public class MainActivity extends AppCompatActivity {
     UserInfo userInfo;
     PrefActivities prefActivities;
     String location;
+
     String prefActivity1;
     String prefActivity2;
     String prefActivity3;
+    String prefActivity4;
+    String prefActivity5;
 
     boolean doubleBackToExitPressedOnce = false;
 
@@ -149,10 +152,12 @@ public class MainActivity extends AppCompatActivity {
                 recommendedRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 
                 prefActivities = snapshot.getValue(PrefActivities.class);
-                if(prefActivities!=null){
-                   prefActivity1 = prefActivities.getActivity1();
-                   prefActivity2 = prefActivities.getActivity2();
-                   prefActivity3 = prefActivities.getActivity3();
+                if(prefActivities!=null) {
+                    prefActivity1 = prefActivities.getActivity1();
+                    prefActivity2 = prefActivities.getActivity2();
+                    prefActivity3 = prefActivities.getActivity3();
+                    prefActivity4 = prefActivities.getActivity4();
+                    prefActivity5 = prefActivities.getActivity5();
                     querying(db.collection("places"), "name", recommendedList, recommendedRecView);
                 }
             }
@@ -188,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         nearestFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterDialog(newRecView, newList, 1);
+                filterDialog(newRecView, newList, 3);
             }
         });
 
@@ -301,10 +306,11 @@ public class MainActivity extends AppCompatActivity {
 
                             } else {
                                 if (dc.getType() == DocumentChange.Type.ADDED && prefActivities != null) {
-                                    for(String s : loc.getActivities()){
-                                        if(s.equals(prefActivity1) || s.equals(prefActivity2) || s.equals(prefActivity3)){
-                                                list.add(loc);
-                                                break;
+                                    for(String s : loc.getActivities()) {
+                                        if (s.equals(prefActivity1) || s.equals(prefActivity2) || s.equals(prefActivity3)
+                                                || s.equals(prefActivity4) || s.equals(prefActivity5)) {
+                                            list.add(loc);
+                                            break;
                                         }
                                     }
                                 }
@@ -354,6 +360,7 @@ public class MainActivity extends AppCompatActivity {
         dialogBuilder = new AlertDialog.Builder(this);
         final View contactPopup = getLayoutInflater().inflate(R.layout.popup, null);
 
+
         applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
         cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
         TextView selectAll1 = contactPopup.findViewById(R.id.costSelectAll);
@@ -361,6 +368,20 @@ public class MainActivity extends AppCompatActivity {
         Button btn2 = contactPopup.findViewById(R.id.filter_btn_med);
         Button btn3 = contactPopup.findViewById(R.id.filter_btn_high);
         Button btn9 = contactPopup.findViewById(R.id.filter_btn_free);
+
+        TextView tv = contactPopup.findViewById(R.id.filterHeader);
+//        tv.setText("recommended");
+        switch (num) {
+            case 1:
+                tv.setText("Recommended");
+                break;
+            case 2:
+                tv.setText("Top Rated Online");
+                break;
+            case 3:
+                tv.setText("In the " + location);
+                break;
+        }
 
         TextView selectAll2 = contactPopup.findViewById(R.id.oiSelectAll);
         Button btn4 = contactPopup.findViewById(R.id.filter_btn_outdoor);
@@ -373,6 +394,11 @@ public class MainActivity extends AppCompatActivity {
         btn7.setText(prefActivity2);
         Button btn8 = contactPopup.findViewById(R.id.filter_btn_act3);
         btn8.setText(prefActivity3);
+        Button btn10 = contactPopup.findViewById(R.id.filter_btn_act4);
+        btn10.setText(prefActivity4);
+        Button btn11 = contactPopup.findViewById(R.id.filter_btn_act5);
+        btn11.setText(prefActivity5);
+
 
         dialogBuilder.setView(contactPopup);
         dialog = dialogBuilder.create();
@@ -390,14 +416,13 @@ public class MainActivity extends AppCompatActivity {
 
                         unchangedAdapter.notifyDataSetChanged();
                         rv.setAdapter(unchangedAdapter);
-                        dialog.dismiss();
                     } else {
 
                         unchangedAdapter2.notifyDataSetChanged();
                         rv.setAdapter(unchangedAdapter2);
-                        dialog.dismiss();
-                    }
 
+                    }
+                    dialog.dismiss();
 
                 }else if(costMap.isEmpty() || stateMap.isEmpty() || activityMap.isEmpty()){
                     Toast.makeText(MainActivity.this, "Please tick a filter from each category", Toast.LENGTH_SHORT).show();
@@ -469,6 +494,8 @@ public class MainActivity extends AppCompatActivity {
                 addToMap(activityMap, btn6);
                 addToMap(activityMap, btn7);
                 addToMap(activityMap, btn8);
+                addToMap(activityMap, btn10);
+                addToMap(activityMap, btn11);
 
             }
         });
@@ -492,6 +519,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addToCostMap(btn3, 3);
+            }
+        });
+
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCostMap(btn9, 9);
             }
         });
 
@@ -536,10 +570,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn9.setOnClickListener(new View.OnClickListener() {
+        btn10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCostMap(btn9, 9);
+                addToMap(activityMap, btn10);
+
+            }
+        });
+
+        btn11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(activityMap, btn11);
+
             }
         });
 
