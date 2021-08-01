@@ -154,7 +154,7 @@ public class PrefForm extends AppCompatActivity {
                 if (radioId == -1) {
                     Toast.makeText(PrefForm.this, "Please choose your general area of residence!", Toast.LENGTH_SHORT).show();
                 } else if (i != 5) {
-                    Toast.makeText(PrefForm.this, "Please choose 3 preferred activities!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PrefForm.this, "Please choose 5 preferred activities!", Toast.LENGTH_SHORT).show();
                 } else {
 
 

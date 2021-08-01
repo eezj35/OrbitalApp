@@ -25,14 +25,16 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="70dp"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/aref_ruqaa"
-                    android:padding="10dp"
+
                     android:text="Recommended"
                     android:textSize="25dp"
                     android:textStyle="bold"
@@ -43,69 +45,72 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/recommendedFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="85dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/filter_icon"
                     android:backgroundTint="@color/black"
-                    android:background="@drawable/ripple_effect"/>
+                    android:background="@drawable/ripple_effect" />
 
             </LinearLayout>
-
-
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommendedRV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_centerHorizontal="true" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/aref_ruqaa"
-                android:padding="10dp"
-                android:text="Top Rated Online"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                />
-
-            <ImageButton
-                android:id="@+id/topRatedFilter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="35dp"
-                android:src="@drawable/filter_icon"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/ripple_effect"/>
-
-        </LinearLayout>
-
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/topRatedRV"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/aref_ruqaa"
-                    android:padding="10dp"
+
+                    android:layout_gravity="center_horizontal"
+                    android:text="Top Rated Online"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <ImageButton
+                    android:id="@+id/topRatedFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/filter_icon"
+
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/ripple_effect" />
+
+        </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topRatedRV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/aref_ruqaa"
                     android:text="In the..."
                     android:textSize="25dp"
                     android:textStyle="bold"
@@ -117,10 +122,11 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/nearestFilter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="35dp"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/filter_icon"
                     android:backgroundTint="@color/white"
-                    android:background="@drawable/ripple_effect"/>
+                    android:background="@drawable/ripple_effect" />
 
             </LinearLayout>
 
