@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 
 public class FSDataAdapter extends RecyclerView.Adapter<FSDataAdapter.MyViewHolder> {
 
-    Context context;
-    ArrayList<Locations> list;
+    private Context context;
+    private ArrayList<Locations> list;
 
     public FSDataAdapter(Context context, ArrayList<Locations> list) {
         this.context = context;
@@ -34,7 +35,7 @@ public class FSDataAdapter extends RecyclerView.Adapter<FSDataAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FSDataAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FSDataAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.name.setText(list.get(position).getName());
 
         holder.parent.setOnClickListener(new View.OnClickListener() {

@@ -43,7 +43,7 @@ public class FavList extends AppCompatActivity {
     private ArrayList<Locations> list = new ArrayList<>();
     private BottomNavigationView bottomNavigationView;
 
-    FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
+    private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
 
     private SwipeRefreshLayout refresh;
 

@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 
 public class DataAdapter2 extends RecyclerView.Adapter<DataAdapter2.MyViewHolder> {
 
-    Context context;
-    ArrayList<Locations> list;
+    private Context context;
+    private ArrayList<Locations> list;
 
     public DataAdapter2(Context context, ArrayList<Locations> list) {
         this.context = context;
@@ -34,7 +35,7 @@ public class DataAdapter2 extends RecyclerView.Adapter<DataAdapter2.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DataAdapter2.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DataAdapter2.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.name.setText(list.get(position).getName());
 
         holder.parent.setOnClickListener(new View.OnClickListener() {

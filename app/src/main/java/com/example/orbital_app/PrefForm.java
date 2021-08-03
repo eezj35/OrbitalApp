@@ -32,12 +32,12 @@ import java.util.Map;
 public class PrefForm extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
-    RadioGroup radioGroup;
-    RadioButton radioButton;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
     public boolean isCheck = false;
 
-    CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7,
-    cb8, cb9, cb10, cb11, cb12, cb13, cb14;
+    private CheckBox cb1, cb2, cb3, cb4, cb5, cb6, cb7,
+            cb8, cb9, cb10, cb11, cb12, cb13, cb14;
 
     private static final String cb1key = "cb1_key";
     private static final String cb2key = "cb2_key";

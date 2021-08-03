@@ -193,9 +193,7 @@ public class Activity2 extends AppCompatActivity {
                                 delete(location.getName());
                                 favChecker = false;
                                 Toast.makeText(Activity2.this, "Removed from favourites", Toast.LENGTH_SHORT).show();
-//                                Bundle bun = new Bundle();
-//                                bun.putString(FirebaseAnalytics.Param.ITEM_ID, location.getName());
-//                                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
 
                             }else{
                                 favRef.child(postkey).child(currentUserId).setValue(true);
@@ -305,7 +303,6 @@ public class Activity2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (prevPage.equals("MA")) {
-//            startActivity(new Intent(getApplicationContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             super.onBackPressed();
             overridePendingTransition(0, 0);
         } else if (prevPage.equals("Fav")) {

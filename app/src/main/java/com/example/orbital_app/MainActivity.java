@@ -61,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recommendedRecView;
     private RecyclerView topRatedRecView;
-    private RecyclerView newRecView;
+    private RecyclerView dirRecView;
     private BottomNavigationView bottomNavigationView;
 
     ArrayList<Locations> recommendedList = new ArrayList<>();
     ArrayList<Locations> topRatedList = new ArrayList<>();
-    ArrayList<Locations> newList = new ArrayList<>();
+    ArrayList<Locations> dirList = new ArrayList<>();
 
     ProgressDialog pd;
 
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userInfo = snapshot.getValue(UserInfo.class);
-                if(userInfo != null){
+                if (userInfo != null) {
                     isCheck = true;
                 }
 
@@ -124,17 +124,17 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(new Intent(MainActivity.this, WelcomePage.class));
                 }
 
-                newRecView = findViewById(R.id.newRV);
+                dirRecView = findViewById(R.id.newRV);
 
-                newRecView.setHasFixedSize(true);
-                newRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
+                dirRecView.setHasFixedSize(true);
+                dirRecView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
                 userInfo = snapshot.getValue(UserInfo.class);
 
-                if(userInfo != null){
+                if (userInfo != null) {
                     location = userInfo.getHouse();
                     TextView header = findViewById(R.id.near_header);
-                    header.setText("In the "+location);
-                    querying(db.collection("places"), "generalLoc", newList, newRecView);
+                    header.setText("In the " + location);
+                    querying(db.collection("places"), "generalLoc", dirList, dirRecView);
                 }
             }
 
@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
         nearestFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterDialog(newRecView, newList, 3);
+                filterDialog(dirRecView, dirList, 3);
             }
         });
 
@@ -364,13 +364,12 @@ public class MainActivity extends AppCompatActivity {
         applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
         cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
         TextView selectAll1 = contactPopup.findViewById(R.id.costSelectAll);
-        Button btn1 = contactPopup.findViewById(R.id.filter_btn_low);
-        Button btn2 = contactPopup.findViewById(R.id.filter_btn_med);
-        Button btn3 = contactPopup.findViewById(R.id.filter_btn_high);
-        Button btn9 = contactPopup.findViewById(R.id.filter_btn_free);
+        Button lowBtn = contactPopup.findViewById(R.id.filter_btn_low);
+        Button medBtn = contactPopup.findViewById(R.id.filter_btn_med);
+        Button highBtn = contactPopup.findViewById(R.id.filter_btn_high);
+        Button freeBtn = contactPopup.findViewById(R.id.filter_btn_free);
 
         TextView tv = contactPopup.findViewById(R.id.filterHeader);
-//        tv.setText("recommended");
         switch (num) {
             case 1:
                 tv.setText("Recommended");
@@ -384,20 +383,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         TextView selectAll2 = contactPopup.findViewById(R.id.oiSelectAll);
-        Button btn4 = contactPopup.findViewById(R.id.filter_btn_outdoor);
-        Button btn5 = contactPopup.findViewById(R.id.filter_btn_indoor);
+        Button btnOutdoor = contactPopup.findViewById(R.id.filter_btn_outdoor);
+        Button btnIndoor = contactPopup.findViewById(R.id.filter_btn_indoor);
 
         TextView selectAll3 = contactPopup.findViewById(R.id.paSelectAll);
-        Button btn6 = contactPopup.findViewById(R.id.filter_btn_act1);
-        btn6.setText(prefActivity1);
-        Button btn7 = contactPopup.findViewById(R.id.filter_btn_act2);
-        btn7.setText(prefActivity2);
-        Button btn8 = contactPopup.findViewById(R.id.filter_btn_act3);
-        btn8.setText(prefActivity3);
-        Button btn10 = contactPopup.findViewById(R.id.filter_btn_act4);
-        btn10.setText(prefActivity4);
-        Button btn11 = contactPopup.findViewById(R.id.filter_btn_act5);
-        btn11.setText(prefActivity5);
+        Button act1Btn = contactPopup.findViewById(R.id.filter_btn_act1);
+        act1Btn.setText(prefActivity1);
+        Button act2Btn = contactPopup.findViewById(R.id.filter_btn_act2);
+        act2Btn.setText(prefActivity2);
+        Button act3Btn = contactPopup.findViewById(R.id.filter_btn_act3);
+        act3Btn.setText(prefActivity3);
+        Button act4Btn = contactPopup.findViewById(R.id.filter_btn_act4);
+        act4Btn.setText(prefActivity4);
+        Button act5Btn = contactPopup.findViewById(R.id.filter_btn_act5);
+        act5Btn.setText(prefActivity5);
 
 
         dialogBuilder.setView(contactPopup);
@@ -472,18 +471,18 @@ public class MainActivity extends AppCompatActivity {
         selectAll1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCostMap(btn1, 1);
-                addToCostMap(btn2, 2);
-                addToCostMap(btn3, 3);
-                addToCostMap(btn9, 9);
+                addToCostMap(lowBtn, 1);
+                addToCostMap(medBtn, 2);
+                addToCostMap(highBtn, 3);
+                addToCostMap(freeBtn, 4);
             }
         });
 
         selectAll2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(stateMap, btn4);
-                addToMap(stateMap, btn5);
+                addToMap(stateMap, btnOutdoor);
+                addToMap(stateMap, btnIndoor);
 
             }
         });
@@ -491,97 +490,97 @@ public class MainActivity extends AppCompatActivity {
         selectAll3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn6);
-                addToMap(activityMap, btn7);
-                addToMap(activityMap, btn8);
-                addToMap(activityMap, btn10);
-                addToMap(activityMap, btn11);
+                addToMap(activityMap, act1Btn);
+                addToMap(activityMap, act2Btn);
+                addToMap(activityMap, act3Btn);
+                addToMap(activityMap, act4Btn);
+                addToMap(activityMap, act5Btn);
 
             }
         });
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+        lowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCostMap(btn1, 1);
+                addToCostMap(lowBtn, 1);
 
             }
         });
 
-        btn2.setOnClickListener(new View.OnClickListener() {
+        medBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCostMap(btn2, 2);
+                addToCostMap(medBtn, 2);
             }
         });
 
-        btn3.setOnClickListener(new View.OnClickListener() {
+        highBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCostMap(btn3, 3);
+                addToCostMap(highBtn, 3);
             }
         });
 
-        btn9.setOnClickListener(new View.OnClickListener() {
+        freeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToCostMap(btn9, 9);
+                addToCostMap(freeBtn, 4);
             }
         });
 
-        btn4.setOnClickListener(new View.OnClickListener() {
+        btnOutdoor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(stateMap, btn4);
-
-            }
-        });
-
-        btn5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addToMap(stateMap, btn5);
+                addToMap(stateMap, btnOutdoor);
 
             }
         });
 
-
-        btn6.setOnClickListener(new View.OnClickListener() {
+        btnIndoor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn6);
+                addToMap(stateMap, btnIndoor);
 
             }
         });
 
-        btn7.setOnClickListener(new View.OnClickListener() {
+
+        act1Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn7);
+                addToMap(activityMap, act1Btn);
 
             }
         });
 
-        btn8.setOnClickListener(new View.OnClickListener() {
+        act2Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn8);
+                addToMap(activityMap, act2Btn);
 
             }
         });
 
-        btn10.setOnClickListener(new View.OnClickListener() {
+        act3Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn10);
+                addToMap(activityMap, act3Btn);
 
             }
         });
 
-        btn11.setOnClickListener(new View.OnClickListener() {
+        act4Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addToMap(activityMap, btn11);
+                addToMap(activityMap, act4Btn);
+
+            }
+        });
+
+        act5Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToMap(activityMap, act5Btn);
 
             }
         });
@@ -608,7 +607,7 @@ public class MainActivity extends AppCompatActivity {
                 costMap.remove("Medium");
             } else if (btnNum == 3) {
                 costMap.remove("High");
-            } else if (btnNum == 9) {
+            } else if (btnNum == 4) {
                 costMap.remove("Free");
             }
 
@@ -620,7 +619,7 @@ public class MainActivity extends AppCompatActivity {
                 costMap.put("Medium", true);
             } else if (btnNum == 3) {
                 costMap.put("High", true);
-            } else if (btnNum == 9) {
+            } else if (btnNum == 4) {
                 costMap.put("Free", true);
             }
         }

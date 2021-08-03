@@ -44,17 +44,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHolder> {
 
-    Context context;
-    ArrayList<Reviews> list;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private Context context;
+    private ArrayList<Reviews> list;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private String currentUserId = user.getUid();
     private FirebaseDatabase rtdb = FirebaseDatabase.getInstance();
     private DatabaseReference upVoteCnt = rtdb.getReference("upVotes").child(currentUserId);
     private DatabaseReference userInfo = rtdb.getReference("user");
-//    DatabaseReference refData = FirebaseDatabase.getInstance().getReference("user").child(user.getUid());
-//    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("user");
-//    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
 
     public ReviewsAdapter(Context context, ArrayList<Reviews> list) {
         this.context = context;
@@ -69,7 +67,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ReviewsAdapter.ReviewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReviewsAdapter.ReviewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.rating.setRating(list.get(position).getRating());
         holder.review.setText(list.get(position).getReview());

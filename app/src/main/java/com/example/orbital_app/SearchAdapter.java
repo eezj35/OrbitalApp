@@ -1,5 +1,6 @@
 package com.example.orbital_app;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SearchAdapter.SearchViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.name.setText(list.get(position).getName());
 
         holder.parent.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +87,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         private CardView parent;
         SearchViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.searchName); // need to call using itemView because we are not inside an Activity
+            name = itemView.findViewById(R.id.searchName);
             parent = itemView.findViewById(R.id.searchParent);
 
         }

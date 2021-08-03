@@ -25,7 +25,7 @@ public class ForgotPassword extends AppCompatActivity {
     private ProgressBar progressBar3;
     private TextView loginTV;
 
-    FirebaseAuth auth;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
