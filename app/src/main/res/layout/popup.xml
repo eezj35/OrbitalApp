@@ -265,18 +265,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act1" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/filterApplyBtn"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/btn_style"
         android:backgroundTint="#FF0000"
         android:padding="15dp"
-        android:text="Apply / Reset"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:text="Apply"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filter_btn_act5" />
+
+    <android.widget.Button
+        android:id="@+id/filterResetBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:background="@drawable/filter_button"
+        android:backgroundTint="#FDFD96"
+        android:padding="15dp"
+        android:text="Reset"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/filterApplyBtn"
+        app:layout_constraintStart_toEndOf="@+id/filterApplyBtn"
+        app:layout_constraintTop_toTopOf="@+id/filterApplyBtn"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
-    private Button applyBtn;
+    private android.widget.Button applyBtn;
+    private android.widget.Button resetBtn;
     private ImageButton cancelBtn;
 
     UserInfo userInfo;
@@ -362,6 +363,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         applyBtn = contactPopup.findViewById(R.id.filterApplyBtn);
+        resetBtn = contactPopup.findViewById(R.id.filterResetBtn);
         cancelBtn = contactPopup.findViewById(R.id.filterCancelBtn);
         TextView selectAll1 = contactPopup.findViewById(R.id.costSelectAll);
         Button lowBtn = contactPopup.findViewById(R.id.filter_btn_low);
@@ -410,26 +412,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (stateMap.isEmpty() && costMap.isEmpty() && activityMap.isEmpty()) {
-                    if (num == 1) {
+//                if (stateMap.isEmpty() && costMap.isEmpty() && activityMap.isEmpty()) {
+//                    if (num == 1) {
+//
+//                        unchangedAdapter.notifyDataSetChanged();
+//                        rv.setAdapter(unchangedAdapter);
+//                    } else {
+//
+//                        unchangedAdapter2.notifyDataSetChanged();
+//                        rv.setAdapter(unchangedAdapter2);
+//
+//                    }
+//                    dialog.dismiss();
 
-                        unchangedAdapter.notifyDataSetChanged();
-                        rv.setAdapter(unchangedAdapter);
-                    } else {
-
-                        unchangedAdapter2.notifyDataSetChanged();
-                        rv.setAdapter(unchangedAdapter2);
-
-                    }
-                    dialog.dismiss();
-
-                }else if(costMap.isEmpty() || stateMap.isEmpty() || activityMap.isEmpty()){
+                if (costMap.isEmpty() || stateMap.isEmpty() || activityMap.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please tick a filter from each category", Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     ArrayList<Locations> validList = new ArrayList<>();
 
-                    for(Locations loc : arrayList){
+                    for (Locations loc : arrayList) {
                         if (loc.getCost().equals("Varies") || costMap.containsKey(loc.getCost())) {
                             if (loc.getState().equals("Outdoors & Indoors") || stateMap.containsKey(loc.getState())) {
                                 for (String activity : loc.getActivities()) {
@@ -458,6 +459,24 @@ public class MainActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }
 
+            }
+        });
+
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (num == 1) {
+                    unchangedAdapter.notifyDataSetChanged();
+                    rv.setAdapter(unchangedAdapter);
+                } else {
+
+                    unchangedAdapter2.notifyDataSetChanged();
+                    rv.setAdapter(unchangedAdapter2);
+
+                }
+                clearAllMaps();
+                Toast.makeText(MainActivity.this, "Reset applied", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
 

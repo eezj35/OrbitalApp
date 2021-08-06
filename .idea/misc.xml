@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/justi/AndroidStudioProjects/Orbital_App/app/src/main/res/drawable-anydpi/filter_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/justi/AndroidStudioProjects/Orbital_App/app/src/main/res/drawable/filter_button.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/justi/AndroidStudioProjects/Orbital_App/app/src/main/res/layout/activity_2.xml" value="0.1762917933130699" />
         <entry key="..\:/Users/justi/AndroidStudioProjects/Orbital_App/app/src/main/res/layout/activity_logging_in.xml" value="0.19791666666666666" />
         <entry key="..\:/Users/justi/AndroidStudioProjects/Orbital_App/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/justi/AndroidStudioProjects/Orbital_App/app/src/main/res/layout/activity_pref_form.xml" value="0.33" />
