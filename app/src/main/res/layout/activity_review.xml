@@ -10,7 +10,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/reviewRefresh"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="650dp"
         android:layout_below="@+id/leaveReview"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/leaveReview"
